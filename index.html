@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AmorD-Ng Furnitures | Premium Furniture Store</title>
+    <style>
+        :root {
+            --bg-primary: #0a0a0a;
+            --bg-secondary: #111111;
+            --bg-card: #1a1a1a;
+            --bg-card-hover: #222222;
+            --border-color: #2a2a2a;
+            --border-hover: #3a3a3a;
+            --text-primary: #f5f5f5;
+            --text-secondary: #b0b0b0;
+            --text-muted: #7a7a7a;
+            --accent: #ff6a00;
+            --accent-hover: #ff8c33;
+            --accent-soft: rgba(255, 106, 0, 0.15);
+            --danger: #ff4757;
+            --success: #2ed573;
+            --whatsapp: #25D366;
+            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.4);
+            --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.5);
+            --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.6);
+            --radius-sm: 8px;
+            --radius-md: 12px;
+            --radius-lg: 20px;
+            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; }
+        body { background-color: var(--bg-primary); color: var(--text-primary); display: flex; flex-direction: column; min-height: 100vh; line-height: 1.6; overflow-x: hidden; }
+
+        /* Header */
+        .header { background: rgba(17, 17, 17, 0.95); backdrop-filter: blur(10px); padding: 14px 30px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border-color); position: sticky; top: 0; z-index: 1000; box-shadow: var(--shadow-sm); }
+        .logo img { height: 44px; width: auto; display: block; }
+        .search-box { flex: 1; max-width: 650px; background: var(--bg-card); border-radius: 50px; padding: 10px 20px; display: flex; align-items: center; border: 1px solid var(--border-color); transition: var(--transition); }
+        .search-box:focus-within { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); }
+        .search-box input { flex: 1; background: transparent; border: none; color: var(--text-primary); outline: none; font-size: 14px; }
+        .header-actions { display: flex; gap: 12px; align-items: center; }
+        .btn { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 50px; padding: 8px 18px; color: var(--text-primary); font-weight: 600; font-size: 14px; cursor: pointer; transition: var(--transition); }
+        .btn:hover { background: var(--bg-card-hover); border-color: var(--border-hover); }
+        .btn-primary { background: var(--accent); border: 1px solid var(--accent); color: #fff; box-shadow: 0 2px 10px rgba(255, 106, 0, 0.3); }
+        .btn-primary:hover { background: var(--accent-hover); }
+        .cart-btn { background: var(--accent); border: none; color: #fff; padding: 8px 20px; border-radius: 50px; font-weight: 700; font-size: 14px; cursor: pointer; display: flex; align-items: center; gap: 8px; box-shadow: 0 2px 10px rgba(255, 106, 0, 0.3); transition: var(--transition); }
+        .cart-count { background: #fff; color: var(--accent); border-radius: 50px; padding: 2px 8px; font-size: 12px; font-weight: 800; }
+
+        /* Category Nav */
+        .category-nav { background: var(--bg-secondary); padding: 0; display: flex; justify-content: center; gap: 0; border-bottom: 1px solid var(--border-color); overflow-x: auto; scrollbar-width: none; position: sticky; top: 73px; z-index: 900; }
+        .category-nav::-webkit-scrollbar { display: none; }
+        .nav-btn { background: transparent; color: var(--text-secondary); border: none; padding: 16px 24px; font-weight: 600; font-size: 14px; white-space: nowrap; cursor: pointer; position: relative; transition: var(--transition); border-bottom: 2px solid transparent; }
+        .nav-btn:hover { color: var(--text-primary); background: rgba(255, 255, 255, 0.02); }
+        .nav-btn.active { color: var(--accent); border-bottom: 2px solid var(--accent); background: var(--accent-soft); }
+
+        /* Sections */
+        .section-container { max-width: 1400px; margin: 0 auto; padding: 0 30px; width: 100%; }
+        .section-header { padding: 40px 0 20px; }
+        .section-title { font-size: 16px; font-weight: 700; color: var(--text-primary); border-left: 4px solid var(--accent); padding-left: 12px; text-transform: uppercase; letter-spacing: 0.5px; }
+
+        /* Carousel & Grid */
+        .carousel-container { display: flex; gap: 16px; padding: 10px 0 30px; overflow-x: auto; scrollbar-width: none; scroll-behavior: smooth; }
+        .carousel-container::-webkit-scrollbar { display: none; }
+        .carousel-card { flex: 0 0 220px; background: var(--bg-card); border-radius: var(--radius-md); overflow: hidden; border: 1px solid var(--border-color); cursor: pointer; transition: var(--transition); position: relative; }
+        .carousel-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); border-color: var(--border-hover); }
+        .carousel-card img, .product-card img { width: 100%; height: 180px; object-fit: cover; display: block; background: var(--bg-secondary); }
+        .carousel-card .info, .product-details { padding: 12px; }
+        .carousel-card .title, .product-details .title { font-size: 14px; font-weight: 600; margin-bottom: 6px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: var(--text-primary); }
+        .carousel-card .price, .product-details .price { color: var(--accent); font-weight: 800; font-size: 16px; margin-bottom: 4px; }
+        .carousel-card .vendor, .product-details .vendor { font-size: 11px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; }
+
+        .product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 16px; padding-bottom: 60px; }
+        .product-card { background: var(--bg-card); border-radius: var(--radius-md); overflow: hidden; border: 1px solid var(--border-color); padding: 12px; display: flex; flex-direction: column; cursor: pointer; transition: var(--transition); position: relative; }
+        .product-card:hover { border-color: var(--accent); box-shadow: var(--shadow-lg); transform: translateY(-4px); }
+        .product-rating { font-size: 12px; color: #f5a623; margin-bottom: 6px; display: flex; align-items: center; gap: 4px; }
+        .product-rating span { color: var(--text-muted); font-size: 11px; }
+        .product-code { display: inline-block; background: var(--accent-soft); color: var(--accent); border: 1px solid var(--accent); border-radius: 4px; padding: 2px 6px; font-size: 11px; font-weight: 700; margin-bottom: 8px; }
+        .product-options { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; background: var(--bg-secondary); padding: 8px; border-radius: var(--radius-sm); }
+        .product-options label { font-size: 11px; color: var(--text-secondary); display: flex; align-items: center; gap: 6px; font-weight: 500; }
+        .product-options input[type="color"] { width: 24px; height: 24px; border: none; border-radius: 50%; cursor: pointer; background: transparent; padding: 0; }
+        .product-options input[type="number"] { width: 48px; padding: 4px; background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 4px; color: var(--text-primary); font-size: 13px; text-align: center; }
+        .add-btn { background: var(--bg-secondary); border: 1px solid var(--border-color); border-radius: var(--radius-sm); padding: 10px; color: var(--text-primary); font-weight: 700; font-size: 13px; cursor: pointer; width: 100%; transition: var(--transition); }
+        .add-btn:hover { background: var(--accent); border-color: var(--accent); color: #fff; box-shadow: 0 2px 8px rgba(255, 106, 0, 0.3); }
+
+        /* Footer */
+        .footer { background: var(--bg-secondary); border-top: 1px solid var(--border-color); margin-top: auto; padding: 50px 30px 20px; }
+        .footer-content { max-width: 1400px; margin: 0 auto; }
+        .footer-links { display: flex; justify-content: center; flex-wrap: wrap; gap: 30px; margin-bottom: 30px; }
+        .footer-links a { color: var(--text-secondary); text-decoration: none; font-size: 14px; font-weight: 500; transition: var(--transition); }
+        .footer-links a:hover { color: var(--accent); }
+        .footer-copyright { color: var(--text-muted); font-size: 13px; text-align: center; border-top: 1px solid var(--border-color); padding-top: 20px; }
+
+        /* Admin Padlock */
+        .admin-padlock { position: fixed; bottom: 20px; left: 20px; z-index: 9999; background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 50%; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 18px; box-shadow: var(--shadow-md); transition: var(--transition); color: var(--accent); }
+        .admin-padlock:hover { background: var(--bg-card-hover); border-color: var(--accent); transform: scale(1.1); }
+
+        /* Badge */
+        .temu-nigeria-badge { position: fixed; z-index: 9998; background: var(--bg-card); border: 1px solid var(--accent); border-radius: 50px; padding: 6px 14px; display: flex; align-items: center; gap: 8px; box-shadow: var(--shadow-md); font-size: 13px; font-weight: 700; color: var(--text-primary); opacity: 0.9; transition: var(--transition); pointer-events: none; animation: badgeFloat 3s ease-in-out infinite; }
+        .temu-nigeria-badge img { width: 20px; height: 20px; border-radius: 50%; }
+        .temu-nigeria-badge span { color: var(--accent); letter-spacing: 0.5px; }
+        @keyframes badgeFloat { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
+
+        /* Modals */
+        .modal-overlay { position: fixed; inset: 0; background: rgba(0, 0, 0, 0.8); backdrop-filter: blur(4px); z-index: 10000; display: flex; align-items: center; justify-content: center; opacity: 0; visibility: hidden; transition: var(--transition); }
+        .modal-overlay.active { opacity: 1; visibility: visible; }
+        .modal-box { background: var(--bg-card); border-radius: var(--radius-lg); max-width: 480px; width: 90%; padding: 30px; border: 1px solid var(--border-color); position: relative; max-height: 85vh; overflow-y: auto; box-shadow: var(--shadow-lg); }
+        .modal-close { position: absolute; top: 15px; right: 15px; background: var(--bg-secondary); border: none; width: 32px; height: 32px; border-radius: 50%; font-size: 18px; cursor: pointer; color: var(--text-secondary); transition: var(--transition); display: flex; align-items: center; justify-content: center; }
+        .modal-close:hover { background: var(--accent); color: #fff; }
+
+        /* Admin */
+        .admin-login input { width: 100%; max-width: 300px; padding: 12px; margin-bottom: 15px; border: 1px solid var(--border-color); background: var(--bg-secondary); border-radius: var(--radius-sm); color: var(--text-primary); text-align: center; display: block; margin-left: auto; margin-right: auto; font-size: 14px; }
+        .admin-dashboard .upload-form { background: var(--bg-secondary); padding: 20px; border-radius: var(--radius-md); margin-bottom: 30px; border: 1px solid var(--border-color); }
+        .admin-dashboard .form-group { margin-bottom: 16px; }
+        .admin-dashboard .form-group label { display: block; font-size: 13px; color: var(--text-secondary); margin-bottom: 6px; font-weight: 600; }
+        .admin-dashboard .form-group input, .admin-dashboard .form-group select { width: 100%; padding: 10px; background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-sm); color: var(--text-primary); font-size: 14px; }
+        .admin-table { width: 100%; border-collapse: collapse; font-size: 13px; background: var(--bg-secondary); border-radius: var(--radius-md); overflow: hidden; }
+        .admin-table th, .admin-table td { border: 1px solid var(--border-color); padding: 12px; text-align: left; }
+        .admin-table th { background: var(--bg-card); color: var(--accent); font-weight: 700; text-transform: uppercase; font-size: 11px; }
+        .admin-table img { width: 50px; height: 50px; object-fit: cover; border-radius: var(--radius-sm); }
+        .admin-table button { background: var(--danger); border: none; color: #fff; padding: 6px 12px; border-radius: var(--radius-sm); cursor: pointer; font-weight: 600; font-size: 12px; }
+
+        /* Auth */
+        .google-btn { background: #fff; border: none; border-radius: 50px; padding: 12px; color: #333; font-weight: 700; font-size: 14px; cursor: pointer; width: 100%; margin-bottom: 20px; display: flex; align-items: center; justify-content: center; gap: 10px; box-shadow: var(--shadow-sm); transition: var(--transition); }
+        .google-btn img { width: 20px; }
+        .auth-card input { width: 100%; padding: 12px; margin-bottom: 12px; background: var(--bg-secondary); border: 1px solid var(--border-color); border-radius: var(--radius-sm); color: var(--text-primary); font-size: 14px; }
+        .hidden { display: none !important; }
+
+        /* Toast */
+        .toast { position: fixed; bottom: 20px; right: 20px; background: var(--bg-card); color: var(--text-primary); padding: 14px 24px; border-radius: var(--radius-md); border-left: 4px solid var(--accent); box-shadow: var(--shadow-lg); z-index: 99999; font-weight: 500; font-size: 14px; animation: slideIn 0.3s ease; }
+        @keyframes slideIn { from { transform: translateX(100px); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+
+        /* Full Screen Modal + Zoom + WhatsApp */
+        #fullScreenModal .modal-box { max-width: 90vw; max-height: 90vh; width: 100%; background: rgba(0,0,0,0.95); border: 2px solid var(--accent); text-align: center; padding: 20px; }
+        #fullScreenImg { max-width: 100%; max-height: 70vh; object-fit: contain; border-radius: 10px; cursor: zoom-in; transition: transform 0.3s ease; margin: 10px 0; }
+        .zoom-controls { display: flex; justify-content: center; gap: 10px; margin-bottom: 15px; }
+        .zoom-controls button { background: var(--bg-card); border: 1px solid var(--accent); color: #fff; border-radius: 50%; width: 40px; height: 40px; font-size: 20px; cursor: pointer; transition: var(--transition); }
+        .zoom-controls button:hover { background: var(--accent); }
+        .whatsapp-full-btn { background: var(--whatsapp); color: #fff; border: none; border-radius: 50px; padding: 12px 24px; font-size: 16px; font-weight: 700; cursor: pointer; display: inline-flex; align-items: center; gap: 10px; box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4); transition: var(--transition); margin-top: 10px; }
+        .whatsapp-full-btn:hover { background: #20bd5a; transform: scale(1.05); }
+
+        @media (max-width: 768px) {
+            .header { padding: 12px 16px; gap: 12px; flex-wrap: wrap; }
+            .logo img { height: 36px; }
+            .search-box { order: 3; max-width: 100%; flex-basis: 100%; }
+            .category-nav { justify-content: flex-start; padding: 0 10px; }
+            .product-grid { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+            .product-card img { height: 130px; }
+            .carousel-card { flex-basis: 180px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Random Floating Badge -->
+    <div class="temu-nigeria-badge" id="temuBadge">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/Flag_of_Nigeria.svg/1200px-Flag_of_Nigeria.svg.png" alt="Nigeria Flag">
+        <span>AmorD-Ng</span>
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="logo"><img src="https://i.ibb.co/ds3PjV1R/content.png" alt="AmorD-Ng Furnitures Logo"></div>
+        <div class="search-box">
+            <span style="color: var(--text-muted); margin-right: 8px;">🔍</span>
+            <input type="text" placeholder="Search sofas, chairs, dining sets, or product code..." id="searchInput">
+        </div>
+        <div class="header-actions">
+            <button class="btn" id="authBtn" onclick="openAuth()">Login</button>
+            <button class="cart-btn" onclick="openCart()">🛒 <span class="cart-count" id="cartCount">0</span></button>
+        </div>
+    </header>
+
+    <!-- Category Nav -->
+    <nav class="category-nav" id="categoryNav">
+        <button class="nav-btn" data-category="all">All</button>
+        <button class="nav-btn active" data-category="sofa">Sofa</button>
+        <button class="nav-btn" data-category="dining">Dining</button>
+        <button class="nav-btn" data-category="kitchen">Kitchen</button>
+        <button class="nav-btn" data-category="tv">TV Station</button>
+        <button class="nav-btn" data-category="bed">Bed Frame</button>
+    </nav>
+
+    <!-- Sponsored Section -->
+    <div class="section-container">
+        <div class="section-header"><div class="section-title">✨ Sponsored Products</div></div>
+        <div class="carousel-container" id="carouselContainer"></div>
+
+        <div class="section-header"><div class="section-title">🔥 Recommended for you</div></div>
+        <div class="product-grid" id="productGrid"></div>
+    </div>
+
+    <!-- Admin Panel Container -->
+    <div id="adminPanelContainer" class="hidden section-container" style="max-width: 800px; padding-top: 40px;"></div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="#" onclick="showAboutModal()">About Us</a>
+                <a href="#" onclick="showPolicyModal()">Payment & Delivery Policy</a>
+                <a href="#" onclick="showPrivacyModal()">Privacy Policy</a>
+                <a href="https://wa.me/2348100578413" target="_blank">WhatsApp: +234 810 057 8413</a>
+                <a href="mailto:godwindouglas8@gmail.com">Gmail: godwindouglas8@gmail.com</a>
+            </div>
+            <div class="footer-copyright">
+                &copy; <span id="year"></span> <strong>AmorD-Ng Furnitures</strong>. All rights reserved. Crafting comfort for your home.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Admin Padlock -->
+    <div class="admin-padlock" onclick="toggleAdmin()" title="Admin Panel">🔒</div>
+
+    <!-- Cart Modal -->
+    <div class="modal-overlay" id="cartModal">
+        <div class="modal-box">
+            <button class="modal-close" onclick="closeCart()">×</button>
+            <h2 style="margin-bottom: 20px;">Your Cart</h2>
+            <div id="cartItemsContainer"></div>
+            <div style="margin-top: 20px; border-top: 1px solid var(--border-color); padding-top: 15px;">
+                <p style="font-size: 18px; font-weight: 800;">Total: <span id="cartTotal" style="color: var(--accent);">₦0</span></p>
+                <button class="btn btn-primary" style="width: 100%; margin-top: 10px; padding: 14px;" onclick="checkout()">Proceed to Checkout</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Auth Modal -->
+    <div class="modal-overlay" id="authModal">
+        <div class="modal-box auth-card">
+            <button class="modal-close" onclick="closeAuth()">×</button>
+            <h2 id="authTitle" style="text-align: center; margin-bottom: 20px;">Login</h2>
+            <button class="google-btn" onclick="googleLogin()">
+                <img src="https://www.svgrepo.com/show/475656/google-color.svg" alt="Google"> Continue with Google
+            </button>
+            <div style="text-align: center; color: var(--text-muted); margin-bottom: 15px; font-size: 13px;">or sign in with email</div>
+            <div id="emailAuth">
+                <input type="email" id="emailInput" placeholder="Email address">
+                <input type="password" id="passwordInput" placeholder="Password">
+                <button class="btn btn-primary" style="width: 100%; padding: 12px;" onclick="emailLogin()">Sign In</button>
+            </div>
+            <div id="registerForm" class="hidden">
+                <input type="text" id="regName" placeholder="Full Name">
+                <input type="email" id="regEmail" placeholder="Email address">
+                <input type="password" id="regPassword" placeholder="Create password">
+                <button class="btn btn-primary" style="width: 100%; padding: 12px;" onclick="emailRegister()">Create Account</button>
+            </div>
+            <p style="text-align: center; margin-top: 15px; font-size: 13px; color: var(--text-muted);">
+                <span id="authToggleText">Don't have an account?</span> 
+                <button onclick="toggleAuthMode()" style="background: none; border: none; color: var(--accent); font-weight: 700; cursor: pointer; font-size: 13px; margin-left: 4px;" id="authToggleBtn">Create one</button>
+            </p>
+        </div>
+    </div>
+
+    <!-- Full Screen Product Modal (with Zoom & WhatsApp) -->
+    <div class="modal-overlay" id="fullScreenModal">
+        <div class="modal-box">
+            <button class="modal-close" onclick="closeFullScreen()">×</button>
+            <h3 id="fsTitle" style="margin-bottom: 5px;"></h3>
+            <p id="fsCode" class="product-code" style="margin-bottom: 5px;"></p>
+            <p id="fsPrice" style="font-size: 20px; font-weight: 800; color: var(--accent); margin-bottom: 10px;"></p>
+            <p id="fsDescription" style="color: var(--text-secondary); font-size: 14px; margin-bottom: 15px;"></p>
+            
+            <div class="zoom-controls">
+                <button onclick="zoomOut()">−</button>
+                <button onclick="resetZoom()">⟲</button>
+                <button onclick="zoomIn()">+</button>
+            </div>
+            <img id="fullScreenImg" src="" alt="">
+            
+            <button class="whatsapp-full-btn" onclick="sendWhatsApp()">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                Chat on WhatsApp
+            </button>
+        </div>
+    </div>
+
+    <!-- About / Policy / Privacy Modals -->
+    <div class="modal-overlay" id="aboutModal">
+        <div class="modal-box">
+            <button class="modal-close" onclick="closeModal('aboutModal')">×</button>
+            <h2 style="margin-bottom: 15px;">About AmorD-Ng Furnitures</h2>
+            <p style="color: var(--text-secondary); line-height: 1.8;">
+                At AmorD-Ng Furnitures, we are dedicated to transforming your living spaces into havens of comfort, elegance, and functionality. As a premier furniture store in Nigeria, we specialize in crafting and delivering high-quality sofas, dining tables, kitchen units, TV stands, and bed frames that perfectly blend modern design with enduring durability. 
+                <br><br>
+                Our mission is simple: to bring world-class furniture within reach of every Nigerian home. Whether you are furnishing a new apartment, upgrading your living room, or searching for that perfect statement piece, our diverse collection ensures you find exactly what you need.
+                <br><br>
+                We understand that furniture is an investment. That's why we focus on premium materials, meticulous craftsmanship, and customer-centric service. With AmorD-Ng, you're not just buying furniture; you're investing in quality, comfort, and a home that truly reflects your style.
+            </p>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="policyModal">
+        <div class="modal-box">
+            <button class="modal-close" onclick="closeModal('policyModal')">×</button>
+            <h2 style="margin-bottom: 15px;">Payment & Delivery Policy</h2>
+            <p style="color: var(--text-secondary); line-height: 1.8;">
+                <strong>🚚 Free Delivery:</strong> We offer free delivery on all orders within major cities in Nigeria.
+                <br><br>
+                <strong>💳 Flexible Payment Options:</strong> We understand that flexibility is key. We offer two convenient payment methods:
+                <ul style="margin-left: 20px; margin-bottom: 10px;">
+                    <li><strong>Pay Half, Pay Balance on Delivery:</strong> Reserve your furniture by paying 50% upfront, and settle the remaining 50% when your furniture is delivered to your doorstep.</li>
+                    <li><strong>Pay Fully Upfront:</strong> For a seamless checkout, you can choose to pay 100% of the price now and enjoy priority delivery.</li>
+                </ul>
+                <br>
+                Our goal is to make your furniture buying experience smooth, secure, and stress-free.
+            </p>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="privacyModal">
+        <div class="modal-box">
+            <button class="modal-close" onclick="closeModal('privacyModal')">×</button>
+            <h2 style="margin-bottom: 15px;">Privacy Policy</h2>
+            <p style="color: var(--text-secondary); line-height: 1.8;">
+                At AmorD-Ng Furnitures, your privacy is of paramount importance. We are committed to protecting your personal information and ensuring that your data is handled securely and transparently.
+                <br><br>
+                <strong>Data Collection:</strong> We only collect the information necessary to process your orders, such as your name, contact details, and delivery address.
+                <br><br>
+                <strong>Data Usage:</strong> Your information is used solely for order processing, delivery coordination, and customer support. We do not sell, rent, or share your personal data with third parties, except as required by law.
+                <br><br>
+                <strong>Data Security:</strong> We employ industry-standard security measures to protect your data from unauthorized access, alteration, or disclosure.
+                <br><br>
+                <strong>Your Rights:</strong> You have the right to request access to, correction of, or deletion of your personal data at any time. 
+                <br><br>
+                By using our website, you consent to the practices described in this policy.
+            </p>
+        </div>
+    </div>
+
+    <div id="toastContainer"></div>
+
+    <script>
+        // ================= CONFIGURATION =================
+        const IMGBB_API_KEY = 'f2564a98b97fece8b5a248255d39c472';
+        const SHEETDB_URL = 'https://sheetdb.io/api/v1/a44e9ahjeab7z';
+        const WHATSAPP_NUMBER = '2348100578413';
+        const COMPANY_GMAIL = 'godwindouglas8@gmail.com';
+
+        let products = [];
+        let cart = [];
+        let currentUser = null;
+        let isAdmin = false;
+        let activeCategory = 'all';
+        let currentFullScreenProductId = null;
+        let currentZoom = 1;
+
+        // ================= HELPERS =================
+        function formatPrice(price) { return '₦' + Number(price).toLocaleString('en-NG'); }
+        function stars(rating) { let s=''; for(let i=1;i<=5;i++){ if(i<=Math.round(rating)) s+='★'; else s+='☆'; } return s; }
+        function generateProductCode() { return Math.floor(10000 + Math.random() * 90000).toString(); }
+        function showToast(msg) { const t = document.createElement('div'); t.className = 'toast'; t.textContent = msg; document.getElementById('toastContainer').appendChild(t); setTimeout(() => t.remove(), 3000); }
+
+        // ================= IMGBB UPLOAD =================
+        function uploadToImgBB(file) {
+            return new Promise((resolve, reject) => {
+                const formData = new FormData();
+                formData.append('image', file);
+                fetch(`https://api.imgbb.com/1/upload?key=${IMGBB_API_KEY}`, { method: 'POST', body: formData })
+                .then(res => res.json())
+                .then(data => { if (data.success) resolve(data.data.url); else reject(new Error('Upload failed')); })
+                .catch(err => reject(err));
+            });
+        }
+
+        // ================= SHEETDB OPERATIONS =================
+        async function fetchProductsFromDB() {
+            try {
+                const response = await fetch(SHEETDB_URL);
+                const data = await response.json();
+                if (data && data.length > 0) {
+                    products = data.map(item => ({
+                        id: Number(item.id),
+                        code: item.code || generateProductCode(),
+                        name: item.name,
+                        price: Number(item.price),
+                        vendor: item.vendor,
+                        category: item.category,
+                        section: item.section,
+                        rating: Number(item.rating) || 4.5,
+                        image: item.image,
+                        description: item.description || "Premium quality furniture for your home."
+                    }));
+                } else {
+                    // Fallback seed data
+                    products = [
+                        { id: 1, code: "10001", name: "Double Seater Sofa", price: 320000, vendor: "Mma Amisco", category: "sofa", rating: 4.3, image: "https://via.placeholder.com/300x200/333/fff?text=Double+Sofa", section: "sponsored", description: "A beautifully crafted double seater sofa with plush cushions and durable fabric, perfect for modern living rooms." },
+                        { id: 2, code: "10002", name: "3 Seater Green Sofa", price: 300000, vendor: "Mma Amisco", category: "sofa", rating: 4.1, image: "https://via.placeholder.com/300x200/333/fff?text=Green+Sofa", section: "sponsored", description: "This elegant green 3-seater sofa brings a touch of nature to your home with its comfortable seating and premium finish." }
+                    ];
+                }
+                renderStore();
+            } catch (error) {
+                console.error("Error fetching from SheetDB:", error);
+                products = [
+                    { id: 1, code: "10001", name: "Double Seater Sofa", price: 320000, vendor: "Mma Amisco", category: "sofa", rating: 4.3, image: "https://via.placeholder.com/300x200/333/fff?text=Double+Sofa", section: "sponsored", description: "A beautifully crafted double seater sofa." },
+                    { id: 2, code: "10002", name: "3 Seater Green Sofa", price: 300000, vendor: "Mma Amisco", category: "sofa", rating: 4.1, image: "https://via.placeholder.com/300x200/333/fff?text=Green+Sofa", section: "sponsored", description: "Elegant green 3-seater sofa." }
+                ];
+                renderStore();
+            }
+        }
+
+        // ================= RENDER STORE =================
+        function renderStore() {
+            const carousel = document.getElementById('carouselContainer');
+            const grid = document.getElementById('productGrid');
+
+            const sponsored = products.filter(p => p.section === 'sponsored');
+            carousel.innerHTML = sponsored.map(p => `
+                <div class="carousel-card" onclick="openFullScreen(${p.id})">
+                    <img src="${p.image}"><div class="info"><div class="title">${p.name}</div><div class="price">${formatPrice(p.price)}</div><div class="vendor">${p.vendor}</div></div>
+                </div>`).join('');
+
+            let filtered = products.filter(p => p.section === 'recommended');
+            if (activeCategory !== 'all') filtered = filtered.filter(p => p.category === activeCategory);
+
+            grid.innerHTML = filtered.map(p => `
+                <div class="product-card" onclick="openFullScreen(${p.id})">
+                    <img src="${p.image}"><div class="product-details">
+                        <div class="title">${p.name}</div>
+                        <div class="product-rating">${stars(p.rating)} <span>(${p.rating})</span></div>
+                        <div class="price">${formatPrice(p.price)}</div>
+                        <div class="product-code">Code: ${p.code}</div>
+                        <div class="vendor">${p.vendor}</div>
+                    </div>
+                </div>`).join('');
+        }
+
+        // ================= ADMIN PANEL =================
+        function toggleAdmin() {
+            const container = document.getElementById('adminPanelContainer');
+            if (isAdmin) { isAdmin = false; container.classList.add('hidden'); showToast('Exited Admin'); }
+            else {
+                container.classList.remove('hidden');
+                container.innerHTML = `
+                    <div id="adminLogin" style="text-align:center; padding:40px; background:var(--bg-card); border-radius:var(--radius-lg); border:1px solid var(--border-color);">
+                        <h2>Admin Access</h2><p style="color:var(--text-muted); margin:10px 0 20px;">Enter password</p>
+                        <input type="password" id="adminPass" placeholder="Enter Password" onkeypress="if(event.key==='Enter') checkAdminPass()">
+                        <button class="btn btn-primary" onclick="checkAdminPass()">Login</button>
+                    </div>
+                    <div id="adminDashboard" class="admin-dashboard hidden">
+                        <h3 style="margin-bottom:20px;">Upload New Furniture</h3>
+                        <div class="upload-form">
+                            <div class="form-group"><label>Product Name</label><input type="text" id="prodName" placeholder="e.g., Luxurious Sofa"></div>
+                            <div class="form-group"><label>Price (₦)</label><input type="number" id="prodPrice" placeholder="e.g., 150000"></div>
+                            <div class="form-group"><label>Vendor / Store</label><input type="text" id="prodVendor" placeholder="e.g., Mma Amisco"></div>
+                            <div class="form-group"><label>Category</label><select id="prodCategory"><option value="sofa">Sofa</option><option value="dining">Dining</option><option value="kitchen">Kitchen</option><option value="tv">TV Station</option><option value="bed">Bed Frame</option></select></div>
+                            <div class="form-group"><label>Section</label><select id="prodSection"><option value="sponsored">Sponsored</option><option value="recommended">Recommended</option></select></div>
+                            <div class="form-group"><label>Full Description</label><textarea id="prodDescription" rows="3" placeholder="Describe this furniture beautifully..."></textarea></div>
+                            <div class="form-group"><label>Upload Image</label><input type="file" id="prodImage" accept="image/*"></div>
+                            <button class="btn btn-primary" style="width:100%; padding:14px;" onclick="addProduct()">Add Product</button>
+                        </div>
+                        <h3 style="margin-bottom:20px;">Manage Products</h3>
+                        <table class="admin-table"><thead><tr><th>Image</th><th>Name</th><th>Price</th><th>Code</th><th>Section</th><th>Action</th></tr></thead><tbody id="adminProductList"></tbody></table>
+                    </div>`;
+                document.getElementById('adminLogin').style.display = 'block';
+                document.getElementById('adminDashboard').classList.add('hidden');
+            }
+        }
+
+        function checkAdminPass() {
+            const pass = document.getElementById('adminPass').value;
+            if (pass === 'Okwudiri@007') {
+                isAdmin = true;
+                document.getElementById('adminLogin').style.display = 'none';
+                document.getElementById('adminDashboard').classList.remove('hidden');
+                renderAdminList();
+                showToast('Welcome Admin!');
+            } else { showToast('❌ Wrong password'); }
+        }
+
+        async function addProduct() {
+            const name = document.getElementById('prodName').value;
+            const price = document.getElementById('prodPrice').value;
+            const vendor = document.getElementById('prodVendor').value;
+            const category = document.getElementById('prodCategory').value;
+            const section = document.getElementById('prodSection').value;
+            const description = document.getElementById('prodDescription').value;
+            const imgInput = document.getElementById('prodImage');
+
+            if (!name || !price || !vendor || !imgInput.files[0]) { showToast('Fill all fields and upload image'); return; }
+            
+            showToast('Uploading image to ImgBB...');
+            try {
+                const imageUrl = await uploadToImgBB(imgInput.files[0]);
+                const productCode = generateProductCode();
+                const newProduct = {
+                    id: Date.now(),
+                    code: productCode,
+                    name,
+                    price: Number(price),
+                    vendor,
+                    category,
+                    section,
+                    rating: 4.5,
+                    image: imageUrl,
+                    description
+                };
+
+                // Save to SheetDB
+                await fetch(SHEETDB_URL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(newProduct)
+                });
+
+                products.push(newProduct);
+                renderStore();
+                renderAdminList();
+                showToast(`✅ Product added! Code: ${productCode}`);
+                
+                // Clear form
+                document.getElementById('prodName').value=''; document.getElementById('prodPrice').value=''; document.getElementById('prodVendor').value=''; document.getElementById('prodImage').value=''; document.getElementById('prodDescription').value='';
+            } catch (error) {
+                showToast('❌ Error uploading: ' + error.message);
+            }
+        }
+
+        function renderAdminList() {
+            const list = document.getElementById('adminProductList');
+            list.innerHTML = products.map(p => `<tr><td><img src="${p.image}"></td><td>${p.name}</td><td>${formatPrice(p.price)}</td><td>${p.code}</td><td>${p.section}</td><td><button onclick="deleteProduct(${p.id})">Delete</button></td></tr>`).join('');
+        }
+
+        async function deleteProduct(id) {
+            if (confirm('Delete this product?')) {
+                const product = products.find(p => p.id === id);
+                if (product) {
+                    // Delete from SheetDB
+                    await fetch(`${SHEETDB_URL}/id/${id}`, { method: 'DELETE' });
+                }
+                products = products.filter(p => p.id !== id);
+                renderStore();
+                renderAdminList();
+                showToast('🗑️ Product deleted');
+            }
+        }
+
+        // ================= FULL SCREEN MODAL + ZOOM + WHATSAPP =================
+        function openFullScreen(id) {
+            const p = products.find(x => x.id === id);
+            if (!p) return;
+            currentFullScreenProductId = id;
+            currentZoom = 1;
+            
+            document.getElementById('fsTitle').textContent = p.name;
+            document.getElementById('fsCode').textContent = 'Code: ' + p.code;
+            document.getElementById('fsPrice').textContent = formatPrice(p.price);
+            document.getElementById('fsDescription').textContent = p.description || "Premium quality furniture for your home.";
+            document.getElementById('fullScreenImg').src = p.image;
+            document.getElementById('fullScreenImg').style.transform = 'scale(1)';
+            document.getElementById('fullScreenModal').classList.add('active');
+        }
+
+        function closeFullScreen() { document.getElementById('fullScreenModal').classList.remove('active'); currentFullScreenProductId = null; }
+
+        function zoomIn() { currentZoom += 0.2; if (currentZoom > 3) currentZoom = 3; document.getElementById('fullScreenImg').style.transform = `scale(${currentZoom})`; }
+        function zoomOut() { currentZoom -= 0.2; if (currentZoom < 0.5) currentZoom = 0.5; document.getElementById('fullScreenImg').style.transform = `scale(${currentZoom})`; }
+        function resetZoom() { currentZoom = 1; document.getElementById('fullScreenImg').style.transform = 'scale(1)'; }
+
+        function sendWhatsApp() {
+            const p = products.find(x => x.id === currentFullScreenProductId);
+            if (!p) return;
+            const message = `Hello AmorD-Ng Furnitures, I need this furniture:\n\nProduct: ${p.name}\nCode: ${p.code}\nPrice: ${formatPrice(p.price)}\nImage: ${p.image}\n\nPlease contact me regarding this item.`;
+            window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`, '_blank');
+        }
+
+        // ================= CART =================
+        function addToCart(productId) {
+            if (!currentUser) { showToast('Please login first!'); openAuth(); return; }
+            const color = document.getElementById(`color-${productId}`) ? document.getElementById(`color-${productId}`).value : '#ffffff';
+            const qty = document.getElementById(`qty-${productId}`) ? parseInt(document.getElementById(`qty-${productId}`).value) : 1;
+            const existing = cart.find(item => item.productId === productId && item.color === color);
+            if (existing) existing.quantity += qty; else cart.push({ productId, color, quantity: qty });
+            saveCart(); showToast('✅ Added to cart!');
+        }
+
+        function addToCartFromModal() {
+            if (!currentUser) { showToast('Please login first!'); openAuth(); return; }
+            const color = document.getElementById('modalColor').value;
+            const qty = parseInt(document.getElementById('modalQty').value) || 1;
+            const existing = cart.find(item => item.productId === currentModalProductId && item.color === color);
+            if (existing) existing.quantity += qty; else cart.push({ productId: currentModalProductId, color, quantity: qty });
+            saveCart(); closeModal(); showToast('✅ Added to cart!');
+        }
+
+        function saveCart() { localStorage.setItem('cart', JSON.stringify(cart)); updateCartCount(); }
+        function updateCartCount() { document.getElementById('cartCount').textContent = cart.reduce((s,i) => s + i.quantity, 0); }
+
+        function openCart() {
+            if (!currentUser) { showToast('Please login first!'); openAuth(); return; }
+            const cont = document.getElementById('cartItemsContainer');
+            let total = 0;
+            if (cart.length === 0) cont.innerHTML = '<p style="text-align:center; color:var(--text-muted); padding:20px;">Your cart is empty</p>';
+            else cont.innerHTML = cart.map(item => {
+                const p = products.find(x => x.id === item.productId);
+                if (!p) return '';
+                const itemTotal = p.price * item.quantity; total += itemTotal;
+                return `<div style="display:flex; gap:15px; padding:15px 0; border-bottom:1px solid var(--border-color);">
+                    <img src="${p.image}" style="width:70px; height:70px; border-radius:8px; object-fit:cover;">
+                    <div style="flex:1;"><p style="font-weight:600;">${p.name}</p><p style="font-size:12px; color:var(--text-muted);">Color: ${item.color}</p><p style="font-size:12px; color:var(--text-muted);">Qty: ${item.quantity}</p><p style="color:var(--accent); font-weight:800;">${formatPrice(itemTotal)}</p></div>
+                    <button onclick="removeFromCart(${item.productId}, '${item.color}')" style="background:none; border:none; color:var(--danger); font-size:24px; cursor:pointer;">×</button>
+                </div>`;
+            }).join('');
+            document.getElementById('cartTotal').textContent = formatPrice(total);
+            document.getElementById('cartModal').classList.add('active');
+        }
+
+        function removeFromCart(productId, color) { cart = cart.filter(i => !(i.productId === productId && i.color === color)); saveCart(); openCart(); }
+        function closeCart() { document.getElementById('cartModal').classList.remove('active'); }
+        function checkout() { if (cart.length === 0) return; showToast('🎉 Order placed!'); cart = []; saveCart(); closeCart(); }
+
+        // ================= AUTH =================
+        function openAuth() { document.getElementById('authModal').classList.add('active'); document.getElementById('emailAuth').classList.remove('hidden'); document.getElementById('registerForm').classList.add('hidden'); document.getElementById('authTitle').textContent = 'Login'; document.getElementById('authToggleBtn').textContent = 'Create one'; }
+        function closeAuth() { document.getElementById('authModal').classList.remove('active'); }
+        function googleLogin() { currentUser = { name: "Google User", email: "user@gmail.com" }; saveUser(); updateAuthUI(); closeAuth(); showToast('👋 Welcome!'); }
+        function emailLogin() { const e = document.getElementById('emailInput').value, p = document.getElementById('passwordInput').value; if (!e || !p) return showToast('Enter email and password'); currentUser = { name: e.split('@')[0], email: e }; saveUser(); updateAuthUI(); closeAuth(); showToast('Logged in'); }
+        function emailRegister() { const n = document.getElementById('regName').value, e = document.getElementById('regEmail').value, p = document.getElementById('regPassword').value; if (!n || !e || !p) return showToast('Fill all fields'); currentUser = { name: n, email: e }; saveUser(); updateAuthUI(); closeAuth(); showToast('Account created!'); }
+        function toggleAuthMode() { const ea = document.getElementById('emailAuth'), rf = document.getElementById('registerForm'); const t = document.getElementById('authTitle'), btn = document.getElementById('authToggleBtn'); if (rf.classList.contains('hidden')) { rf.classList.remove('hidden'); ea.classList.add('hidden'); t.textContent = 'Register'; btn.textContent = 'Sign In'; } else { rf.classList.add('hidden'); ea.classList.remove('hidden'); t.textContent = 'Login'; btn.textContent = 'Create one'; } }
+        function saveUser() { localStorage.setItem('currentUser', JSON.stringify(currentUser)); }
+        function updateAuthUI() { const btn = document.getElementById('authBtn'); if (currentUser) { btn.textContent = '👤 ' + currentUser.name; btn.onclick = logout; } else { btn.textContent = 'Login'; btn.onclick = openAuth; } }
+        function logout() { currentUser = null; localStorage.removeItem('currentUser'); updateAuthUI(); showToast('Logged out'); }
+
+        // ================= SEARCH & CATEGORY =================
+        function setupCategoryNav() {
+            document.getElementById('categoryNav').querySelectorAll('.nav-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    document.getElementById('categoryNav').querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    activeCategory = btn.dataset.category;
+                    renderStore();
+                });
+            });
+        }
+
+        function setupSearch() {
+            document.getElementById('searchInput').addEventListener('input', (e) => {
+                const q = e.target.value.toLowerCase();
+                const filtered = products.filter(p => 
+                    p.name.toLowerCase().includes(q) || 
+                    p.code.toLowerCase().includes(q) || 
+                    p.vendor.toLowerCase().includes(q)
+                );
+                document.getElementById('productGrid').innerHTML = filtered.filter(p => p.section === 'recommended').map(p => `
+                    <div class="product-card" onclick="openFullScreen(${p.id})">
+                        <img src="${p.image}"><div class="product-details">
+                            <div class="title">${p.name}</div>
+                            <div class="product-price">${formatPrice(p.price)}</div>
+                            <div class="product-code">Code: ${p.code}</div>
+                        </div>
+                    </div>`).join('');
+                document.getElementById('carouselContainer').innerHTML = filtered.filter(p => p.section === 'sponsored').map(p => `
+                    <div class="carousel-card" onclick="openFullScreen(${p.id})">
+                        <img src="${p.image}"><div class="info"><div class="title">${p.name}</div><div class="price">${formatPrice(p.price)}</div></div>
+                    </div>`).join('');
+            });
+        }
+
+        // ================= FOOTER MODALS =================
+        function showAboutModal() { document.getElementById('aboutModal').classList.add('active'); }
+        function showPolicyModal() { document.getElementById('policyModal').classList.add('active'); }
+        function showPrivacyModal() { document.getElementById('privacyModal').classList.add('active'); }
+        function closeModal(id) { document.getElementById(id).classList.remove('active'); }
+
+        // ================= MOVE BADGE =================
+        function moveTemuBadge() {
+            const badge = document.getElementById('temuBadge');
+            const positions = [
+                { top: '15%', right: '20px' }, { top: 'auto', right: 'auto', bottom: '15%', left: '20px' },
+                { top: '50%', right: '30px' }, { top: '30%', left: '30px' },
+                { top: 'auto', right: '20%', bottom: '20px' }, { top: '20%', right: '40%' }
+            ];
+            const randomPos = positions[Math.floor(Math.random() * positions.length)];
+            badge.style.top = randomPos.top; badge.style.right = randomPos.right; badge.style.bottom = randomPos.bottom; badge.style.left = randomPos.left;
+            setTimeout(moveTemuBadge, 5000);
+        }
+
+        // ================= INIT =================
+        function init() {
+            document.getElementById('year').textContent = new Date().getFullYear();
+            fetchProductsFromDB();
+            updateCartCount();
+            updateAuthUI();
+            setupCategoryNav();
+            setupSearch();
+            moveTemuBadge();
+            if (localStorage.getItem('cart')) cart = JSON.parse(localStorage.getItem('cart'));
+            if (localStorage.getItem('currentUser')) currentUser = JSON.parse(localStorage.getItem('currentUser'));
+            updateCartCount(); updateAuthUI();
+        }
+
+        init();
+    </script>
+</body>
+</html>
