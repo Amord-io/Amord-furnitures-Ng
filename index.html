@@ -6,24 +6,24 @@
     <title>AmorD-Ng Furnitures | Premium Home Furnishings</title>
     <style>
         :root {
-            --bg-primary: #0a0a0a;
-            --bg-secondary: #111111;
-            --bg-card: #1a1a1a;
-            --bg-card-hover: #222222;
-            --border-color: #2a2a2a;
-            --border-hover: #3a3a3a;
-            --text-primary: #f5f5f5;
-            --text-secondary: #b0b0b0;
-            --text-muted: #7a7a7a;
+            --bg-primary: #ffffff;
+            --bg-secondary: #f5f5f5;
+            --bg-card: #ffffff;
+            --bg-card-hover: #f8f8f8;
+            --border-color: #e0e0e0;
+            --border-hover: #cccccc;
+            --text-primary: #111111;
+            --text-secondary: #555555;
+            --text-muted: #888888;
             --accent: #ff6a00;
-            --accent-hover: #ff8c33;
-            --accent-soft: rgba(255, 106, 0, 0.15);
+            --accent-hover: #e05e00;
+            --accent-soft: rgba(255, 106, 0, 0.1);
             --danger: #ff4757;
             --success: #2ed573;
             --whatsapp: #25D366;
-            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.4);
-            --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.5);
-            --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.6);
+            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.08);
+            --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.12);
             --radius-sm: 8px;
             --radius-md: 12px;
             --radius-lg: 20px;
@@ -34,33 +34,33 @@
         body { background-color: var(--bg-primary); color: var(--text-primary); display: flex; flex-direction: column; min-height: 100vh; line-height: 1.6; overflow-x: hidden; }
 
         /* Header */
-        .header { background: rgba(17, 17, 17, 0.95); backdrop-filter: blur(10px); padding: 14px 30px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border-color); position: sticky; top: 0; z-index: 1000; box-shadow: var(--shadow-sm); }
+        .header { background: #ffffff; border-bottom: 1px solid var(--border-color); padding: 14px 30px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 1000; box-shadow: var(--shadow-sm); }
         .logo img { height: 44px; width: auto; display: block; }
-        .search-box { flex: 1; max-width: 650px; background: var(--bg-card); border-radius: 50px; padding: 10px 20px; display: flex; align-items: center; border: 1px solid var(--border-color); transition: var(--transition); }
+        .search-box { flex: 1; max-width: 650px; background: var(--bg-secondary); border-radius: 50px; padding: 10px 20px; display: flex; align-items: center; border: 1px solid var(--border-color); transition: var(--transition); }
         .search-box:focus-within { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); }
         .search-box input { flex: 1; background: transparent; border: none; color: var(--text-primary); outline: none; font-size: 14px; }
         .header-actions { display: flex; gap: 12px; align-items: center; }
         .btn { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 50px; padding: 8px 18px; color: var(--text-primary); font-weight: 600; font-size: 14px; cursor: pointer; transition: var(--transition); }
         .btn:hover { background: var(--bg-card-hover); border-color: var(--border-hover); }
-        .btn-primary { background: var(--accent); border: 1px solid var(--accent); color: #fff; box-shadow: 0 2px 10px rgba(255, 106, 0, 0.3); }
-        .btn-primary:hover { background: var(--accent-hover); }
-        .cart-btn { background: var(--accent); border: none; color: #fff; padding: 8px 20px; border-radius: 50px; font-weight: 700; font-size: 14px; cursor: pointer; display: flex; align-items: center; gap: 8px; box-shadow: 0 2px 10px rgba(255, 106, 0, 0.3); transition: var(--transition); }
+        .btn-primary { background: var(--accent); border: 1px solid var(--accent); color: #fff; box-shadow: 0 2px 10px rgba(255, 106, 0, 0.2); }
+        .btn-primary:hover { background: var(--accent-hover); border-color: var(--accent-hover); }
+        .cart-btn { background: var(--accent); border: none; color: #fff; padding: 8px 20px; border-radius: 50px; font-weight: 700; font-size: 14px; cursor: pointer; display: flex; align-items: center; gap: 8px; box-shadow: 0 2px 10px rgba(255, 106, 0, 0.2); transition: var(--transition); }
         .cart-count { background: #fff; color: var(--accent); border-radius: 50px; padding: 2px 8px; font-size: 12px; font-weight: 800; }
 
         /* Category Nav */
-        .category-nav { background: var(--bg-secondary); padding: 0; display: flex; justify-content: center; gap: 0; border-bottom: 1px solid var(--border-color); overflow-x: auto; scrollbar-width: none; position: sticky; top: 73px; z-index: 900; }
+        .category-nav { background: #ffffff; border-bottom: 1px solid var(--border-color); padding: 0; display: flex; justify-content: center; gap: 0; overflow-x: auto; scrollbar-width: none; position: sticky; top: 73px; z-index: 900; }
         .category-nav::-webkit-scrollbar { display: none; }
-        .nav-btn { background: transparent; color: var(--text-secondary); border: none; padding: 16px 24px; font-weight: 600; font-size: 14px; white-space: nowrap; cursor: pointer; position: relative; transition: var(--transition); border-bottom: 2px solid transparent; }
-        .nav-btn:hover { color: var(--text-primary); background: rgba(255, 255, 255, 0.02); }
-        .nav-btn.active { color: var(--accent); border-bottom: 2px solid var(--accent); background: var(--accent-soft); }
+        .nav-btn { background: transparent; color: var(--text-secondary); border: none; padding: 14px 20px; font-weight: 600; font-size: 13px; white-space: nowrap; cursor: pointer; position: relative; transition: var(--transition); border-bottom: 3px solid transparent; }
+        .nav-btn:hover { color: var(--text-primary); background: var(--bg-secondary); }
+        .nav-btn.active { color: var(--accent); border-bottom-color: var(--accent); background: var(--accent-soft); }
 
         /* Sections */
         .section-container { max-width: 1400px; margin: 0 auto; padding: 0 30px; width: 100%; }
-        .section-header { padding: 40px 0 20px; }
+        .section-header { padding: 20px 0 10px; }
         .section-title { font-size: 16px; font-weight: 700; color: var(--text-primary); border-left: 4px solid var(--accent); padding-left: 12px; text-transform: uppercase; letter-spacing: 0.5px; }
 
         /* Carousel & Grid */
-        .carousel-container { display: flex; gap: 16px; padding: 10px 0 30px; overflow-x: auto; scrollbar-width: none; scroll-behavior: smooth; }
+        .carousel-container { display: flex; gap: 16px; padding: 10px 0 20px; overflow-x: auto; scrollbar-width: none; scroll-behavior: smooth; }
         .carousel-container::-webkit-scrollbar { display: none; }
         .carousel-card { flex: 0 0 220px; background: var(--bg-card); border-radius: var(--radius-md); overflow: hidden; border: 1px solid var(--border-color); cursor: pointer; transition: var(--transition); position: relative; }
         .carousel-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); border-color: var(--border-hover); }
@@ -70,7 +70,7 @@
         .carousel-card .price, .product-details .price { color: var(--accent); font-weight: 800; font-size: 16px; margin-bottom: 4px; }
         .carousel-card .vendor, .product-details .vendor { font-size: 11px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; }
 
-        .product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 16px; padding-bottom: 60px; }
+        .product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 16px; padding-bottom: 40px; }
         .product-card { background: var(--bg-card); border-radius: var(--radius-md); overflow: hidden; border: 1px solid var(--border-color); padding: 12px; display: flex; flex-direction: column; cursor: pointer; transition: var(--transition); position: relative; }
         .product-card:hover { border-color: var(--accent); box-shadow: var(--shadow-lg); transform: translateY(-4px); }
         .product-rating { font-size: 12px; color: #f5a623; margin-bottom: 6px; display: flex; align-items: center; gap: 4px; }
@@ -81,15 +81,15 @@
         .product-options input[type="color"] { width: 24px; height: 24px; border: none; border-radius: 50%; cursor: pointer; background: transparent; padding: 0; }
         .product-options input[type="number"] { width: 48px; padding: 4px; background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 4px; color: var(--text-primary); font-size: 13px; text-align: center; }
         .add-btn { background: var(--bg-secondary); border: 1px solid var(--border-color); border-radius: var(--radius-sm); padding: 10px; color: var(--text-primary); font-weight: 700; font-size: 13px; cursor: pointer; width: 100%; transition: var(--transition); }
-        .add-btn:hover { background: var(--accent); border-color: var(--accent); color: #fff; box-shadow: 0 2px 8px rgba(255, 106, 0, 0.3); }
+        .add-btn:hover { background: var(--accent); border-color: var(--accent); color: #fff; box-shadow: 0 2px 8px rgba(255, 106, 0, 0.2); }
 
-        /* Footer */
-        .footer { background: var(--bg-secondary); border-top: 1px solid var(--border-color); margin-top: auto; padding: 50px 30px 20px; }
+        /* Footer - Smaller Buttons */
+        .footer { background: var(--bg-secondary); border-top: 1px solid var(--border-color); margin-top: auto; padding: 30px 30px 10px; }
         .footer-content { max-width: 1400px; margin: 0 auto; }
-        .footer-links { display: flex; justify-content: center; flex-wrap: wrap; gap: 30px; margin-bottom: 30px; }
-        .footer-links a { color: var(--text-secondary); text-decoration: none; font-size: 14px; font-weight: 500; transition: var(--transition); }
+        .footer-links { display: flex; justify-content: center; flex-wrap: wrap; gap: 15px; margin-bottom: 15px; }
+        .footer-links a { color: var(--text-secondary); text-decoration: none; font-size: 12px; font-weight: 500; transition: var(--transition); }
         .footer-links a:hover { color: var(--accent); }
-        .footer-copyright { color: var(--text-muted); font-size: 13px; text-align: center; border-top: 1px solid var(--border-color); padding-top: 20px; }
+        .footer-copyright { color: var(--text-muted); font-size: 11px; text-align: center; border-top: 1px solid var(--border-color); padding-top: 10px; }
 
         /* Admin Padlock */
         .admin-padlock { position: fixed; bottom: 20px; left: 20px; z-index: 9999; background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 50%; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 18px; box-shadow: var(--shadow-md); transition: var(--transition); color: var(--accent); }
@@ -101,7 +101,7 @@
         .temu-nigeria-badge span { color: var(--accent); }
 
         /* Modals */
-        .modal-overlay { position: fixed; inset: 0; background: rgba(0, 0, 0, 0.8); backdrop-filter: blur(4px); z-index: 10000; display: flex; align-items: center; justify-content: center; opacity: 0; visibility: hidden; transition: var(--transition); }
+        .modal-overlay { position: fixed; inset: 0; background: rgba(0, 0, 0, 0.5); backdrop-filter: blur(4px); z-index: 10000; display: flex; align-items: center; justify-content: center; opacity: 0; visibility: hidden; transition: var(--transition); }
         .modal-overlay.active { opacity: 1; visibility: visible; }
         .modal-box { background: var(--bg-card); border-radius: var(--radius-lg); max-width: 480px; width: 90%; padding: 30px; border: 1px solid var(--border-color); position: relative; max-height: 85vh; overflow-y: auto; box-shadow: var(--shadow-lg); }
         .modal-close { position: absolute; top: 15px; right: 15px; background: var(--bg-secondary); border: none; width: 32px; height: 32px; border-radius: 50%; font-size: 18px; cursor: pointer; color: var(--text-secondary); transition: var(--transition); display: flex; align-items: center; justify-content: center; }
@@ -120,21 +120,18 @@
         .admin-table button { background: var(--danger); border: none; color: #fff; padding: 6px 12px; border-radius: var(--radius-sm); cursor: pointer; font-weight: 600; font-size: 12px; }
 
         /* Auth */
-        .google-btn { background: #fff; border: none; border-radius: 50px; padding: 12px; color: #333; font-weight: 700; font-size: 14px; cursor: pointer; width: 100%; margin-bottom: 20px; display: flex; align-items: center; justify-content: center; gap: 10px; box-shadow: var(--shadow-sm); transition: var(--transition); }
+        .google-btn { background: #fff; border: 1px solid var(--border-color); border-radius: 50px; padding: 12px; color: #333; font-weight: 700; font-size: 14px; cursor: pointer; width: 100%; margin-bottom: 20px; display: flex; align-items: center; justify-content: center; gap: 10px; box-shadow: var(--shadow-sm); transition: var(--transition); }
         .google-btn img { width: 20px; }
         .auth-card input { width: 100%; padding: 12px; margin-bottom: 12px; background: var(--bg-secondary); border: 1px solid var(--border-color); border-radius: var(--radius-sm); color: var(--text-primary); font-size: 14px; }
         .hidden { display: none !important; }
 
         /* Toast */
-        .toast { position: fixed; bottom: 20px; right: 20px; background: var(--bg-card); color: var(--text-primary); padding: 14px 24px; border-radius: var(--radius-md); border-left: 4px solid var(--accent); box-shadow: var(--shadow-lg); z-index: 99999; font-weight: 500; font-size: 14px; animation: slideIn 0.3s ease; }
+        .toast { position: fixed; bottom: 20px; right: 20px; background: var(--text-primary); color: var(--bg-primary); padding: 14px 24px; border-radius: var(--radius-md); border-left: 4px solid var(--accent); box-shadow: var(--shadow-lg); z-index: 99999; font-weight: 500; font-size: 14px; animation: slideIn 0.3s ease; }
         @keyframes slideIn { from { transform: translateX(100px); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
 
-        /* Full Screen Modal + Zoom + WhatsApp */
-        #fullScreenModal .modal-box { max-width: 90vw; max-height: 90vh; width: 100%; background: rgba(0,0,0,0.95); border: 2px solid var(--accent); text-align: center; padding: 20px; }
-        #fullScreenImg { max-width: 100%; max-height: 70vh; object-fit: contain; border-radius: 10px; cursor: zoom-in; transition: transform 0.3s ease; margin: 10px 0; }
-        .zoom-controls { display: flex; justify-content: center; gap: 10px; margin-bottom: 15px; }
-        .zoom-controls button { background: var(--bg-card); border: 1px solid var(--accent); color: #fff; border-radius: 50%; width: 40px; height: 40px; font-size: 20px; cursor: pointer; transition: var(--transition); }
-        .zoom-controls button:hover { background: var(--accent); }
+        /* Full Screen Modal + Pinch Zoom + WhatsApp */
+        #fullScreenModal .modal-box { max-width: 95vw; max-height: 95vh; width: 100%; background: #fff; border: none; text-align: center; padding: 10px; }
+        #fullScreenImg { max-width: 100%; max-height: 75vh; object-fit: contain; border-radius: 10px; touch-action: pinch-zoom; margin: 10px 0; cursor: zoom-in; }
         .whatsapp-full-btn { background: var(--whatsapp); color: #fff; border: none; border-radius: 50px; padding: 12px 24px; font-size: 16px; font-weight: 700; cursor: pointer; display: inline-flex; align-items: center; gap: 10px; box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4); transition: var(--transition); margin-top: 10px; }
         .whatsapp-full-btn:hover { background: #20bd5a; transform: scale(1.05); }
 
@@ -164,10 +161,10 @@
         </div>
     </header>
 
-    <!-- Category Nav -->
+    <!-- Category Nav (These now filter by category or show All) -->
     <nav class="category-nav" id="categoryNav">
-        <button class="nav-btn" data-category="all">All</button>
-        <button class="nav-btn active" data-category="sofa">Sofa</button>
+        <button class="nav-btn active" data-category="all">All</button>
+        <button class="nav-btn" data-category="sofa">Sofa</button>
         <button class="nav-btn" data-category="dining">Dining</button>
         <button class="nav-btn" data-category="kitchen">Kitchen</button>
         <button class="nav-btn" data-category="tv">TV Station</button>
@@ -186,7 +183,7 @@
     <!-- Admin Panel Container -->
     <div id="adminPanelContainer" class="hidden section-container" style="max-width: 800px; padding-top: 40px;"></div>
 
-    <!-- Footer -->
+    <!-- Footer (Smaller buttons) -->
     <footer class="footer">
         <div class="footer-content">
             <div class="footer-links">
@@ -198,7 +195,7 @@
                 <a href="mailto:godwindouglas8@gmail.com">Gmail: godwindouglas8@gmail.com</a>
             </div>
             <div class="footer-copyright">
-                &copy; <span id="year"></span> <strong>AmorD-Ng Furnitures</strong>. All rights reserved. Crafting comfort for your home.
+                &copy; <span id="year"></span> <strong>AmorD-Ng Furnitures</strong>. All rights reserved.
             </div>
         </div>
     </footer>
@@ -206,7 +203,7 @@
     <!-- Admin Padlock -->
     <div class="admin-padlock" onclick="toggleAdmin()" title="Admin Panel">🔒</div>
 
-    <!-- Static Badge (Fixed Bottom Right, Non-Blocking) -->
+    <!-- Static Badge -->
     <div class="temu-nigeria-badge">
         <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/Flag_of_Nigeria.svg/1200px-Flag_of_Nigeria.svg.png" alt="Nigeria Flag">
         <span>AmorD-Ng</span>
@@ -252,22 +249,19 @@
         </div>
     </div>
 
-    <!-- Full Screen Product Modal (with Zoom & WhatsApp) -->
+    <!-- Full Screen Product Modal (Pinch Zoom & WhatsApp) -->
     <div class="modal-overlay" id="fullScreenModal">
         <div class="modal-box">
             <button class="modal-close" onclick="closeFullScreen()">×</button>
-            <h3 id="fsTitle" style="margin-bottom: 5px;"></h3>
+            <h3 id="fsTitle" style="margin-bottom: 5px; color: #111;"></h3>
             <p id="fsCode" class="product-code" style="margin-bottom: 5px;"></p>
             <p id="fsPrice" style="font-size: 20px; font-weight: 800; color: var(--accent); margin-bottom: 10px;"></p>
-            <p id="fsDescription" style="color: var(--text-secondary); font-size: 14px; margin-bottom: 15px;"></p>
+            <p id="fsDescription" style="color: #555; font-size: 14px; margin-bottom: 15px;"></p>
             
-            <div class="zoom-controls">
-                <button onclick="zoomOut()">−</button>
-                <button onclick="resetZoom()">⟲</button>
-                <button onclick="zoomIn()">+</button>
-            </div>
-            <img id="fullScreenImg" src="" alt="">
+            <!-- Pinch to zoom naturally -->
+            <img id="fullScreenImg" src="" alt="" style="touch-action: pinch-zoom;">
             
+            <!-- WhatsApp Button -->
             <button class="whatsapp-full-btn" onclick="sendWhatsApp()">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
                 Chat on WhatsApp
@@ -618,16 +612,24 @@ Apache License
             const carousel = document.getElementById('carouselContainer');
             const grid = document.getElementById('productGrid');
 
-            const sponsored = products.filter(p => p.section === 'sponsored');
+            // If "All" is selected: Show both Sponsored (in carousel) and Recommended (in grid)
+            // If a specific category is selected: Filter BOTH sections by that category ONLY
+            let sponsored = products.filter(p => p.section === 'sponsored');
+            let recommended = products.filter(p => p.section === 'recommended');
+
+            if (activeCategory !== 'all') {
+                sponsored = sponsored.filter(p => p.category === activeCategory);
+                recommended = recommended.filter(p => p.category === activeCategory);
+            }
+
+            // Render Sponsored (Carousel)
             carousel.innerHTML = sponsored.map(p => `
                 <div class="carousel-card" onclick="openFullScreen(${p.id})">
                     <img src="${p.image}"><div class="info"><div class="title">${p.name}</div><div class="price">${formatPrice(p.price)}</div><div class="vendor">${p.vendor}</div></div>
                 </div>`).join('');
 
-            let filtered = products.filter(p => p.section === 'recommended');
-            if (activeCategory !== 'all') filtered = filtered.filter(p => p.category === activeCategory);
-
-            grid.innerHTML = filtered.map(p => `
+            // Render Recommended (Grid)
+            grid.innerHTML = recommended.map(p => `
                 <div class="product-card" onclick="openFullScreen(${p.id})">
                     <img src="${p.image}"><div class="product-details">
                         <div class="title">${p.name}</div>
@@ -753,27 +755,21 @@ Apache License
             }
         }
 
-        // ================= FULL SCREEN MODAL + ZOOM + WHATSAPP =================
+        // ================= FULL SCREEN MODAL + PINCH ZOOM + WHATSAPP =================
         function openFullScreen(id) {
             const p = products.find(x => x.id === id);
             if (!p) return;
             currentFullScreenProductId = id;
-            currentZoom = 1;
             
             document.getElementById('fsTitle').textContent = p.name;
             document.getElementById('fsCode').textContent = 'Code: ' + p.code;
             document.getElementById('fsPrice').textContent = formatPrice(p.price);
             document.getElementById('fsDescription').textContent = p.description || "Premium quality furniture for your home.";
             document.getElementById('fullScreenImg').src = p.image;
-            document.getElementById('fullScreenImg').style.transform = 'scale(1)';
             document.getElementById('fullScreenModal').classList.add('active');
         }
 
         function closeFullScreen() { document.getElementById('fullScreenModal').classList.remove('active'); currentFullScreenProductId = null; }
-
-        function zoomIn() { currentZoom += 0.2; if (currentZoom > 3) currentZoom = 3; document.getElementById('fullScreenImg').style.transform = `scale(${currentZoom})`; }
-        function zoomOut() { currentZoom -= 0.2; if (currentZoom < 0.5) currentZoom = 0.5; document.getElementById('fullScreenImg').style.transform = `scale(${currentZoom})`; }
-        function resetZoom() { currentZoom = 1; document.getElementById('fullScreenImg').style.transform = 'scale(1)'; }
 
         function sendWhatsApp() {
             const p = products.find(x => x.id === currentFullScreenProductId);
@@ -845,7 +841,7 @@ Apache License
                     document.getElementById('categoryNav').querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
                     btn.classList.add('active');
                     activeCategory = btn.dataset.category;
-                    renderStore();
+                    renderStore(); // Re-renders store based on activeCategory
                 });
             });
         }
@@ -858,6 +854,7 @@ Apache License
                     p.code.toLowerCase().includes(q) || 
                     p.vendor.toLowerCase().includes(q)
                 );
+                // Search filters across all categories
                 document.getElementById('productGrid').innerHTML = filtered.filter(p => p.section === 'recommended').map(p => `
                     <div class="product-card" onclick="openFullScreen(${p.id})">
                         <img src="${p.image}"><div class="product-details">
