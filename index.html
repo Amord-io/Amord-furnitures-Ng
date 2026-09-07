@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AmorD-Ng Furnitures | Premium Furniture Store</title>
+    <title>AmorD-Ng Furnitures | Premium Home Furnishings</title>
     <style>
         :root {
             --bg-primary: #0a0a0a;
@@ -113,7 +113,7 @@
         .admin-dashboard .upload-form { background: var(--bg-secondary); padding: 20px; border-radius: var(--radius-md); margin-bottom: 30px; border: 1px solid var(--border-color); }
         .admin-dashboard .form-group { margin-bottom: 16px; }
         .admin-dashboard .form-group label { display: block; font-size: 13px; color: var(--text-secondary); margin-bottom: 6px; font-weight: 600; }
-        .admin-dashboard .form-group input, .admin-dashboard .form-group select { width: 100%; padding: 10px; background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-sm); color: var(--text-primary); font-size: 14px; }
+        .admin-dashboard .form-group input, .admin-dashboard .form-group select, .admin-dashboard .form-group textarea { width: 100%; padding: 10px; background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-sm); color: var(--text-primary); font-size: 14px; }
         .admin-table { width: 100%; border-collapse: collapse; font-size: 13px; background: var(--bg-secondary); border-radius: var(--radius-md); overflow: hidden; }
         .admin-table th, .admin-table td { border: 1px solid var(--border-color); padding: 12px; text-align: left; }
         .admin-table th { background: var(--bg-card); color: var(--accent); font-weight: 700; text-transform: uppercase; font-size: 11px; }
@@ -198,7 +198,7 @@
         <div class="footer-content">
             <div class="footer-links">
                 <a href="#" onclick="showAboutModal()">About Us</a>
-                <a href="#" onclick="showPolicyModal()">Payment & Delivery Policy</a>
+                <a href="#" onclick="showPolicyModal()">Payment & Delivery</a>
                 <a href="#" onclick="showPrivacyModal()">Privacy Policy</a>
                 <a href="https://wa.me/2348100578413" target="_blank">WhatsApp: +234 810 057 8413</a>
                 <a href="mailto:godwindouglas8@gmail.com">Gmail: godwindouglas8@gmail.com</a>
@@ -333,7 +333,7 @@
     <script>
         // ================= CONFIGURATION =================
         const IMGBB_API_KEY = 'f2564a98b97fece8b5a248255d39c472';
-        const SHEETDB_URL = 'https://sheetdb.io/api/v1/a44e9ahjeab7z';
+        const SHEETDB_URL = 'https://sheetdb.io/api/v1/167chhsgiemnd'; // <--- NEW URL
         const WHATSAPP_NUMBER = '2348100578413';
         const COMPANY_GMAIL = 'godwindouglas8@gmail.com';
 
@@ -382,10 +382,9 @@
                         description: item.description || "Premium quality furniture for your home."
                     }));
                 } else {
-                    // Fallback seed data
                     products = [
-                        { id: 1, code: "10001", name: "Double Seater Sofa", price: 320000, vendor: "Mma Amisco", category: "sofa", rating: 4.3, image: "https://via.placeholder.com/300x200/333/fff?text=Double+Sofa", section: "sponsored", description: "A beautifully crafted double seater sofa with plush cushions and durable fabric, perfect for modern living rooms." },
-                        { id: 2, code: "10002", name: "3 Seater Green Sofa", price: 300000, vendor: "Mma Amisco", category: "sofa", rating: 4.1, image: "https://via.placeholder.com/300x200/333/fff?text=Green+Sofa", section: "sponsored", description: "This elegant green 3-seater sofa brings a touch of nature to your home with its comfortable seating and premium finish." }
+                        { id: 1, code: "10001", name: "Double Seater Sofa", price: 320000, vendor: "Mma Amisco", category: "sofa", rating: 4.3, image: "https://via.placeholder.com/300x200/333/fff?text=Double+Sofa", section: "sponsored", description: "A beautifully crafted double seater sofa with plush cushions and durable fabric." },
+                        { id: 2, code: "10002", name: "3 Seater Green Sofa", price: 300000, vendor: "Mma Amisco", category: "sofa", rating: 4.1, image: "https://via.placeholder.com/300x200/333/fff?text=Green+Sofa", section: "sponsored", description: "Elegant green 3-seater sofa." }
                     ];
                 }
                 renderStore();
@@ -496,22 +495,28 @@
                     description
                 };
 
-                // Save to SheetDB
-                await fetch(SHEETDB_URL, {
+                const response = await fetch(SHEETDB_URL, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(newProduct)
                 });
 
-                products.push(newProduct);
-                renderStore();
-                renderAdminList();
-                showToast(`✅ Product added! Code: ${productCode}`);
+                const result = await response.json();
+                if (response.ok) {
+                    console.log('SheetDB response:', result);
+                    products.push(newProduct);
+                    renderStore();
+                    renderAdminList();
+                    showToast(`✅ Product added! Code: ${productCode}`);
+                    document.getElementById('prodName').value=''; document.getElementById('prodPrice').value=''; document.getElementById('prodVendor').value=''; document.getElementById('prodImage').value=''; document.getElementById('prodDescription').value='';
+                } else {
+                    showToast('❌ SheetDB rejected upload. Check columns!');
+                    console.error('SheetDB error:', result);
+                }
                 
-                // Clear form
-                document.getElementById('prodName').value=''; document.getElementById('prodPrice').value=''; document.getElementById('prodVendor').value=''; document.getElementById('prodImage').value=''; document.getElementById('prodDescription').value='';
             } catch (error) {
                 showToast('❌ Error uploading: ' + error.message);
+                console.error('Full error:', error);
             }
         }
 
@@ -524,7 +529,6 @@
             if (confirm('Delete this product?')) {
                 const product = products.find(p => p.id === id);
                 if (product) {
-                    // Delete from SheetDB
                     await fetch(`${SHEETDB_URL}/id/${id}`, { method: 'DELETE' });
                 }
                 products = products.filter(p => p.id !== id);
