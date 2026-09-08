@@ -15,9 +15,9 @@
             --text-primary: #111111;
             --text-secondary: #555555;
             --text-muted: #888888;
-            --accent: #ff6a00;
-            --accent-hover: #e05e00;
-            --accent-soft: rgba(255, 106, 0, 0.1);
+            --accent: #d4af37; /* Gold accent to match logo */
+            --accent-hover: #b8962e;
+            --accent-soft: rgba(212, 175, 55, 0.15);
             --danger: #ff4757;
             --success: #2ed573;
             --whatsapp: #25D366;
@@ -35,16 +35,16 @@
 
         /* Header */
         .header { background: #ffffff; border-bottom: 1px solid var(--border-color); padding: 14px 30px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 1000; box-shadow: var(--shadow-sm); }
-        .logo img { height: 44px; width: auto; display: block; }
+        .logo img { height: 55px; width: auto; display: block; }
         .search-box { flex: 1; max-width: 650px; background: var(--bg-secondary); border-radius: 50px; padding: 10px 20px; display: flex; align-items: center; border: 1px solid var(--border-color); transition: var(--transition); }
         .search-box:focus-within { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); }
         .search-box input { flex: 1; background: transparent; border: none; color: var(--text-primary); outline: none; font-size: 14px; }
         .header-actions { display: flex; gap: 12px; align-items: center; }
         .btn { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 50px; padding: 8px 18px; color: var(--text-primary); font-weight: 600; font-size: 14px; cursor: pointer; transition: var(--transition); }
         .btn:hover { background: var(--bg-card-hover); border-color: var(--border-hover); }
-        .btn-primary { background: var(--accent); border: 1px solid var(--accent); color: #fff; box-shadow: 0 2px 10px rgba(255, 106, 0, 0.2); }
+        .btn-primary { background: var(--accent); border: 1px solid var(--accent); color: #fff; box-shadow: 0 2px 10px rgba(212, 175, 55, 0.3); }
         .btn-primary:hover { background: var(--accent-hover); border-color: var(--accent-hover); }
-        .cart-btn { background: var(--accent); border: none; color: #fff; padding: 8px 20px; border-radius: 50px; font-weight: 700; font-size: 14px; cursor: pointer; display: flex; align-items: center; gap: 8px; box-shadow: 0 2px 10px rgba(255, 106, 0, 0.2); transition: var(--transition); }
+        .cart-btn { background: var(--accent); border: none; color: #fff; padding: 8px 20px; border-radius: 50px; font-weight: 700; font-size: 14px; cursor: pointer; display: flex; align-items: center; gap: 8px; box-shadow: 0 2px 10px rgba(212, 175, 55, 0.3); transition: var(--transition); }
         .cart-count { background: #fff; color: var(--accent); border-radius: 50px; padding: 2px 8px; font-size: 12px; font-weight: 800; }
 
         /* Category Nav */
@@ -81,7 +81,7 @@
         .product-options input[type="color"] { width: 24px; height: 24px; border: none; border-radius: 50%; cursor: pointer; background: transparent; padding: 0; }
         .product-options input[type="number"] { width: 48px; padding: 4px; background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 4px; color: var(--text-primary); font-size: 13px; text-align: center; }
         .add-btn { background: var(--bg-secondary); border: 1px solid var(--border-color); border-radius: var(--radius-sm); padding: 10px; color: var(--text-primary); font-weight: 700; font-size: 13px; cursor: pointer; width: 100%; transition: var(--transition); }
-        .add-btn:hover { background: var(--accent); border-color: var(--accent); color: #fff; box-shadow: 0 2px 8px rgba(255, 106, 0, 0.2); }
+        .add-btn:hover { background: var(--accent); border-color: var(--accent); color: #fff; box-shadow: 0 2px 8px rgba(212, 175, 55, 0.3); }
 
         /* Footer - Smaller Buttons */
         .footer { background: var(--bg-secondary); border-top: 1px solid var(--border-color); margin-top: auto; padding: 30px 30px 10px; }
@@ -95,10 +95,35 @@
         .admin-padlock { position: fixed; bottom: 20px; left: 20px; z-index: 9999; background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 50%; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 18px; box-shadow: var(--shadow-md); transition: var(--transition); color: var(--accent); }
         .admin-padlock:hover { background: var(--bg-card-hover); border-color: var(--accent); transform: scale(1.1); }
 
-        /* Static Non-Blocking Badge */
-        .temu-nigeria-badge { position: fixed; bottom: 15px; right: 15px; z-index: 9998; background: var(--bg-card); border: 1px solid var(--accent); border-radius: 50px; padding: 4px 10px; display: flex; align-items: center; gap: 5px; box-shadow: var(--shadow-md); font-size: 11px; font-weight: 600; color: var(--text-primary); opacity: 0.85; pointer-events: none; }
-        .temu-nigeria-badge img { width: 16px; height: 16px; border-radius: 50%; }
-        .temu-nigeria-badge span { color: var(--accent); }
+        /* Bouncing "A" Badge (Cropped from main logo) */
+        .bouncing-logo-badge {
+            position: fixed;
+            top: 15px;
+            right: 15px;
+            z-index: 9998;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            border: 2px solid var(--accent);
+            box-shadow: var(--shadow-md);
+            overflow: hidden;
+            animation: bounceLogo 3s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        .bouncing-logo-badge img {
+            width: 300%; /* Zooming into the 'A' crown area */
+            height: 300%;
+            object-fit: cover;
+            position: absolute;
+            top: -150%; /* Adjusting to show the "A" and crown */
+            left: -150%;
+        }
+
+        @keyframes bounceLogo {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
 
         /* Modals */
         .modal-overlay { position: fixed; inset: 0; background: rgba(0, 0, 0, 0.5); backdrop-filter: blur(4px); z-index: 10000; display: flex; align-items: center; justify-content: center; opacity: 0; visibility: hidden; transition: var(--transition); }
@@ -137,7 +162,7 @@
 
         @media (max-width: 768px) {
             .header { padding: 12px 16px; gap: 12px; flex-wrap: wrap; }
-            .logo img { height: 36px; }
+            .logo img { height: 45px; }
             .search-box { order: 3; max-width: 100%; flex-basis: 100%; }
             .category-nav { justify-content: flex-start; padding: 0 10px; }
             .product-grid { grid-template-columns: repeat(2, 1fr); gap: 8px; }
@@ -150,7 +175,7 @@
 
     <!-- Header -->
     <header class="header">
-        <div class="logo"><img src="https://i.ibb.co/ds3PjV1R/content.png" alt="AmorD-Ng Furnitures Logo"></div>
+        <div class="logo"><img src="https://i.ibb.co/rf1K3H8N/Chat-GPT-Image-Sep-8-2026-01-08-48-AM.png" alt="AmorD-Ng Furnitures Logo"></div>
         <div class="search-box">
             <span style="color: var(--text-muted); margin-right: 8px;">🔍</span>
             <input type="text" placeholder="Search sofas, chairs, dining sets, or product code..." id="searchInput">
@@ -161,7 +186,12 @@
         </div>
     </header>
 
-    <!-- Category Nav (These now filter by category or show All) -->
+    <!-- Bouncing "A" Logo Badge (Cropped from main logo via CSS) -->
+    <div class="bouncing-logo-badge">
+        <img src="https://i.ibb.co/rf1K3H8N/Chat-GPT-Image-Sep-8-2026-01-08-48-AM.png" alt="AmorD-Ng Logo">
+    </div>
+
+    <!-- Category Nav -->
     <nav class="category-nav" id="categoryNav">
         <button class="nav-btn active" data-category="all">All</button>
         <button class="nav-btn" data-category="sofa">Sofa</button>
@@ -202,12 +232,6 @@
 
     <!-- Admin Padlock -->
     <div class="admin-padlock" onclick="toggleAdmin()" title="Admin Panel">🔒</div>
-
-    <!-- Static Badge -->
-    <div class="temu-nigeria-badge">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/Flag_of_Nigeria.svg/1200px-Flag_of_Nigeria.svg.png" alt="Nigeria Flag">
-        <span>AmorD-Ng</span>
-    </div>
 
     <!-- Cart Modal -->
     <div class="modal-overlay" id="cartModal">
@@ -552,7 +576,6 @@ Apache License
         let isAdmin = false;
         let activeCategory = 'all';
         let currentFullScreenProductId = null;
-        let currentZoom = 1;
 
         // ================= HELPERS =================
         function formatPrice(price) { return '₦' + Number(price).toLocaleString('en-NG'); }
@@ -612,8 +635,6 @@ Apache License
             const carousel = document.getElementById('carouselContainer');
             const grid = document.getElementById('productGrid');
 
-            // If "All" is selected: Show both Sponsored (in carousel) and Recommended (in grid)
-            // If a specific category is selected: Filter BOTH sections by that category ONLY
             let sponsored = products.filter(p => p.section === 'sponsored');
             let recommended = products.filter(p => p.section === 'recommended');
 
@@ -622,13 +643,11 @@ Apache License
                 recommended = recommended.filter(p => p.category === activeCategory);
             }
 
-            // Render Sponsored (Carousel)
             carousel.innerHTML = sponsored.map(p => `
                 <div class="carousel-card" onclick="openFullScreen(${p.id})">
                     <img src="${p.image}"><div class="info"><div class="title">${p.name}</div><div class="price">${formatPrice(p.price)}</div><div class="vendor">${p.vendor}</div></div>
                 </div>`).join('');
 
-            // Render Recommended (Grid)
             grid.innerHTML = recommended.map(p => `
                 <div class="product-card" onclick="openFullScreen(${p.id})">
                     <img src="${p.image}"><div class="product-details">
@@ -841,7 +860,7 @@ Apache License
                     document.getElementById('categoryNav').querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
                     btn.classList.add('active');
                     activeCategory = btn.dataset.category;
-                    renderStore(); // Re-renders store based on activeCategory
+                    renderStore();
                 });
             });
         }
@@ -854,7 +873,6 @@ Apache License
                     p.code.toLowerCase().includes(q) || 
                     p.vendor.toLowerCase().includes(q)
                 );
-                // Search filters across all categories
                 document.getElementById('productGrid').innerHTML = filtered.filter(p => p.section === 'recommended').map(p => `
                     <div class="product-card" onclick="openFullScreen(${p.id})">
                         <img src="${p.image}"><div class="product-details">
