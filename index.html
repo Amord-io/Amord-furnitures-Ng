@@ -15,7 +15,7 @@
             --text-primary: #111111;
             --text-secondary: #555555;
             --text-muted: #888888;
-            --accent: #d4af37; /* Gold accent to match logo */
+            --accent: #d4af37;
             --accent-hover: #b8962e;
             --accent-soft: rgba(212, 175, 55, 0.15);
             --danger: #ff4757;
@@ -33,10 +33,9 @@
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; }
         body { background-color: var(--bg-primary); color: var(--text-primary); display: flex; flex-direction: column; min-height: 100vh; line-height: 1.6; overflow-x: hidden; }
 
-        /* Header */
-        .header { background: #ffffff; border-bottom: 1px solid var(--border-color); padding: 14px 30px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 1000; box-shadow: var(--shadow-sm); }
-
-        /* NEW FULL WIDTH LOGO */
+        /* Header - NOT STICKY anymore (scrolls away) */
+        .header { background: #ffffff; border-bottom: 1px solid var(--border-color); padding: 14px 30px; display: flex; justify-content: space-between; align-items: center; box-shadow: var(--shadow-sm); }
+        
         .logo { flex: 1; display: flex; justify-content: center; max-width: 100%; }
         .logo img { width: 100%; max-width: 800px; height: auto; display: block; object-fit: contain; }
 
@@ -51,8 +50,8 @@
         .cart-btn { background: var(--accent); border: none; color: #fff; padding: 8px 20px; border-radius: 50px; font-weight: 700; font-size: 14px; cursor: pointer; display: flex; align-items: center; gap: 8px; box-shadow: 0 2px 10px rgba(212, 175, 55, 0.3); transition: var(--transition); }
         .cart-count { background: #fff; color: var(--accent); border-radius: 50px; padding: 2px 8px; font-size: 12px; font-weight: 800; }
 
-        /* Category Nav */
-        .category-nav { background: #ffffff; border-bottom: 1px solid var(--border-color); padding: 0; display: flex; justify-content: center; gap: 0; overflow-x: auto; scrollbar-width: none; position: sticky; top: 73px; z-index: 900; }
+        /* Category Nav - NOT STICKY anymore */
+        .category-nav { background: #ffffff; border-bottom: 1px solid var(--border-color); padding: 0; display: flex; justify-content: center; gap: 0; overflow-x: auto; scrollbar-width: none; }
         .category-nav::-webkit-scrollbar { display: none; }
         .nav-btn { background: transparent; color: var(--text-secondary); border: none; padding: 14px 20px; font-weight: 600; font-size: 13px; white-space: nowrap; cursor: pointer; position: relative; transition: var(--transition); border-bottom: 3px solid transparent; }
         .nav-btn:hover { color: var(--text-primary); background: var(--bg-secondary); }
@@ -87,7 +86,7 @@
         .add-btn { background: var(--bg-secondary); border: 1px solid var(--border-color); border-radius: var(--radius-sm); padding: 10px; color: var(--text-primary); font-weight: 700; font-size: 13px; cursor: pointer; width: 100%; transition: var(--transition); }
         .add-btn:hover { background: var(--accent); border-color: var(--accent); color: #fff; box-shadow: 0 2px 8px rgba(212, 175, 55, 0.3); }
 
-        /* Footer - Smaller Buttons */
+        /* Footer */
         .footer { background: var(--bg-secondary); border-top: 1px solid var(--border-color); margin-top: auto; padding: 30px 30px 10px; }
         .footer-content { max-width: 1400px; margin: 0 auto; }
         .footer-links { display: flex; justify-content: center; flex-wrap: wrap; gap: 15px; margin-bottom: 15px; }
@@ -99,35 +98,10 @@
         .admin-padlock { position: fixed; bottom: 20px; left: 20px; z-index: 9999; background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 50%; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 18px; box-shadow: var(--shadow-md); transition: var(--transition); color: var(--accent); }
         .admin-padlock:hover { background: var(--bg-card-hover); border-color: var(--accent); transform: scale(1.1); }
 
-        /* Bouncing "A" Badge (Cropped from main logo) */
-        .bouncing-logo-badge {
-            position: fixed;
-            top: 15px;
-            right: 15px;
-            z-index: 9998;
-            width: 45px;
-            height: 45px;
-            border-radius: 50%;
-            border: 2px solid var(--accent);
-            box-shadow: var(--shadow-md);
-            overflow: hidden;
-            animation: bounceLogo 3s ease-in-out infinite;
-            pointer-events: none;
-        }
-
-        .bouncing-logo-badge img {
-            width: 300%;
-            height: 300%;
-            object-fit: cover;
-            position: absolute;
-            top: -150%;
-            left: -150%;
-        }
-
-        @keyframes bounceLogo {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-8px); }
-        }
+        /* Bouncing Badge */
+        .bouncing-logo-badge { position: fixed; top: 15px; right: 15px; z-index: 9998; width: 45px; height: 45px; border-radius: 50%; border: 2px solid var(--accent); box-shadow: var(--shadow-md); overflow: hidden; animation: bounceLogo 3s ease-in-out infinite; pointer-events: none; }
+        .bouncing-logo-badge img { width: 300%; height: 300%; object-fit: cover; position: absolute; top: -150%; left: -150%; }
+        @keyframes bounceLogo { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
 
         /* Modals */
         .modal-overlay { position: fixed; inset: 0; background: rgba(0, 0, 0, 0.5); backdrop-filter: blur(4px); z-index: 10000; display: flex; align-items: center; justify-content: center; opacity: 0; visibility: hidden; transition: var(--transition); }
@@ -158,7 +132,7 @@
         .toast { position: fixed; bottom: 20px; right: 20px; background: var(--text-primary); color: var(--bg-primary); padding: 14px 24px; border-radius: var(--radius-md); border-left: 4px solid var(--accent); box-shadow: var(--shadow-lg); z-index: 99999; font-weight: 500; font-size: 14px; animation: slideIn 0.3s ease; }
         @keyframes slideIn { from { transform: translateX(100px); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
 
-        /* Full Screen Modal + Pinch Zoom + WhatsApp */
+        /* Full Screen Modal */
         #fullScreenModal .modal-box { max-width: 95vw; max-height: 95vh; width: 100%; background: #fff; border: none; text-align: center; padding: 10px; }
         #fullScreenImg { max-width: 100%; max-height: 75vh; object-fit: contain; border-radius: 10px; touch-action: pinch-zoom; margin: 10px 0; cursor: zoom-in; }
         .whatsapp-full-btn { background: var(--whatsapp); color: #fff; border: none; border-radius: 50px; padding: 12px 24px; font-size: 16px; font-weight: 700; cursor: pointer; display: inline-flex; align-items: center; gap: 10px; box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4); transition: var(--transition); margin-top: 10px; }
@@ -179,10 +153,9 @@
 </head>
 <body>
 
-    <!-- Header with NEW Full Width Logo -->
+    <!-- Header (NOT sticky, scrolls up) -->
     <header class="header">
         <div class="logo">
-            <!-- NEW BANNER LOGO -->
             <img src="https://i.ibb.co/YTT56gY4/Chat-GPT-Image-Sep-8-2026-01-41-16-AM.png" alt="AmorD-Ng Furnitures Banner Logo">
         </div>
         <div class="search-box">
@@ -195,12 +168,12 @@
         </div>
     </header>
 
-    <!-- Bouncing "A" Logo Badge (Cropped from main logo via CSS) -->
+    <!-- Bouncing Badge -->
     <div class="bouncing-logo-badge">
         <img src="https://i.ibb.co/YTT56gY4/Chat-GPT-Image-Sep-8-2026-01-41-16-AM.png" alt="AmorD-Ng Logo">
     </div>
 
-    <!-- Category Nav -->
+    <!-- Category Nav (NOT sticky) -->
     <nav class="category-nav" id="categoryNav">
         <button class="nav-btn active" data-category="all">All</button>
         <button class="nav-btn" data-category="sofa">Sofa</button>
@@ -222,7 +195,7 @@
     <!-- Admin Panel Container -->
     <div id="adminPanelContainer" class="hidden section-container" style="max-width: 800px; padding-top: 40px;"></div>
 
-    <!-- Footer (Smaller buttons) -->
+    <!-- Footer -->
     <footer class="footer">
         <div class="footer-content">
             <div class="footer-links">
@@ -282,7 +255,7 @@
         </div>
     </div>
 
-    <!-- Full Screen Product Modal (Pinch Zoom & WhatsApp) -->
+    <!-- Full Screen Modal -->
     <div class="modal-overlay" id="fullScreenModal">
         <div class="modal-box">
             <button class="modal-close" onclick="closeFullScreen()">×</button>
@@ -355,7 +328,7 @@
         </div>
     </div>
 
-    <!-- License Modal (Apache 2.0) -->
+    <!-- License Modal -->
     <div class="modal-overlay" id="licenseModal">
         <div class="modal-box" style="max-width: 700px;">
             <button class="modal-close" onclick="closeModal('licenseModal')">×</button>
@@ -663,6 +636,11 @@ Apache License
                         <div class="price">${formatPrice(p.price)}</div>
                         <div class="product-code">Code: ${p.code}</div>
                         <div class="vendor">${p.vendor}</div>
+                        <div class="product-options">
+                            <label>Color <input type="color" value="#ffffff" onclick="event.stopPropagation();" id="color-${p.id}"></label>
+                            <label>Qty <input type="number" value="1" min="1" onclick="event.stopPropagation();" id="qty-${p.id}" style="width:50px;"></label>
+                        </div>
+                        <button class="add-btn" onclick="event.stopPropagation(); addToCart(${p.id})">Add to Cart</button>
                     </div>
                 </div>`).join('');
         }
@@ -804,7 +782,7 @@ Apache License
             window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`, '_blank');
         }
 
-        // ================= CART =================
+        // ================= CART (FULLY WORKING) =================
         function addToCart(productId) {
             if (!currentUser) { showToast('Please login first!'); openAuth(); return; }
             const color = document.getElementById(`color-${productId}`) ? document.getElementById(`color-${productId}`).value : '#ffffff';
@@ -849,7 +827,7 @@ Apache License
         function closeCart() { document.getElementById('cartModal').classList.remove('active'); }
         function checkout() { if (cart.length === 0) return; showToast('🎉 Order placed!'); cart = []; saveCart(); closeCart(); }
 
-        // ================= AUTH =================
+        // ================= AUTH (SHORTENED NAME) =================
         function openAuth() { document.getElementById('authModal').classList.add('active'); document.getElementById('emailAuth').classList.remove('hidden'); document.getElementById('registerForm').classList.add('hidden'); document.getElementById('authTitle').textContent = 'Login'; document.getElementById('authToggleBtn').textContent = 'Create one'; }
         function closeAuth() { document.getElementById('authModal').classList.remove('active'); }
         function googleLogin() { currentUser = { name: "Google User", email: "user@gmail.com" }; saveUser(); updateAuthUI(); closeAuth(); showToast('👋 Welcome!'); }
@@ -857,7 +835,17 @@ Apache License
         function emailRegister() { const n = document.getElementById('regName').value, e = document.getElementById('regEmail').value, p = document.getElementById('regPassword').value; if (!n || !e || !p) return showToast('Fill all fields'); currentUser = { name: n, email: e }; saveUser(); updateAuthUI(); closeAuth(); showToast('Account created!'); }
         function toggleAuthMode() { const ea = document.getElementById('emailAuth'), rf = document.getElementById('registerForm'); const t = document.getElementById('authTitle'), btn = document.getElementById('authToggleBtn'); if (rf.classList.contains('hidden')) { rf.classList.remove('hidden'); ea.classList.add('hidden'); t.textContent = 'Register'; btn.textContent = 'Sign In'; } else { rf.classList.add('hidden'); ea.classList.remove('hidden'); t.textContent = 'Login'; btn.textContent = 'Create one'; } }
         function saveUser() { localStorage.setItem('currentUser', JSON.stringify(currentUser)); }
-        function updateAuthUI() { const btn = document.getElementById('authBtn'); if (currentUser) { btn.textContent = '👤 ' + currentUser.name; btn.onclick = logout; } else { btn.textContent = 'Login'; btn.onclick = openAuth; } }
+        function updateAuthUI() { 
+            const btn = document.getElementById('authBtn'); 
+            if (currentUser) { 
+                const firstLetter = currentUser.name.charAt(0).toUpperCase(); // Only first letter
+                btn.textContent = '👤 ' + firstLetter; 
+                btn.onclick = logout; 
+            } else { 
+                btn.textContent = 'Login'; 
+                btn.onclick = openAuth; 
+            } 
+        }
         function logout() { currentUser = null; localStorage.removeItem('currentUser'); updateAuthUI(); showToast('Logged out'); }
 
         // ================= SEARCH & CATEGORY =================
