@@ -33,12 +33,10 @@
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; }
         body { background-color: var(--bg-primary); color: var(--text-primary); display: flex; flex-direction: column; min-height: 100vh; line-height: 1.6; overflow-x: hidden; }
 
-        /* Header - NOT STICKY anymore (scrolls away) */
+        /* Header - Scrolls away */
         .header { background: #ffffff; border-bottom: 1px solid var(--border-color); padding: 14px 30px; display: flex; justify-content: space-between; align-items: center; box-shadow: var(--shadow-sm); }
-        
         .logo { flex: 1; display: flex; justify-content: center; max-width: 100%; }
         .logo img { width: 100%; max-width: 800px; height: auto; display: block; object-fit: contain; }
-
         .search-box { flex: 1; max-width: 650px; background: var(--bg-secondary); border-radius: 50px; padding: 10px 20px; display: flex; align-items: center; border: 1px solid var(--border-color); transition: var(--transition); margin-left: 20px; }
         .search-box:focus-within { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); }
         .search-box input { flex: 1; background: transparent; border: none; color: var(--text-primary); outline: none; font-size: 14px; }
@@ -50,7 +48,7 @@
         .cart-btn { background: var(--accent); border: none; color: #fff; padding: 8px 20px; border-radius: 50px; font-weight: 700; font-size: 14px; cursor: pointer; display: flex; align-items: center; gap: 8px; box-shadow: 0 2px 10px rgba(212, 175, 55, 0.3); transition: var(--transition); }
         .cart-count { background: #fff; color: var(--accent); border-radius: 50px; padding: 2px 8px; font-size: 12px; font-weight: 800; }
 
-        /* Category Nav - NOT STICKY anymore */
+        /* Category Nav - Scrolls away */
         .category-nav { background: #ffffff; border-bottom: 1px solid var(--border-color); padding: 0; display: flex; justify-content: center; gap: 0; overflow-x: auto; scrollbar-width: none; }
         .category-nav::-webkit-scrollbar { display: none; }
         .nav-btn { background: transparent; color: var(--text-secondary); border: none; padding: 14px 20px; font-weight: 600; font-size: 13px; white-space: nowrap; cursor: pointer; position: relative; transition: var(--transition); border-bottom: 3px solid transparent; }
@@ -153,11 +151,9 @@
 </head>
 <body>
 
-    <!-- Header (NOT sticky, scrolls up) -->
+    <!-- Header (Scrolls up) -->
     <header class="header">
-        <div class="logo">
-            <img src="https://i.ibb.co/YTT56gY4/Chat-GPT-Image-Sep-8-2026-01-41-16-AM.png" alt="AmorD-Ng Furnitures Banner Logo">
-        </div>
+        <div class="logo"><img src="https://i.ibb.co/YTT56gY4/Chat-GPT-Image-Sep-8-2026-01-41-16-AM.png" alt="AmorD-Ng Furnitures Banner Logo"></div>
         <div class="search-box">
             <span style="color: var(--text-muted); margin-right: 8px;">🔍</span>
             <input type="text" placeholder="Search sofas, chairs, dining sets, or product code..." id="searchInput">
@@ -169,11 +165,9 @@
     </header>
 
     <!-- Bouncing Badge -->
-    <div class="bouncing-logo-badge">
-        <img src="https://i.ibb.co/YTT56gY4/Chat-GPT-Image-Sep-8-2026-01-41-16-AM.png" alt="AmorD-Ng Logo">
-    </div>
+    <div class="bouncing-logo-badge"><img src="https://i.ibb.co/YTT56gY4/Chat-GPT-Image-Sep-8-2026-01-41-16-AM.png" alt="AmorD-Ng Logo"></div>
 
-    <!-- Category Nav (NOT sticky) -->
+    <!-- Category Nav -->
     <nav class="category-nav" id="categoryNav">
         <button class="nav-btn active" data-category="all">All</button>
         <button class="nav-btn" data-category="sofa">Sofa</button>
@@ -183,11 +177,10 @@
         <button class="nav-btn" data-category="bed">Bed Frame</button>
     </nav>
 
-    <!-- Sponsored Section -->
+    <!-- Store Content -->
     <div class="section-container">
         <div class="section-header"><div class="section-title">✨ Sponsored Products</div></div>
         <div class="carousel-container" id="carouselContainer"></div>
-
         <div class="section-header"><div class="section-title">🔥 Recommended for you</div></div>
         <div class="product-grid" id="productGrid"></div>
     </div>
@@ -206,16 +199,14 @@
                 <a href="https://wa.me/2348100578413" target="_blank">WhatsApp: +234 810 057 8413</a>
                 <a href="mailto:godwindouglas8@gmail.com">Gmail: godwindouglas8@gmail.com</a>
             </div>
-            <div class="footer-copyright">
-                &copy; <span id="year"></span> <strong>AmorD-Ng Furnitures</strong>. All rights reserved.
-            </div>
+            <div class="footer-copyright">&copy; <span id="year"></span> <strong>AmorD-Ng Furnitures</strong>. All rights reserved.</div>
         </div>
     </footer>
 
     <!-- Admin Padlock -->
     <div class="admin-padlock" onclick="toggleAdmin()" title="Admin Panel">🔒</div>
 
-    <!-- Cart Modal -->
+    <!-- Cart Modal (FULLY WORKING) -->
     <div class="modal-overlay" id="cartModal">
         <div class="modal-box">
             <button class="modal-close" onclick="closeCart()">×</button>
@@ -233,9 +224,7 @@
         <div class="modal-box auth-card">
             <button class="modal-close" onclick="closeAuth()">×</button>
             <h2 id="authTitle" style="text-align: center; margin-bottom: 20px;">Login</h2>
-            <button class="google-btn" onclick="googleLogin()">
-                <img src="https://www.svgrepo.com/show/475656/google-color.svg" alt="Google"> Continue with Google
-            </button>
+            <button class="google-btn" onclick="googleLogin()"><img src="https://www.svgrepo.com/show/475656/google-color.svg" alt="Google"> Continue with Google</button>
             <div style="text-align: center; color: var(--text-muted); margin-bottom: 15px; font-size: 13px;">or sign in with email</div>
             <div id="emailAuth">
                 <input type="email" id="emailInput" placeholder="Email address">
@@ -263,9 +252,7 @@
             <p id="fsCode" class="product-code" style="margin-bottom: 5px;"></p>
             <p id="fsPrice" style="font-size: 20px; font-weight: 800; color: var(--accent); margin-bottom: 10px;"></p>
             <p id="fsDescription" style="color: #555; font-size: 14px; margin-bottom: 15px;"></p>
-            
             <img id="fullScreenImg" src="" alt="" style="touch-action: pinch-zoom;">
-            
             <button class="whatsapp-full-btn" onclick="sendWhatsApp()">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
                 Chat on WhatsApp
@@ -273,62 +260,28 @@
         </div>
     </div>
 
-    <!-- About Modal -->
+    <!-- Modals for Footer -->
     <div class="modal-overlay" id="aboutModal">
         <div class="modal-box">
             <button class="modal-close" onclick="closeModal('aboutModal')">×</button>
             <h2 style="margin-bottom: 15px;">About AmorD-Ng Furnitures</h2>
-            <p style="color: var(--text-secondary); line-height: 1.8;">
-                At AmorD-Ng Furnitures, we are dedicated to transforming your living spaces into havens of comfort, elegance, and functionality. As a premier furniture store in Nigeria, we specialize in crafting and delivering high-quality sofas, dining tables, kitchen units, TV stands, and bed frames that perfectly blend modern design with enduring durability. 
-                <br><br>
-                Our mission is simple: to bring world-class furniture within reach of every Nigerian home. Whether you are furnishing a new apartment, upgrading your living room, or searching for that perfect statement piece, our diverse collection ensures you find exactly what you need.
-                <br><br>
-                We understand that furniture is an investment. That's why we focus on premium materials, meticulous craftsmanship, and customer-centric service. With AmorD-Ng, you're not just buying furniture; you're investing in quality, comfort, and a home that truly reflects your style.
-            </p>
+            <p style="color: var(--text-secondary); line-height: 1.8;">At AmorD-Ng Furnitures, we are dedicated to transforming your living spaces into havens of comfort, elegance, and functionality. As a premier furniture store in Nigeria, we specialize in crafting and delivering high-quality sofas, dining tables, kitchen units, TV stands, and bed frames that perfectly blend modern design with enduring durability. Our mission is simple: to bring world-class furniture within reach of every Nigerian home. We understand that furniture is an investment. That's why we focus on premium materials, meticulous craftsmanship, and customer-centric service.</p>
         </div>
     </div>
-
-    <!-- Policy Modal -->
     <div class="modal-overlay" id="policyModal">
         <div class="modal-box">
             <button class="modal-close" onclick="closeModal('policyModal')">×</button>
             <h2 style="margin-bottom: 15px;">Payment & Delivery Policy</h2>
-            <p style="color: var(--text-secondary); line-height: 1.8;">
-                <strong>🚚 Free Delivery:</strong> We offer free delivery on all orders within major cities in Nigeria.
-                <br><br>
-                <strong>💳 Flexible Payment Options:</strong> We understand that flexibility is key. We offer two convenient payment methods:
-                <ul style="margin-left: 20px; margin-bottom: 10px;">
-                    <li><strong>Pay Half, Pay Balance on Delivery:</strong> Reserve your furniture by paying 50% upfront, and settle the remaining 50% when your furniture is delivered to your doorstep.</li>
-                    <li><strong>Pay Fully Upfront:</strong> For a seamless checkout, you can choose to pay 100% of the price now and enjoy priority delivery.</li>
-                </ul>
-                <br>
-                Our goal is to make your furniture buying experience smooth, secure, and stress-free.
-            </p>
+            <p style="color: var(--text-secondary); line-height: 1.8;"><strong>🚚 Free Delivery:</strong> We offer free delivery on all orders within major cities in Nigeria.<br><br><strong>💳 Flexible Payment Options:</strong> We offer two convenient payment methods: <br>1. <strong>Pay Half, Pay Balance on Delivery:</strong> Pay 50% upfront, settle the remaining 50% when delivered.<br>2. <strong>Pay Fully Upfront:</strong> Pay 100% now and enjoy priority delivery.</p>
         </div>
     </div>
-
-    <!-- Privacy Modal -->
     <div class="modal-overlay" id="privacyModal">
         <div class="modal-box">
             <button class="modal-close" onclick="closeModal('privacyModal')">×</button>
             <h2 style="margin-bottom: 15px;">Privacy Policy</h2>
-            <p style="color: var(--text-secondary); line-height: 1.8;">
-                At AmorD-Ng Furnitures, your privacy is of paramount importance. We are committed to protecting your personal information and ensuring that your data is handled securely and transparently.
-                <br><br>
-                <strong>Data Collection:</strong> We only collect the information necessary to process your orders, such as your name, contact details, and delivery address.
-                <br><br>
-                <strong>Data Usage:</strong> Your information is used solely for order processing, delivery coordination, and customer support. We do not sell, rent, or share your personal data with third parties, except as required by law.
-                <br><br>
-                <strong>Data Security:</strong> We employ industry-standard security measures to protect your data from unauthorized access, alteration, or disclosure.
-                <br><br>
-                <strong>Your Rights:</strong> You have the right to request access to, correction of, or deletion of your personal data at any time. 
-                <br><br>
-                By using our website, you consent to the practices described in this policy.
-            </p>
+            <p style="color: var(--text-secondary); line-height: 1.8;">At AmorD-Ng Furnitures, your privacy is paramount. We only collect the information necessary to process your orders. We do not sell, rent, or share your personal data with third parties. We employ industry-standard security measures to protect your data.</p>
         </div>
     </div>
-
-    <!-- License Modal -->
     <div class="modal-overlay" id="licenseModal">
         <div class="modal-box" style="max-width: 700px;">
             <button class="modal-close" onclick="closeModal('licenseModal')">×</button>
@@ -342,200 +295,44 @@ Apache License
    TERMS AND CONDITIONS FOR USE, REPRODUCTION, AND DISTRIBUTION
 
    1. Definitions.
+      "License" shall mean the terms and conditions for use, reproduction, and distribution as defined by Sections 1 through 9 of this document.
+      "Licensor" shall mean the copyright owner or entity authorized by the copyright owner that is granting the License.
+      "You" (or "Your") shall mean an individual or Legal Entity exercising permissions granted by this License.
+      "Source" form shall mean the preferred form for making modifications, including but not limited to software source code, documentation source, and configuration files.
+      "Object" form shall mean any form resulting from mechanical transformation or translation of a Source form, including but not limited to compiled object code, generated documentation, and conversions to other media types.
+      "Work" shall mean the work of authorship, whether in Source or Object form, made available under the License, as indicated by a copyright notice that is included in or attached to the work.
+      "Derivative Works" shall mean any work, whether in Source or Object form, that is based on (or derived from) the Work and for which the editorial revisions, annotations, elaborations, or other modifications represent, as a whole, an original work of authorship.
+      "Contribution" shall mean any work of authorship, including the original version of the Work and any modifications or additions to that Work or Derivative Works thereof, that is intentionally submitted to Licensor for inclusion in the Work.
+      "Contributor" shall mean Licensor and any individual or Legal Entity on behalf of whom a Contribution has been received by Licensor and subsequently incorporated within the Work.
 
-      "License" shall mean the terms and conditions for use, reproduction,
-      and distribution as defined by Sections 1 through 9 of this document.
+   2. Grant of Copyright License. Subject to the terms and conditions of this License, each Contributor hereby grants to You a perpetual, worldwide, non-exclusive, no-charge, royalty-free, irrevocable copyright license to reproduce, prepare Derivative Works of, publicly display, publicly perform, sublicense, and distribute the Work and such Derivative Works in Source or Object form.
 
-      "Licensor" shall mean the copyright owner or entity authorized by
-      the copyright owner that is granting the License.
+   3. Grant of Patent License. Subject to the terms and conditions of this License, each Contributor hereby grants to You a perpetual, worldwide, non-exclusive, no-charge, royalty-free, irrevocable (except as stated in this section) patent license to make, have made, use, offer to sell, sell, import, and otherwise transfer the Work.
 
-      "Legal Entity" shall mean the union of the acting entity and all
-      other entities that control, are controlled by, or are under common
-      control with that entity. For the purposes of this definition,
-      "control" means (i) the power, direct or indirect, to cause the
-      direction or management of such entity, whether by contract or
-      otherwise, or (ii) ownership of fifty percent (50%) or more of the
-      outstanding shares, or (iii) beneficial ownership of such entity.
+   4. Redistribution. You may reproduce and distribute copies of the Work or Derivative Works thereof in any medium, with or without modifications, and in Source or Object form, provided that You meet the following conditions:
+      (a) You must give any other recipients of the Work or Derivative Works a copy of this License; and
+      (b) You must cause any modified files to carry prominent notices stating that You changed the files; and
+      (c) You must retain, in the Source form of any Derivative Works that You distribute, all copyright, patent, trademark, and attribution notices from the Source form of the Work; and
+      (d) If the Work includes a "NOTICE" text file as part of its distribution, then any Derivative Works that You distribute must include a readable copy of the attribution notices contained within such NOTICE file.
 
-      "You" (or "Your") shall mean an individual or Legal Entity
-      exercising permissions granted by this License.
+   5. Submission of Contributions. Unless You explicitly state otherwise, any Contribution intentionally submitted for inclusion in the Work by You to the Licensor shall be under the terms and conditions of this License, without any additional terms or conditions.
 
-      "Source" form shall mean the preferred form for making modifications,
-      including but not limited to software source code, documentation
-      source, and configuration files.
+   6. Trademarks. This License does not grant permission to use the trade names, trademarks, service marks, or product names of the Licensor, except as required for reasonable and customary use in describing the origin of the Work.
 
-      "Object" form shall mean any form resulting from mechanical
-      transformation or translation of a Source form, including but
-      not limited to compiled object code, generated documentation,
-      and conversions to other media types.
+   7. Disclaimer of Warranty. Unless required by applicable law or agreed to in writing, Licensor provides the Work (and each Contributor provides its Contributions) on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied, including, without limitation, any warranties or conditions of TITLE, NON-INFRINGEMENT, MERCHANTABILITY, or FITNESS FOR A PARTICULAR PURPOSE.
 
-      "Work" shall mean the work of authorship, whether in Source or
-      Object form, made available under the License, as indicated by a
-      copyright notice that is included in or attached to the work
-      (an example is provided in the Appendix below).
+   8. Limitation of Liability. In no event and under no legal theory, whether in tort (including negligence), contract, or otherwise, unless required by applicable law (such as deliberate and grossly negligent acts) or agreed to in writing, shall any Contributor be liable to You for damages, including any direct, indirect, special, incidental, or consequential damages of any character arising as a result of this License or out of the use or inability to use the Work.
 
-      "Derivative Works" shall mean any work, whether in Source or Object
-      form, that is based on (or derived from) the Work and for which the
-      editorial revisions, annotations, elaborations, or other modifications
-      represent, as a whole, an original work of authorship. For the purposes
-      of this License, Derivative Works shall not include works that remain
-      separable from, or merely link (or bind by name) to the interfaces of,
-      the Work and Derivative Works thereof.
-
-      "Contribution" shall mean any work of authorship, including
-      the original version of the Work and any modifications or additions
-      to that Work or Derivative Works thereof, that is intentionally
-      submitted to Licensor for inclusion in the Work by the copyright owner
-      or by an individual or Legal Entity authorized to submit on behalf of
-      the copyright owner. For the purposes of this definition, "submitted"
-      means any form of electronic, verbal, or written communication sent
-      to the Licensor or its representatives, including but not limited to
-      communication on electronic mailing lists, source code control systems,
-      and issue tracking systems that are managed by, or on behalf of, the
-      Licensor for the purpose of discussing and improving the Work, but
-      excluding communication that is conspicuously marked or otherwise
-      designated in writing by the copyright owner as "Not a Contribution."
-
-      "Contributor" shall mean Licensor and any individual or Legal Entity
-      on behalf of whom a Contribution has been received by Licensor and
-      subsequently incorporated within the Work.
-
-   2. Grant of Copyright License. Subject to the terms and conditions of
-      this License, each Contributor hereby grants to You a perpetual,
-      worldwide, non-exclusive, no-charge, royalty-free, irrevocable
-      copyright license to reproduce, prepare Derivative Works of,
-      publicly display, publicly perform, sublicense, and distribute the
-      Work and such Derivative Works in Source or Object form.
-
-   3. Grant of Patent License. Subject to the terms and conditions of
-      this License, each Contributor hereby grants to You a perpetual,
-      worldwide, non-exclusive, no-charge, royalty-free, irrevocable
-      (except as stated in this section) patent license to make, have made,
-      use, offer to sell, sell, import, and otherwise transfer the Work,
-      where such license applies only to those patent claims licensable
-      by such Contributor that are necessarily infringed by their
-      Contribution(s) alone or by combination of their Contribution(s)
-      with the Work to which such Contribution(s) was submitted. If You
-      institute patent litigation against any entity (including a
-      cross-claim or counterclaim in a lawsuit) alleging that the Work
-      or a Contribution incorporated within the Work constitutes direct
-      or contributory patent infringement, then any patent licenses
-      granted to You under this License for that Work shall terminate
-      as of the date such litigation is filed.
-
-   4. Redistribution. You may reproduce and distribute copies of the
-      Work or Derivative Works thereof in any medium, with or without
-      modifications, and in Source or Object form, provided that You
-      meet the following conditions:
-
-      (a) You must give any other recipients of the Work or
-          Derivative Works a copy of this License; and
-
-      (b) You must cause any modified files to carry prominent notices
-          stating that You changed the files; and
-
-      (c) You must retain, in the Source form of any Derivative Works
-          that You distribute, all copyright, patent, trademark, and
-          attribution notices from the Source form of the Work,
-          excluding those notices that do not pertain to any part of
-          the Derivative Works; and
-
-      (d) If the Work includes a "NOTICE" text file as part of its
-          distribution, then any Derivative Works that You distribute must
-          include a readable copy of the attribution notices contained
-          within such NOTICE file, excluding those notices that do not
-          pertain to any part of the Derivative Works, in at least one
-          of the following places: within a NOTICE text file distributed
-          as part of the Derivative Works; within the Source form or
-          documentation, if provided along with the Derivative Works; or,
-          within a display generated by the Derivative Works, if and
-          wherever such third-party notices normally appear. The contents
-          of the NOTICE file are for informational purposes only and
-          do not modify the License. You may add Your own attribution
-          notices within Derivative Works that You distribute, alongside
-          or as an addendum to the NOTICE text from the Work, provided
-          that such additional attribution notices cannot be construed
-          as modifying the License.
-
-      You may add Your own copyright statement to Your modifications and
-      may provide additional or different license terms and conditions
-      for use, reproduction, or distribution of Your modifications, or
-      for any such Derivative Works as a whole, provided Your use,
-      reproduction, and distribution of the Work otherwise complies with
-      the conditions stated in this License.
-
-   5. Submission of Contributions. Unless You explicitly state otherwise,
-      any Contribution intentionally submitted for inclusion in the Work
-      by You to the Licensor shall be under the terms and conditions of
-      this License, without any additional terms or conditions.
-      Notwithstanding the above, nothing herein shall supersede or modify
-      the terms of any separate license agreement you may have executed
-      with Licensor regarding such Contributions.
-
-   6. Trademarks. This License does not grant permission to use the trade
-      names, trademarks, service marks, or product names of the Licensor,
-      except as required for reasonable and customary use in describing the
-      origin of the Work and reproducing the content of the NOTICE file.
-
-   7. Disclaimer of Warranty. Unless required by applicable law or
-      agreed to in writing, Licensor provides the Work (and each
-      Contributor provides its Contributions) on an "AS IS" BASIS,
-      WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
-      implied, including, without limitation, any warranties or conditions
-      of TITLE, NON-INFRINGEMENT, MERCHANTABILITY, or FITNESS FOR A
-      PARTICULAR PURPOSE. You are solely responsible for determining the
-      appropriateness of using or redistributing the Work and assume any
-      risks associated with Your exercise of permissions under this License.
-
-   8. Limitation of Liability. In no event and under no legal theory,
-      whether in tort (including negligence), contract, or otherwise,
-      unless required by applicable law (such as deliberate and grossly
-      negligent acts) or agreed to in writing, shall any Contributor be
-      liable to You for damages, including any direct, indirect, special,
-      incidental, or consequential damages of any character arising as a
-      result of this License or out of the use or inability to use the
-      Work (including but not limited to damages for loss of goodwill,
-      work stoppage, computer failure or malfunction, or any and all
-      other commercial damages or losses), even if such Contributor
-      has been advised of the possibility of such damages.
-
-   9. Accepting Warranty or Additional Liability. While redistributing
-      the Work or Derivative Works thereof, You may choose to offer,
-      and charge a fee for, acceptance of support, warranty, indemnity,
-      or other liability obligations and/or rights consistent with this
-      License. However, in accepting such obligations, You may act only
-      on Your own behalf and on Your sole responsibility, not on behalf
-      of any other Contributor, and only if You agree to indemnify,
-      defend, and hold each Contributor harmless for any liability
-      incurred by, or claims asserted against, such Contributor by reason
-      of your accepting any such warranty or additional liability.
+   9. Accepting Warranty or Additional Liability. While redistributing the Work or Derivative Works thereof, You may choose to offer, and charge a fee for, acceptance of support, warranty, indemnity, or other liability obligations and/or rights consistent with this License.
 
    END OF TERMS AND CONDITIONS
 
    APPENDIX: How to apply the Apache License to your work.
-
-      To apply the Apache License to your work, attach the following
-      boilerplate notice, with the fields enclosed by brackets "[]"
-      replaced with your own identifying information. (Don't include
-      the brackets!)  The text should be enclosed in the appropriate
-      comment syntax for the file format. We also recommend that a
-      file or class name and description of purpose be included on the
-      same "printed page" as the copyright notice for easier
-      identification within third-party archives.
-
-   Copyright [yyyy] [name of copyright owner]
-
-   Licensed under the Apache License, Version 2.0 (the "License");
-   you may not use this file except in compliance with the License.
-   You may obtain a copy of the License at
-
-       http://www.apache.org/licenses/LICENSE-2.0
-
-   Unless required by applicable law or agreed to in writing, software
-   distributed under the License is distributed on an "AS IS" BASIS,
-   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-   See the License for the specific language governing permissions and
-   limitations under the License.
+      To apply the Apache License to your work, attach the following boilerplate notice, with the fields enclosed by brackets "[]" replaced with your own identifying information.
+      Copyright [yyyy] [name of copyright owner]
+      Licensed under the Apache License, Version 2.0 (the "License");
+      you may not use this file except in compliance with the License.
+      You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0
                 </pre>
             </div>
         </div>
@@ -582,20 +379,14 @@ Apache License
                 const data = await response.json();
                 if (data && data.length > 0) {
                     products = data.map(item => ({
-                        id: Number(item.id),
-                        code: item.code || generateProductCode(),
-                        name: item.name,
-                        price: Number(item.price),
-                        vendor: item.vendor,
-                        category: item.category,
-                        section: item.section,
-                        rating: Number(item.rating) || 4.5,
-                        image: item.image,
+                        id: Number(item.id), code: item.code || generateProductCode(), name: item.name,
+                        price: Number(item.price), vendor: item.vendor, category: item.category,
+                        section: item.section, rating: Number(item.rating) || 4.5, image: item.image,
                         description: item.description || "Premium quality furniture for your home."
                     }));
                 } else {
                     products = [
-                        { id: 1, code: "10001", name: "Double Seater Sofa", price: 320000, vendor: "Mma Amisco", category: "sofa", rating: 4.3, image: "https://via.placeholder.com/300x200/333/fff?text=Double+Sofa", section: "sponsored", description: "A beautifully crafted double seater sofa with plush cushions and durable fabric." },
+                        { id: 1, code: "10001", name: "Double Seater Sofa", price: 320000, vendor: "Mma Amisco", category: "sofa", rating: 4.3, image: "https://via.placeholder.com/300x200/333/fff?text=Double+Sofa", section: "sponsored", description: "A beautifully crafted double seater sofa." },
                         { id: 2, code: "10002", name: "3 Seater Green Sofa", price: 300000, vendor: "Mma Amisco", category: "sofa", rating: 4.1, image: "https://via.placeholder.com/300x200/333/fff?text=Green+Sofa", section: "sponsored", description: "Elegant green 3-seater sofa." }
                     ];
                 }
@@ -614,19 +405,14 @@ Apache License
         function renderStore() {
             const carousel = document.getElementById('carouselContainer');
             const grid = document.getElementById('productGrid');
-
             let sponsored = products.filter(p => p.section === 'sponsored');
             let recommended = products.filter(p => p.section === 'recommended');
-
             if (activeCategory !== 'all') {
                 sponsored = sponsored.filter(p => p.category === activeCategory);
                 recommended = recommended.filter(p => p.category === activeCategory);
             }
 
-            carousel.innerHTML = sponsored.map(p => `
-                <div class="carousel-card" onclick="openFullScreen(${p.id})">
-                    <img src="${p.image}"><div class="info"><div class="title">${p.name}</div><div class="price">${formatPrice(p.price)}</div><div class="vendor">${p.vendor}</div></div>
-                </div>`).join('');
+            carousel.innerHTML = sponsored.map(p => `<div class="carousel-card" onclick="openFullScreen(${p.id})"><img src="${p.image}"><div class="info"><div class="title">${p.name}</div><div class="price">${formatPrice(p.price)}</div><div class="vendor">${p.vendor}</div></div></div>`).join('');
 
             grid.innerHTML = recommended.map(p => `
                 <div class="product-card" onclick="openFullScreen(${p.id})">
@@ -645,7 +431,43 @@ Apache License
                 </div>`).join('');
         }
 
-        // ================= ADMIN PANEL =================
+        // ================= CART (FULLY WORKING) =================
+        function addToCart(productId) {
+            if (!currentUser) { showToast('Please login first!'); openAuth(); return; }
+            const color = document.getElementById(`color-${productId}`).value;
+            const qty = parseInt(document.getElementById(`qty-${productId}`).value) || 1;
+            const existing = cart.find(item => item.productId === productId && item.color === color);
+            if (existing) existing.quantity += qty; else cart.push({ productId, color, quantity: qty });
+            saveCart(); showToast('✅ Added to cart!');
+        }
+
+        function saveCart() { localStorage.setItem('cart', JSON.stringify(cart)); updateCartCount(); }
+        function updateCartCount() { document.getElementById('cartCount').textContent = cart.reduce((s,i) => s + i.quantity, 0); }
+
+        function openCart() {
+            if (!currentUser) { showToast('Please login first!'); openAuth(); return; }
+            const cont = document.getElementById('cartItemsContainer');
+            let total = 0;
+            if (cart.length === 0) cont.innerHTML = '<p style="text-align:center; color:var(--text-muted); padding:20px;">Your cart is empty</p>';
+            else cont.innerHTML = cart.map(item => {
+                const p = products.find(x => x.id === item.productId);
+                if (!p) return '';
+                const itemTotal = p.price * item.quantity; total += itemTotal;
+                return `<div style="display:flex; gap:15px; padding:15px 0; border-bottom:1px solid var(--border-color);">
+                    <img src="${p.image}" style="width:70px; height:70px; border-radius:8px; object-fit:cover;">
+                    <div style="flex:1;"><p style="font-weight:600;">${p.name}</p><p style="font-size:12px; color:var(--text-muted);">Color: ${item.color}</p><p style="font-size:12px; color:var(--text-muted);">Qty: ${item.quantity}</p><p style="color:var(--accent); font-weight:800;">${formatPrice(itemTotal)}</p></div>
+                    <button onclick="removeFromCart(${item.productId}, '${item.color}')" style="background:none; border:none; color:var(--danger); font-size:24px; cursor:pointer;">×</button>
+                </div>`;
+            }).join('');
+            document.getElementById('cartTotal').textContent = formatPrice(total);
+            document.getElementById('cartModal').classList.add('active');
+        }
+
+        function removeFromCart(productId, color) { cart = cart.filter(i => !(i.productId === productId && i.color === color)); saveCart(); openCart(); }
+        function closeCart() { document.getElementById('cartModal').classList.remove('active'); }
+        function checkout() { if (cart.length === 0) return; showToast('🎉 Order placed!'); cart = []; saveCart(); closeCart(); }
+
+        // ================= ADMIN =================
         function toggleAdmin() {
             const container = document.getElementById('adminPanelContainer');
             if (isAdmin) { isAdmin = false; container.classList.add('hidden'); showToast('Exited Admin'); }
@@ -696,49 +518,19 @@ Apache License
             const section = document.getElementById('prodSection').value;
             const description = document.getElementById('prodDescription').value;
             const imgInput = document.getElementById('prodImage');
-
             if (!name || !price || !vendor || !imgInput.files[0]) { showToast('Fill all fields and upload image'); return; }
-            
             showToast('Uploading image to ImgBB...');
             try {
                 const imageUrl = await uploadToImgBB(imgInput.files[0]);
                 const productCode = generateProductCode();
-                const newProduct = {
-                    id: Date.now(),
-                    code: productCode,
-                    name,
-                    price: Number(price),
-                    vendor,
-                    category,
-                    section,
-                    rating: 4.5,
-                    image: imageUrl,
-                    description
-                };
-
-                const response = await fetch(SHEETDB_URL, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(newProduct)
-                });
-
+                const newProduct = { id: Date.now(), code: productCode, name, price: Number(price), vendor, category, section, rating: 4.5, image: imageUrl, description };
+                const response = await fetch(SHEETDB_URL, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(newProduct) });
                 const result = await response.json();
                 if (response.ok) {
-                    console.log('SheetDB response:', result);
-                    products.push(newProduct);
-                    renderStore();
-                    renderAdminList();
-                    showToast(`✅ Product added! Code: ${productCode}`);
+                    products.push(newProduct); renderStore(); renderAdminList(); showToast(`✅ Product added! Code: ${productCode}`);
                     document.getElementById('prodName').value=''; document.getElementById('prodPrice').value=''; document.getElementById('prodVendor').value=''; document.getElementById('prodImage').value=''; document.getElementById('prodDescription').value='';
-                } else {
-                    showToast('❌ SheetDB rejected upload. Check columns!');
-                    console.error('SheetDB error:', result);
-                }
-                
-            } catch (error) {
-                showToast('❌ Error uploading: ' + error.message);
-                console.error('Full error:', error);
-            }
+                } else { showToast('❌ SheetDB rejected upload. Check columns!'); console.error('SheetDB error:', result); }
+            } catch (error) { showToast('❌ Error uploading: ' + error.message); console.error('Full error:', error); }
         }
 
         function renderAdminList() {
@@ -749,22 +541,16 @@ Apache License
         async function deleteProduct(id) {
             if (confirm('Delete this product?')) {
                 const product = products.find(p => p.id === id);
-                if (product) {
-                    await fetch(`${SHEETDB_URL}/id/${id}`, { method: 'DELETE' });
-                }
-                products = products.filter(p => p.id !== id);
-                renderStore();
-                renderAdminList();
-                showToast('🗑️ Product deleted');
+                if (product) { await fetch(`${SHEETDB_URL}/id/${id}`, { method: 'DELETE' }); }
+                products = products.filter(p => p.id !== id); renderStore(); renderAdminList(); showToast('🗑️ Product deleted');
             }
         }
 
-        // ================= FULL SCREEN MODAL + PINCH ZOOM + WHATSAPP =================
+        // ================= FULL SCREEN / WHATSAPP =================
         function openFullScreen(id) {
             const p = products.find(x => x.id === id);
             if (!p) return;
             currentFullScreenProductId = id;
-            
             document.getElementById('fsTitle').textContent = p.name;
             document.getElementById('fsCode').textContent = 'Code: ' + p.code;
             document.getElementById('fsPrice').textContent = formatPrice(p.price);
@@ -782,52 +568,7 @@ Apache License
             window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`, '_blank');
         }
 
-        // ================= CART (FULLY WORKING) =================
-        function addToCart(productId) {
-            if (!currentUser) { showToast('Please login first!'); openAuth(); return; }
-            const color = document.getElementById(`color-${productId}`) ? document.getElementById(`color-${productId}`).value : '#ffffff';
-            const qty = document.getElementById(`qty-${productId}`) ? parseInt(document.getElementById(`qty-${productId}`).value) : 1;
-            const existing = cart.find(item => item.productId === productId && item.color === color);
-            if (existing) existing.quantity += qty; else cart.push({ productId, color, quantity: qty });
-            saveCart(); showToast('✅ Added to cart!');
-        }
-
-        function addToCartFromModal() {
-            if (!currentUser) { showToast('Please login first!'); openAuth(); return; }
-            const color = document.getElementById('modalColor').value;
-            const qty = parseInt(document.getElementById('modalQty').value) || 1;
-            const existing = cart.find(item => item.productId === currentModalProductId && item.color === color);
-            if (existing) existing.quantity += qty; else cart.push({ productId: currentModalProductId, color, quantity: qty });
-            saveCart(); closeModal(); showToast('✅ Added to cart!');
-        }
-
-        function saveCart() { localStorage.setItem('cart', JSON.stringify(cart)); updateCartCount(); }
-        function updateCartCount() { document.getElementById('cartCount').textContent = cart.reduce((s,i) => s + i.quantity, 0); }
-
-        function openCart() {
-            if (!currentUser) { showToast('Please login first!'); openAuth(); return; }
-            const cont = document.getElementById('cartItemsContainer');
-            let total = 0;
-            if (cart.length === 0) cont.innerHTML = '<p style="text-align:center; color:var(--text-muted); padding:20px;">Your cart is empty</p>';
-            else cont.innerHTML = cart.map(item => {
-                const p = products.find(x => x.id === item.productId);
-                if (!p) return '';
-                const itemTotal = p.price * item.quantity; total += itemTotal;
-                return `<div style="display:flex; gap:15px; padding:15px 0; border-bottom:1px solid var(--border-color);">
-                    <img src="${p.image}" style="width:70px; height:70px; border-radius:8px; object-fit:cover;">
-                    <div style="flex:1;"><p style="font-weight:600;">${p.name}</p><p style="font-size:12px; color:var(--text-muted);">Color: ${item.color}</p><p style="font-size:12px; color:var(--text-muted);">Qty: ${item.quantity}</p><p style="color:var(--accent); font-weight:800;">${formatPrice(itemTotal)}</p></div>
-                    <button onclick="removeFromCart(${item.productId}, '${item.color}')" style="background:none; border:none; color:var(--danger); font-size:24px; cursor:pointer;">×</button>
-                </div>`;
-            }).join('');
-            document.getElementById('cartTotal').textContent = formatPrice(total);
-            document.getElementById('cartModal').classList.add('active');
-        }
-
-        function removeFromCart(productId, color) { cart = cart.filter(i => !(i.productId === productId && i.color === color)); saveCart(); openCart(); }
-        function closeCart() { document.getElementById('cartModal').classList.remove('active'); }
-        function checkout() { if (cart.length === 0) return; showToast('🎉 Order placed!'); cart = []; saveCart(); closeCart(); }
-
-        // ================= AUTH (SHORTENED NAME) =================
+        // ================= AUTH =================
         function openAuth() { document.getElementById('authModal').classList.add('active'); document.getElementById('emailAuth').classList.remove('hidden'); document.getElementById('registerForm').classList.add('hidden'); document.getElementById('authTitle').textContent = 'Login'; document.getElementById('authToggleBtn').textContent = 'Create one'; }
         function closeAuth() { document.getElementById('authModal').classList.remove('active'); }
         function googleLogin() { currentUser = { name: "Google User", email: "user@gmail.com" }; saveUser(); updateAuthUI(); closeAuth(); showToast('👋 Welcome!'); }
@@ -835,17 +576,7 @@ Apache License
         function emailRegister() { const n = document.getElementById('regName').value, e = document.getElementById('regEmail').value, p = document.getElementById('regPassword').value; if (!n || !e || !p) return showToast('Fill all fields'); currentUser = { name: n, email: e }; saveUser(); updateAuthUI(); closeAuth(); showToast('Account created!'); }
         function toggleAuthMode() { const ea = document.getElementById('emailAuth'), rf = document.getElementById('registerForm'); const t = document.getElementById('authTitle'), btn = document.getElementById('authToggleBtn'); if (rf.classList.contains('hidden')) { rf.classList.remove('hidden'); ea.classList.add('hidden'); t.textContent = 'Register'; btn.textContent = 'Sign In'; } else { rf.classList.add('hidden'); ea.classList.remove('hidden'); t.textContent = 'Login'; btn.textContent = 'Create one'; } }
         function saveUser() { localStorage.setItem('currentUser', JSON.stringify(currentUser)); }
-        function updateAuthUI() { 
-            const btn = document.getElementById('authBtn'); 
-            if (currentUser) { 
-                const firstLetter = currentUser.name.charAt(0).toUpperCase(); // Only first letter
-                btn.textContent = '👤 ' + firstLetter; 
-                btn.onclick = logout; 
-            } else { 
-                btn.textContent = 'Login'; 
-                btn.onclick = openAuth; 
-            } 
-        }
+        function updateAuthUI() { const btn = document.getElementById('authBtn'); if (currentUser) { const firstLetter = currentUser.name.charAt(0).toUpperCase(); btn.textContent = '👤 ' + firstLetter; btn.onclick = logout; } else { btn.textContent = 'Login'; btn.onclick = openAuth; } }
         function logout() { currentUser = null; localStorage.removeItem('currentUser'); updateAuthUI(); showToast('Logged out'); }
 
         // ================= SEARCH & CATEGORY =================
@@ -853,9 +584,7 @@ Apache License
             document.getElementById('categoryNav').querySelectorAll('.nav-btn').forEach(btn => {
                 btn.addEventListener('click', () => {
                     document.getElementById('categoryNav').querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
-                    btn.classList.add('active');
-                    activeCategory = btn.dataset.category;
-                    renderStore();
+                    btn.classList.add('active'); activeCategory = btn.dataset.category; renderStore();
                 });
             });
         }
@@ -863,23 +592,9 @@ Apache License
         function setupSearch() {
             document.getElementById('searchInput').addEventListener('input', (e) => {
                 const q = e.target.value.toLowerCase();
-                const filtered = products.filter(p => 
-                    p.name.toLowerCase().includes(q) || 
-                    p.code.toLowerCase().includes(q) || 
-                    p.vendor.toLowerCase().includes(q)
-                );
-                document.getElementById('productGrid').innerHTML = filtered.filter(p => p.section === 'recommended').map(p => `
-                    <div class="product-card" onclick="openFullScreen(${p.id})">
-                        <img src="${p.image}"><div class="product-details">
-                            <div class="title">${p.name}</div>
-                            <div class="product-price">${formatPrice(p.price)}</div>
-                            <div class="product-code">Code: ${p.code}</div>
-                        </div>
-                    </div>`).join('');
-                document.getElementById('carouselContainer').innerHTML = filtered.filter(p => p.section === 'sponsored').map(p => `
-                    <div class="carousel-card" onclick="openFullScreen(${p.id})">
-                        <img src="${p.image}"><div class="info"><div class="title">${p.name}</div><div class="price">${formatPrice(p.price)}</div></div>
-                    </div>`).join('');
+                const filtered = products.filter(p => p.name.toLowerCase().includes(q) || p.code.toLowerCase().includes(q) || p.vendor.toLowerCase().includes(q));
+                document.getElementById('productGrid').innerHTML = filtered.filter(p => p.section === 'recommended').map(p => `<div class="product-card" onclick="openFullScreen(${p.id})"><img src="${p.image}"><div class="product-details"><div class="title">${p.name}</div><div class="product-price">${formatPrice(p.price)}</div><div class="product-code">Code: ${p.code}</div></div></div>`).join('');
+                document.getElementById('carouselContainer').innerHTML = filtered.filter(p => p.section === 'sponsored').map(p => `<div class="carousel-card" onclick="openFullScreen(${p.id})"><img src="${p.image}"><div class="info"><div class="title">${p.name}</div><div class="price">${formatPrice(p.price)}</div></div></div>`).join('');
             });
         }
 
@@ -893,11 +608,7 @@ Apache License
         // ================= INIT =================
         function init() {
             document.getElementById('year').textContent = new Date().getFullYear();
-            fetchProductsFromDB();
-            updateCartCount();
-            updateAuthUI();
-            setupCategoryNav();
-            setupSearch();
+            fetchProductsFromDB(); updateCartCount(); updateAuthUI(); setupCategoryNav(); setupSearch();
             if (localStorage.getItem('cart')) cart = JSON.parse(localStorage.getItem('cart'));
             if (localStorage.getItem('currentUser')) currentUser = JSON.parse(localStorage.getItem('currentUser'));
             updateCartCount(); updateAuthUI();
