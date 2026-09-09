@@ -33,7 +33,7 @@
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; }
         body { background-color: var(--bg-primary); color: var(--text-primary); display: flex; flex-direction: column; min-height: 100vh; line-height: 1.6; overflow-x: hidden; }
 
-        /* Header - Scrolls away */
+        /* Header */
         .header { background: #ffffff; border-bottom: 1px solid var(--border-color); padding: 14px 30px; display: flex; justify-content: space-between; align-items: center; box-shadow: var(--shadow-sm); }
         .logo { flex: 1; display: flex; justify-content: center; max-width: 100%; }
         .logo img { width: 100%; max-width: 800px; height: auto; display: block; object-fit: contain; }
@@ -45,10 +45,8 @@
         .btn:hover { background: var(--bg-card-hover); border-color: var(--border-hover); }
         .btn-primary { background: var(--accent); border: 1px solid var(--accent); color: #fff; box-shadow: 0 2px 10px rgba(212, 175, 55, 0.3); }
         .btn-primary:hover { background: var(--accent-hover); border-color: var(--accent-hover); }
-        .cart-btn { background: var(--accent); border: none; color: #fff; padding: 8px 20px; border-radius: 50px; font-weight: 700; font-size: 14px; cursor: pointer; display: flex; align-items: center; gap: 8px; box-shadow: 0 2px 10px rgba(212, 175, 55, 0.3); transition: var(--transition); }
-        .cart-count { background: #fff; color: var(--accent); border-radius: 50px; padding: 2px 8px; font-size: 12px; font-weight: 800; }
 
-        /* Category Nav - Scrolls away */
+        /* Category Nav */
         .category-nav { background: #ffffff; border-bottom: 1px solid var(--border-color); padding: 0; display: flex; justify-content: center; gap: 0; overflow-x: auto; scrollbar-width: none; }
         .category-nav::-webkit-scrollbar { display: none; }
         .nav-btn { background: transparent; color: var(--text-secondary); border: none; padding: 14px 20px; font-weight: 600; font-size: 13px; white-space: nowrap; cursor: pointer; position: relative; transition: var(--transition); border-bottom: 3px solid transparent; }
@@ -68,7 +66,6 @@
         .carousel-card img, .product-card img { width: 100%; height: 180px; object-fit: cover; display: block; background: var(--bg-secondary); }
         .carousel-card .info, .product-details { padding: 12px; }
         .carousel-card .title, .product-details .title { font-size: 14px; font-weight: 600; margin-bottom: 6px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: var(--text-primary); }
-        .carousel-card .price, .product-details .price { color: var(--accent); font-weight: 800; font-size: 16px; margin-bottom: 4px; }
         .carousel-card .vendor, .product-details .vendor { font-size: 11px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; }
 
         .product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 16px; padding-bottom: 40px; }
@@ -76,13 +73,14 @@
         .product-card:hover { border-color: var(--accent); box-shadow: var(--shadow-lg); transform: translateY(-4px); }
         .product-rating { font-size: 12px; color: #f5a623; margin-bottom: 6px; display: flex; align-items: center; gap: 4px; }
         .product-rating span { color: var(--text-muted); font-size: 11px; }
-        .product-code { display: inline-block; background: var(--accent-soft); color: var(--accent); border: 1px solid var(--accent); border-radius: 4px; padding: 2px 6px; font-size: 11px; font-weight: 700; margin-bottom: 8px; }
-        .product-options { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; background: var(--bg-secondary); padding: 8px; border-radius: var(--radius-sm); }
-        .product-options label { font-size: 11px; color: var(--text-secondary); display: flex; align-items: center; gap: 6px; font-weight: 500; }
-        .product-options input[type="color"] { width: 24px; height: 24px; border: none; border-radius: 50%; cursor: pointer; background: transparent; padding: 0; }
-        .product-options input[type="number"] { width: 48px; padding: 4px; background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 4px; color: var(--text-primary); font-size: 13px; text-align: center; }
-        .add-btn { background: var(--bg-secondary); border: 1px solid var(--border-color); border-radius: var(--radius-sm); padding: 10px; color: var(--text-primary); font-weight: 700; font-size: 13px; cursor: pointer; width: 100%; transition: var(--transition); }
-        .add-btn:hover { background: var(--accent); border-color: var(--accent); color: #fff; box-shadow: 0 2px 8px rgba(212, 175, 55, 0.3); }
+        .product-price { color: var(--accent); font-weight: 800; font-size: 16px; margin-bottom: 8px; }
+        .whatsapp-btn { background: var(--whatsapp); border: none; color: #fff; border-radius: var(--radius-sm); padding: 10px; font-weight: 700; font-size: 13px; cursor: pointer; width: 100%; display: flex; align-items: center; justify-content: center; gap: 8px; transition: var(--transition); }
+        .whatsapp-btn:hover { background: #20bd5a; }
+        .unhide-btn { background: var(--accent-soft); border: 1px solid var(--accent); color: var(--accent); border-radius: var(--radius-sm); padding: 8px; font-weight: 700; font-size: 13px; cursor: pointer; width: 100%; transition: var(--transition); margin-bottom: 10px; }
+        .unhide-btn:hover { background: var(--accent); color: #fff; }
+        .hidden-details { display: none; margin-top: 10px; }
+        .copy-code-btn { background: var(--bg-secondary); border: 1px solid var(--border-color); border-radius: var(--radius-sm); padding: 6px 10px; font-size: 12px; font-weight: 700; color: var(--text-secondary); cursor: pointer; display: inline-flex; align-items: center; gap: 6px; transition: var(--transition); }
+        .copy-code-btn:hover { background: var(--accent-soft); border-color: var(--accent); color: var(--accent); }
 
         /* Footer */
         .footer { background: var(--bg-secondary); border-top: 1px solid var(--border-color); margin-top: auto; padding: 30px 30px 10px; }
@@ -92,9 +90,9 @@
         .footer-links a:hover { color: var(--accent); }
         .footer-copyright { color: var(--text-muted); font-size: 11px; text-align: center; border-top: 1px solid var(--border-color); padding-top: 10px; }
 
-        /* Admin Padlock */
-        .admin-padlock { position: fixed; bottom: 20px; left: 20px; z-index: 9999; background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 50%; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 18px; box-shadow: var(--shadow-md); transition: var(--transition); color: var(--accent); }
-        .admin-padlock:hover { background: var(--bg-card-hover); border-color: var(--accent); transform: scale(1.1); }
+        /* Red Fullstop Admin Button */
+        .admin-fullstop { position: fixed; bottom: 20px; left: 20px; z-index: 9999; width: 25px; height: 25px; background: red; border-radius: 50%; border: 2px solid #fff; box-shadow: var(--shadow-md); cursor: pointer; transition: var(--transition); }
+        .admin-fullstop:hover { transform: scale(1.2); }
 
         /* Bouncing Badge */
         .bouncing-logo-badge { position: fixed; top: 15px; right: 15px; z-index: 9998; width: 45px; height: 45px; border-radius: 50%; border: 2px solid var(--accent); box-shadow: var(--shadow-md); overflow: hidden; animation: bounceLogo 3s ease-in-out infinite; pointer-events: none; }
@@ -151,7 +149,7 @@
 </head>
 <body>
 
-    <!-- Header (Scrolls up) -->
+    <!-- Header -->
     <header class="header">
         <div class="logo"><img src="https://i.ibb.co/YTT56gY4/Chat-GPT-Image-Sep-8-2026-01-41-16-AM.png" alt="AmorD-Ng Furnitures Banner Logo"></div>
         <div class="search-box">
@@ -160,7 +158,6 @@
         </div>
         <div class="header-actions">
             <button class="btn" id="authBtn" onclick="openAuth()">Login</button>
-            <button class="cart-btn" onclick="openCart()">🛒 <span class="cart-count" id="cartCount">0</span></button>
         </div>
     </header>
 
@@ -203,21 +200,8 @@
         </div>
     </footer>
 
-    <!-- Admin Padlock -->
-    <div class="admin-padlock" onclick="toggleAdmin()" title="Admin Panel">🔒</div>
-
-    <!-- Cart Modal (FULLY WORKING) -->
-    <div class="modal-overlay" id="cartModal">
-        <div class="modal-box">
-            <button class="modal-close" onclick="closeCart()">×</button>
-            <h2 style="margin-bottom: 20px;">Your Cart</h2>
-            <div id="cartItemsContainer"></div>
-            <div style="margin-top: 20px; border-top: 1px solid var(--border-color); padding-top: 15px;">
-                <p style="font-size: 18px; font-weight: 800;">Total: <span id="cartTotal" style="color: var(--accent);">₦0</span></p>
-                <button class="btn btn-primary" style="width: 100%; margin-top: 10px; padding: 14px;" onclick="checkout()">Proceed to Checkout</button>
-            </div>
-        </div>
-    </div>
+    <!-- Red Fullstop Admin Button -->
+    <div class="admin-fullstop" onclick="toggleAdmin()" title="Admin Panel"></div>
 
     <!-- Auth Modal -->
     <div class="modal-overlay" id="authModal">
@@ -249,8 +233,6 @@
         <div class="modal-box">
             <button class="modal-close" onclick="closeFullScreen()">×</button>
             <h3 id="fsTitle" style="margin-bottom: 5px; color: #111;"></h3>
-            <p id="fsCode" class="product-code" style="margin-bottom: 5px;"></p>
-            <p id="fsPrice" style="font-size: 20px; font-weight: 800; color: var(--accent); margin-bottom: 10px;"></p>
             <p id="fsDescription" style="color: #555; font-size: 14px; margin-bottom: 15px;"></p>
             <img id="fullScreenImg" src="" alt="" style="touch-action: pinch-zoom;">
             <button class="whatsapp-full-btn" onclick="sendWhatsApp()">
@@ -260,7 +242,7 @@
         </div>
     </div>
 
-    <!-- Modals for Footer -->
+    <!-- About, Policy, Privacy, License Modals -->
     <div class="modal-overlay" id="aboutModal">
         <div class="modal-box">
             <button class="modal-close" onclick="closeModal('aboutModal')">×</button>
@@ -348,7 +330,6 @@ Apache License
         const COMPANY_GMAIL = 'godwindouglas8@gmail.com';
 
         let products = [];
-        let cart = [];
         let currentUser = null;
         let isAdmin = false;
         let activeCategory = 'all';
@@ -412,60 +393,65 @@ Apache License
                 recommended = recommended.filter(p => p.category === activeCategory);
             }
 
-            carousel.innerHTML = sponsored.map(p => `<div class="carousel-card" onclick="openFullScreen(${p.id})"><img src="${p.image}"><div class="info"><div class="title">${p.name}</div><div class="price">${formatPrice(p.price)}</div><div class="vendor">${p.vendor}</div></div></div>`).join('');
+            carousel.innerHTML = sponsored.map(p => `<div class="carousel-card" onclick="openFullScreen(${p.id})"><img src="${p.image}"><div class="info"><div class="title">${p.name}</div><div class="vendor">${p.vendor}</div></div></div>`).join('');
 
             grid.innerHTML = recommended.map(p => `
                 <div class="product-card" onclick="openFullScreen(${p.id})">
                     <img src="${p.image}"><div class="product-details">
                         <div class="title">${p.name}</div>
                         <div class="product-rating">${stars(p.rating)} <span>(${p.rating})</span></div>
-                        <div class="price">${formatPrice(p.price)}</div>
-                        <div class="product-code">Code: ${p.code}</div>
                         <div class="vendor">${p.vendor}</div>
-                        <div class="product-options">
-                            <label>Color <input type="color" value="#ffffff" onclick="event.stopPropagation();" id="color-${p.id}"></label>
-                            <label>Qty <input type="number" value="1" min="1" onclick="event.stopPropagation();" id="qty-${p.id}" style="width:50px;"></label>
+                        <div class="product-price">${formatPrice(p.price)}</div>
+                        <button class="whatsapp-btn" onclick="event.stopPropagation(); sendWhatsApp(${p.id})">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                            WhatsApp
+                        </button>
+                        <button class="unhide-btn" onclick="event.stopPropagation(); toggleDetails(${p.id})">Unhide Options</button>
+                        <div class="hidden-details" id="details-${p.id}">
+                            <p style="font-size: 13px; color: var(--text-secondary); margin-bottom: 8px;">${p.description || "Premium quality furniture."}</p>
+                            <label style="font-size: 12px; color: var(--text-secondary); display: block; margin-bottom: 8px;">Select Color: <input type="color" id="color-${p.id}" value="#ffffff" style="width: 25px; height: 25px; border: none; cursor: pointer; vertical-align: middle;"></label>
+                            <button class="copy-code-btn" onclick="event.stopPropagation(); copyCode('${p.code}')">📋 Copy Code: ${p.code}</button>
                         </div>
-                        <button class="add-btn" onclick="event.stopPropagation(); addToCart(${p.id})">Add to Cart</button>
                     </div>
                 </div>`).join('');
         }
 
-        // ================= CART (FULLY WORKING) =================
-        function addToCart(productId) {
-            if (!currentUser) { showToast('Please login first!'); openAuth(); return; }
-            const color = document.getElementById(`color-${productId}`).value;
-            const qty = parseInt(document.getElementById(`qty-${productId}`).value) || 1;
-            const existing = cart.find(item => item.productId === productId && item.color === color);
-            if (existing) existing.quantity += qty; else cart.push({ productId, color, quantity: qty });
-            saveCart(); showToast('✅ Added to cart!');
+        // ================= UNHIDE / HIDE DETAILS =================
+        function toggleDetails(productId) {
+            const details = document.getElementById(`details-${productId}`);
+            const btn = document.querySelector(`[onclick="toggleDetails(${productId})"]`);
+            if (details.style.display === 'block') {
+                details.style.display = 'none';
+                btn.textContent = 'Unhide Options';
+            } else {
+                details.style.display = 'block';
+                btn.textContent = 'Hide Options';
+            }
         }
 
-        function saveCart() { localStorage.setItem('cart', JSON.stringify(cart)); updateCartCount(); }
-        function updateCartCount() { document.getElementById('cartCount').textContent = cart.reduce((s,i) => s + i.quantity, 0); }
-
-        function openCart() {
-            if (!currentUser) { showToast('Please login first!'); openAuth(); return; }
-            const cont = document.getElementById('cartItemsContainer');
-            let total = 0;
-            if (cart.length === 0) cont.innerHTML = '<p style="text-align:center; color:var(--text-muted); padding:20px;">Your cart is empty</p>';
-            else cont.innerHTML = cart.map(item => {
-                const p = products.find(x => x.id === item.productId);
-                if (!p) return '';
-                const itemTotal = p.price * item.quantity; total += itemTotal;
-                return `<div style="display:flex; gap:15px; padding:15px 0; border-bottom:1px solid var(--border-color);">
-                    <img src="${p.image}" style="width:70px; height:70px; border-radius:8px; object-fit:cover;">
-                    <div style="flex:1;"><p style="font-weight:600;">${p.name}</p><p style="font-size:12px; color:var(--text-muted);">Color: ${item.color}</p><p style="font-size:12px; color:var(--text-muted);">Qty: ${item.quantity}</p><p style="color:var(--accent); font-weight:800;">${formatPrice(itemTotal)}</p></div>
-                    <button onclick="removeFromCart(${item.productId}, '${item.color}')" style="background:none; border:none; color:var(--danger); font-size:24px; cursor:pointer;">×</button>
-                </div>`;
-            }).join('');
-            document.getElementById('cartTotal').textContent = formatPrice(total);
-            document.getElementById('cartModal').classList.add('active');
+        // ================= COPY CODE =================
+        function copyCode(code) {
+            navigator.clipboard.writeText(code).then(() => {
+                showToast('✅ Code copied: ' + code);
+            }).catch(() => {
+                // Fallback for older browsers
+                const tempInput = document.createElement('input');
+                tempInput.value = code;
+                document.body.appendChild(tempInput);
+                tempInput.select();
+                document.execCommand('copy');
+                document.body.removeChild(tempInput);
+                showToast('✅ Code copied: ' + code);
+            });
         }
 
-        function removeFromCart(productId, color) { cart = cart.filter(i => !(i.productId === productId && i.color === color)); saveCart(); openCart(); }
-        function closeCart() { document.getElementById('cartModal').classList.remove('active'); }
-        function checkout() { if (cart.length === 0) return; showToast('🎉 Order placed!'); cart = []; saveCart(); closeCart(); }
+        // ================= WHATSAPP =================
+        function sendWhatsApp(productId) {
+            const p = products.find(x => x.id === productId);
+            if (!p) return;
+            const message = `Hello AmorD-Ng Furnitures, I need this furniture:\n\nProduct: ${p.name}\nPrice: ${formatPrice(p.price)}\nImage: ${p.image}\n\nPlease contact me regarding this item.`;
+            window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`, '_blank');
+        }
 
         // ================= ADMIN =================
         function toggleAdmin() {
@@ -552,8 +538,6 @@ Apache License
             if (!p) return;
             currentFullScreenProductId = id;
             document.getElementById('fsTitle').textContent = p.name;
-            document.getElementById('fsCode').textContent = 'Code: ' + p.code;
-            document.getElementById('fsPrice').textContent = formatPrice(p.price);
             document.getElementById('fsDescription').textContent = p.description || "Premium quality furniture for your home.";
             document.getElementById('fullScreenImg').src = p.image;
             document.getElementById('fullScreenModal').classList.add('active');
@@ -561,10 +545,10 @@ Apache License
 
         function closeFullScreen() { document.getElementById('fullScreenModal').classList.remove('active'); currentFullScreenProductId = null; }
 
-        function sendWhatsApp() {
-            const p = products.find(x => x.id === currentFullScreenProductId);
+        function sendWhatsApp(productId) {
+            const p = products.find(x => x.id === productId);
             if (!p) return;
-            const message = `Hello AmorD-Ng Furnitures, I need this furniture:\n\nProduct: ${p.name}\nCode: ${p.code}\nPrice: ${formatPrice(p.price)}\nImage: ${p.image}\n\nPlease contact me regarding this item.`;
+            const message = `Hello AmorD-Ng Furnitures, I need this furniture:\n\nProduct: ${p.name}\nPrice: ${formatPrice(p.price)}\nImage: ${p.image}\n\nPlease contact me regarding this item.`;
             window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`, '_blank');
         }
 
@@ -593,8 +577,8 @@ Apache License
             document.getElementById('searchInput').addEventListener('input', (e) => {
                 const q = e.target.value.toLowerCase();
                 const filtered = products.filter(p => p.name.toLowerCase().includes(q) || p.code.toLowerCase().includes(q) || p.vendor.toLowerCase().includes(q));
-                document.getElementById('productGrid').innerHTML = filtered.filter(p => p.section === 'recommended').map(p => `<div class="product-card" onclick="openFullScreen(${p.id})"><img src="${p.image}"><div class="product-details"><div class="title">${p.name}</div><div class="product-price">${formatPrice(p.price)}</div><div class="product-code">Code: ${p.code}</div></div></div>`).join('');
-                document.getElementById('carouselContainer').innerHTML = filtered.filter(p => p.section === 'sponsored').map(p => `<div class="carousel-card" onclick="openFullScreen(${p.id})"><img src="${p.image}"><div class="info"><div class="title">${p.name}</div><div class="price">${formatPrice(p.price)}</div></div></div>`).join('');
+                document.getElementById('productGrid').innerHTML = filtered.filter(p => p.section === 'recommended').map(p => `<div class="product-card" onclick="openFullScreen(${p.id})"><img src="${p.image}"><div class="product-details"><div class="title">${p.name}</div><div class="product-code">Code: ${p.code}</div></div></div>`).join('');
+                document.getElementById('carouselContainer').innerHTML = filtered.filter(p => p.section === 'sponsored').map(p => `<div class="carousel-card" onclick="openFullScreen(${p.id})"><img src="${p.image}"><div class="info"><div class="title">${p.name}</div></div></div>`).join('');
             });
         }
 
@@ -608,10 +592,9 @@ Apache License
         // ================= INIT =================
         function init() {
             document.getElementById('year').textContent = new Date().getFullYear();
-            fetchProductsFromDB(); updateCartCount(); updateAuthUI(); setupCategoryNav(); setupSearch();
-            if (localStorage.getItem('cart')) cart = JSON.parse(localStorage.getItem('cart'));
+            fetchProductsFromDB(); updateAuthUI(); setupCategoryNav(); setupSearch();
             if (localStorage.getItem('currentUser')) currentUser = JSON.parse(localStorage.getItem('currentUser'));
-            updateCartCount(); updateAuthUI();
+            updateAuthUI();
         }
 
         init();
