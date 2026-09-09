@@ -6,24 +6,24 @@
     <title>AmorD-Ng Furnitures | Premium Home Furnishings</title>
     <style>
         :root {
-            --bg-primary: #ffffff;
-            --bg-secondary: #f5f5f5;
-            --bg-card: #ffffff;
-            --bg-card-hover: #f8f8f8;
-            --border-color: #e0e0e0;
-            --border-hover: #cccccc;
-            --text-primary: #111111;
-            --text-secondary: #555555;
-            --text-muted: #888888;
-            --accent: #d4af37;
-            --accent-hover: #b8962e;
-            --accent-soft: rgba(212, 175, 55, 0.15);
+            --bg-primary: #121212;
+            --bg-secondary: #1e1e1e;
+            --bg-card: #1a1a1a;
+            --bg-card-hover: #222222;
+            --border-color: #2a2a2a;
+            --border-hover: #3a3a3a;
+            --text-primary: #ffffff;
+            --text-secondary: #b0b0b0;
+            --text-muted: #777777;
+            --accent: #ff6a00;
+            --accent-hover: #ff8c33;
+            --accent-soft: rgba(255, 106, 0, 0.15);
             --danger: #ff4757;
             --success: #2ed573;
             --whatsapp: #25D366;
-            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.05);
-            --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.08);
-            --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.12);
+            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.4);
+            --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.5);
+            --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.6);
             --radius-sm: 8px;
             --radius-md: 12px;
             --radius-lg: 20px;
@@ -33,8 +33,8 @@
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; }
         body { background-color: var(--bg-primary); color: var(--text-primary); display: flex; flex-direction: column; min-height: 100vh; line-height: 1.6; overflow-x: hidden; }
 
-        /* Header */
-        .header { background: #ffffff; border-bottom: 1px solid var(--border-color); padding: 14px 30px; display: flex; justify-content: space-between; align-items: center; box-shadow: var(--shadow-sm); }
+        /* Header - Scrolls away */
+        .header { background: rgba(18, 18, 18, 0.95); border-bottom: 1px solid var(--border-color); padding: 14px 30px; display: flex; justify-content: space-between; align-items: center; box-shadow: var(--shadow-sm); }
         .logo { flex: 1; display: flex; justify-content: center; max-width: 100%; }
         .logo img { width: 100%; max-width: 800px; height: auto; display: block; object-fit: contain; }
         .search-box { flex: 1; max-width: 650px; background: var(--bg-secondary); border-radius: 50px; padding: 10px 20px; display: flex; align-items: center; border: 1px solid var(--border-color); transition: var(--transition); margin-left: 20px; }
@@ -43,11 +43,11 @@
         .header-actions { display: flex; gap: 12px; align-items: center; margin-left: 20px; }
         .btn { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 50px; padding: 8px 18px; color: var(--text-primary); font-weight: 600; font-size: 14px; cursor: pointer; transition: var(--transition); }
         .btn:hover { background: var(--bg-card-hover); border-color: var(--border-hover); }
-        .btn-primary { background: var(--accent); border: 1px solid var(--accent); color: #fff; box-shadow: 0 2px 10px rgba(212, 175, 55, 0.3); }
+        .btn-primary { background: var(--accent); border: 1px solid var(--accent); color: #fff; box-shadow: 0 2px 10px rgba(255, 106, 0, 0.3); }
         .btn-primary:hover { background: var(--accent-hover); border-color: var(--accent-hover); }
 
         /* Category Nav */
-        .category-nav { background: #ffffff; border-bottom: 1px solid var(--border-color); padding: 0; display: flex; justify-content: center; gap: 0; overflow-x: auto; scrollbar-width: none; }
+        .category-nav { background: #121212; border-bottom: 1px solid var(--border-color); padding: 0; display: flex; justify-content: center; gap: 0; overflow-x: auto; scrollbar-width: none; }
         .category-nav::-webkit-scrollbar { display: none; }
         .nav-btn { background: transparent; color: var(--text-secondary); border: none; padding: 14px 20px; font-weight: 600; font-size: 13px; white-space: nowrap; cursor: pointer; position: relative; transition: var(--transition); border-bottom: 3px solid transparent; }
         .nav-btn:hover { color: var(--text-primary); background: var(--bg-secondary); }
@@ -58,29 +58,17 @@
         .section-header { padding: 20px 0 10px; }
         .section-title { font-size: 16px; font-weight: 700; color: var(--text-primary); border-left: 4px solid var(--accent); padding-left: 12px; text-transform: uppercase; letter-spacing: 0.5px; }
 
-        /* Carousel & Grid */
-        .carousel-container { display: flex; gap: 16px; padding: 10px 0 20px; overflow-x: auto; scrollbar-width: none; scroll-behavior: smooth; }
-        .carousel-container::-webkit-scrollbar { display: none; }
-        .carousel-card { flex: 0 0 220px; background: var(--bg-card); border-radius: var(--radius-md); overflow: hidden; border: 1px solid var(--border-color); cursor: pointer; transition: var(--transition); position: relative; }
-        .carousel-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); border-color: var(--border-hover); }
-        .carousel-card img, .product-card img { width: 100%; height: 180px; object-fit: cover; display: block; background: var(--bg-secondary); }
-        .carousel-card .info, .product-details { padding: 12px; }
-        .carousel-card .title, .product-details .title { font-size: 14px; font-weight: 600; margin-bottom: 6px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: var(--text-primary); }
-        .carousel-card .vendor, .product-details .vendor { font-size: 11px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; }
-
-        .product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 16px; padding-bottom: 40px; }
-        .product-card { background: var(--bg-card); border-radius: var(--radius-md); overflow: hidden; border: 1px solid var(--border-color); padding: 12px; display: flex; flex-direction: column; cursor: pointer; transition: var(--transition); position: relative; }
-        .product-card:hover { border-color: var(--accent); box-shadow: var(--shadow-lg); transform: translateY(-4px); }
-        .product-rating { font-size: 12px; color: #f5a623; margin-bottom: 6px; display: flex; align-items: center; gap: 4px; }
-        .product-rating span { color: var(--text-muted); font-size: 11px; }
-        .product-price { color: var(--accent); font-weight: 800; font-size: 16px; margin-bottom: 8px; }
-        .whatsapp-btn { background: var(--whatsapp); border: none; color: #fff; border-radius: var(--radius-sm); padding: 10px; font-weight: 700; font-size: 13px; cursor: pointer; width: 100%; display: flex; align-items: center; justify-content: center; gap: 8px; transition: var(--transition); }
-        .whatsapp-btn:hover { background: #20bd5a; }
-        .unhide-btn { background: var(--accent-soft); border: 1px solid var(--accent); color: var(--accent); border-radius: var(--radius-sm); padding: 8px; font-weight: 700; font-size: 13px; cursor: pointer; width: 100%; transition: var(--transition); margin-bottom: 10px; }
-        .unhide-btn:hover { background: var(--accent); color: #fff; }
-        .hidden-details { display: none; margin-top: 10px; }
-        .copy-code-btn { background: var(--bg-secondary); border: 1px solid var(--border-color); border-radius: var(--radius-sm); padding: 6px 10px; font-size: 12px; font-weight: 700; color: var(--text-secondary); cursor: pointer; display: inline-flex; align-items: center; gap: 6px; transition: var(--transition); }
-        .copy-code-btn:hover { background: var(--accent-soft); border-color: var(--accent); color: var(--accent); }
+        /* MASONRY / PINTEREST GRID */
+        .masonry-grid { columns: 4; column-gap: 12px; padding-bottom: 40px; }
+        .masonry-item { break-inside: avoid; margin-bottom: 12px; background: var(--bg-card); border-radius: var(--radius-md); overflow: hidden; border: 1px solid var(--border-color); cursor: pointer; transition: var(--transition); position: relative; }
+        .masonry-item:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); border-color: var(--border-hover); }
+        .masonry-item img { width: 100%; display: block; background: var(--bg-secondary); }
+        .masonry-item .info { padding: 10px; }
+        .masonry-item .title { font-size: 13px; font-weight: 600; margin-bottom: 4px; color: var(--text-primary); display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+        .masonry-item .price { color: var(--accent); font-weight: 800; font-size: 15px; margin-bottom: 4px; }
+        .masonry-item .vendor { font-size: 11px; color: var(--text-muted); text-transform: capitalize; letter-spacing: 0.3px; }
+        .badge-instock { position: absolute; top: 8px; right: 8px; background: rgba(0, 0, 0, 0.8); color: var(--success); font-size: 10px; font-weight: 700; padding: 3px 6px; border-radius: 8px; }
+        .badge-sponsored { position: absolute; top: 8px; left: 8px; background: rgba(0, 0, 0, 0.8); color: var(--text-primary); font-size: 9px; font-weight: 800; padding: 2px 6px; border-radius: 8px; }
 
         /* Footer */
         .footer { background: var(--bg-secondary); border-top: 1px solid var(--border-color); margin-top: auto; padding: 30px 30px 10px; }
@@ -95,12 +83,12 @@
         .admin-fullstop:hover { transform: scale(1.2); }
 
         /* Bouncing Badge */
-        .bouncing-logo-badge { position: fixed; top: 15px; right: 15px; z-index: 9998; width: 45px; height: 45px; border-radius: 50%; border: 2px solid var(--accent); box-shadow: var(--shadow-md); overflow: hidden; animation: bounceLogo 3s ease-in-out infinite; pointer-events: none; }
+        .bouncing-logo-badge { position: fixed; top: 15px; right: 15px; z-index: 9998; width: 40px; height: 40px; border-radius: 50%; border: 2px solid var(--accent); box-shadow: var(--shadow-md); overflow: hidden; animation: bounceLogo 3s ease-in-out infinite; pointer-events: none; }
         .bouncing-logo-badge img { width: 300%; height: 300%; object-fit: cover; position: absolute; top: -150%; left: -150%; }
         @keyframes bounceLogo { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
 
         /* Modals */
-        .modal-overlay { position: fixed; inset: 0; background: rgba(0, 0, 0, 0.5); backdrop-filter: blur(4px); z-index: 10000; display: flex; align-items: center; justify-content: center; opacity: 0; visibility: hidden; transition: var(--transition); }
+        .modal-overlay { position: fixed; inset: 0; background: rgba(0, 0, 0, 0.8); backdrop-filter: blur(4px); z-index: 10000; display: flex; align-items: center; justify-content: center; opacity: 0; visibility: hidden; transition: var(--transition); }
         .modal-overlay.active { opacity: 1; visibility: visible; }
         .modal-box { background: var(--bg-card); border-radius: var(--radius-lg); max-width: 480px; width: 90%; padding: 30px; border: 1px solid var(--border-color); position: relative; max-height: 85vh; overflow-y: auto; box-shadow: var(--shadow-lg); }
         .modal-close { position: absolute; top: 15px; right: 15px; background: var(--bg-secondary); border: none; width: 32px; height: 32px; border-radius: 50%; font-size: 18px; cursor: pointer; color: var(--text-secondary); transition: var(--transition); display: flex; align-items: center; justify-content: center; }
@@ -125,14 +113,25 @@
         .hidden { display: none !important; }
 
         /* Toast */
-        .toast { position: fixed; bottom: 20px; right: 20px; background: var(--text-primary); color: var(--bg-primary); padding: 14px 24px; border-radius: var(--radius-md); border-left: 4px solid var(--accent); box-shadow: var(--shadow-lg); z-index: 99999; font-weight: 500; font-size: 14px; animation: slideIn 0.3s ease; }
+        .toast { position: fixed; bottom: 20px; right: 20px; background: var(--bg-card); color: var(--text-primary); padding: 14px 24px; border-radius: var(--radius-md); border-left: 4px solid var(--accent); box-shadow: var(--shadow-lg); z-index: 99999; font-weight: 500; font-size: 14px; animation: slideIn 0.3s ease; }
         @keyframes slideIn { from { transform: translateX(100px); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
 
         /* Full Screen Modal */
-        #fullScreenModal .modal-box { max-width: 95vw; max-height: 95vh; width: 100%; background: #fff; border: none; text-align: center; padding: 10px; }
+        #fullScreenModal .modal-box { max-width: 95vw; max-height: 95vh; width: 100%; background: var(--bg-card); border: none; text-align: center; padding: 10px; }
         #fullScreenImg { max-width: 100%; max-height: 75vh; object-fit: contain; border-radius: 10px; touch-action: pinch-zoom; margin: 10px 0; cursor: zoom-in; }
         .whatsapp-full-btn { background: var(--whatsapp); color: #fff; border: none; border-radius: 50px; padding: 12px 24px; font-size: 16px; font-weight: 700; cursor: pointer; display: inline-flex; align-items: center; gap: 10px; box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4); transition: var(--transition); margin-top: 10px; }
         .whatsapp-full-btn:hover { background: #20bd5a; transform: scale(1.05); }
+
+        @media (max-width: 1200px) {
+            .masonry-grid { columns: 3; }
+        }
+        @media (max-width: 900px) {
+            .masonry-grid { columns: 2; }
+        }
+        @media (max-width: 600px) {
+            .masonry-grid { columns: 2; column-gap: 8px; }
+            .masonry-item { margin-bottom: 8px; }
+        }
 
         @media (max-width: 768px) {
             .header { padding: 12px 16px; gap: 12px; flex-wrap: wrap; }
@@ -141,15 +140,12 @@
             .search-box { order: 2; max-width: 100%; flex-basis: 100%; margin-left: 0; }
             .header-actions { order: 3; width: 100%; justify-content: space-between; margin-left: 0; }
             .category-nav { justify-content: flex-start; padding: 0 10px; }
-            .product-grid { grid-template-columns: repeat(2, 1fr); gap: 8px; }
-            .product-card img { height: 130px; }
-            .carousel-card { flex-basis: 180px; }
         }
     </style>
 </head>
 <body>
 
-    <!-- Header -->
+    <!-- Header (Scrolls up) -->
     <header class="header">
         <div class="logo"><img src="https://i.ibb.co/YTT56gY4/Chat-GPT-Image-Sep-8-2026-01-41-16-AM.png" alt="AmorD-Ng Furnitures Banner Logo"></div>
         <div class="search-box">
@@ -177,9 +173,9 @@
     <!-- Store Content -->
     <div class="section-container">
         <div class="section-header"><div class="section-title">✨ Sponsored Products</div></div>
-        <div class="carousel-container" id="carouselContainer"></div>
+        <div class="masonry-grid" id="sponsoredGrid"></div>
         <div class="section-header"><div class="section-title">🔥 Recommended for you</div></div>
-        <div class="product-grid" id="productGrid"></div>
+        <div class="masonry-grid" id="masonryGrid"></div>
     </div>
 
     <!-- Admin Panel Container -->
@@ -232,10 +228,18 @@
     <div class="modal-overlay" id="fullScreenModal">
         <div class="modal-box">
             <button class="modal-close" onclick="closeFullScreen()">×</button>
-            <h3 id="fsTitle" style="margin-bottom: 5px; color: #111;"></h3>
-            <p id="fsDescription" style="color: #555; font-size: 14px; margin-bottom: 15px;"></p>
+            <h3 id="fsTitle" style="margin-bottom: 5px; color: #fff;"></h3>
+            <p id="fsDescription" style="color: #b0b0b0; font-size: 14px; margin-bottom: 15px;"></p>
             <img id="fullScreenImg" src="" alt="" style="touch-action: pinch-zoom;">
-            <button class="whatsapp-full-btn" onclick="sendWhatsApp()">
+            <div style="margin-top: 10px;">
+                <button class="unhide-btn" id="fsUnhideBtn" onclick="toggleFullScreenDetails()" style="background: var(--bg-secondary); border: 1px solid var(--accent); color: var(--accent); border-radius: 8px; padding: 10px; width: 100%; font-weight: 700; cursor: pointer; margin-bottom: 10px;">Unhide Details</button>
+                <div id="fsHiddenDetails" style="display: none; margin-bottom: 15px;">
+                    <p id="fsCode" style="color: #b0b0b0; font-size: 13px; margin-bottom: 8px;"></p>
+                    <label style="font-size: 13px; color: #b0b0b0; display: block; margin-bottom: 8px;">Select Color: <input type="color" id="modalColor" value="#ffffff" style="width: 25px; height: 25px; vertical-align: middle;"></label>
+                    <button class="copy-code-btn" onclick="copyCode('${document.getElementById('fsCode').textContent.split(': ')[1]}')" style="background: var(--bg-secondary); border: 1px solid var(--border-color); color: #b0b0b0; border-radius: 4px; padding: 6px 10px; font-weight: 700; cursor: pointer; width: 100%;">📋 Copy Code</button>
+                </div>
+            </div>
+            <button class="whatsapp-full-btn" onclick="sendFullScreenWhatsApp()">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
                 Chat on WhatsApp
             </button>
@@ -367,16 +371,16 @@ Apache License
                     }));
                 } else {
                     products = [
-                        { id: 1, code: "10001", name: "Double Seater Sofa", price: 320000, vendor: "Mma Amisco", category: "sofa", rating: 4.3, image: "https://via.placeholder.com/300x200/333/fff?text=Double+Sofa", section: "sponsored", description: "A beautifully crafted double seater sofa." },
-                        { id: 2, code: "10002", name: "3 Seater Green Sofa", price: 300000, vendor: "Mma Amisco", category: "sofa", rating: 4.1, image: "https://via.placeholder.com/300x200/333/fff?text=Green+Sofa", section: "sponsored", description: "Elegant green 3-seater sofa." }
+                        { id: 1, code: "10001", name: "Double Seater Sofa", price: 320000, vendor: "Mma Amisco", category: "sofa", rating: 4.3, image: "https://via.placeholder.com/300x400/333/fff?text=Double+Sofa", section: "sponsored", description: "A beautifully crafted double seater sofa." },
+                        { id: 2, code: "10002", name: "3 Seater Green Sofa", price: 300000, vendor: "Mma Amisco", category: "sofa", rating: 4.1, image: "https://via.placeholder.com/300x250/333/fff?text=Green+Sofa", section: "recommended", description: "Elegant green 3-seater sofa." }
                     ];
                 }
                 renderStore();
             } catch (error) {
                 console.error("Error fetching from SheetDB:", error);
                 products = [
-                    { id: 1, code: "10001", name: "Double Seater Sofa", price: 320000, vendor: "Mma Amisco", category: "sofa", rating: 4.3, image: "https://via.placeholder.com/300x200/333/fff?text=Double+Sofa", section: "sponsored", description: "A beautifully crafted double seater sofa." },
-                    { id: 2, code: "10002", name: "3 Seater Green Sofa", price: 300000, vendor: "Mma Amisco", category: "sofa", rating: 4.1, image: "https://via.placeholder.com/300x200/333/fff?text=Green+Sofa", section: "sponsored", description: "Elegant green 3-seater sofa." }
+                    { id: 1, code: "10001", name: "Double Seater Sofa", price: 320000, vendor: "Mma Amisco", category: "sofa", rating: 4.3, image: "https://via.placeholder.com/300x400/333/fff?text=Double+Sofa", section: "sponsored", description: "A beautifully crafted double seater sofa." },
+                    { id: 2, code: "10002", name: "3 Seater Green Sofa", price: 300000, vendor: "Mma Amisco", category: "sofa", rating: 4.1, image: "https://via.placeholder.com/300x250/333/fff?text=Green+Sofa", section: "recommended", description: "Elegant green 3-seater sofa." }
                 ];
                 renderStore();
             }
@@ -384,8 +388,8 @@ Apache License
 
         // ================= RENDER STORE =================
         function renderStore() {
-            const carousel = document.getElementById('carouselContainer');
-            const grid = document.getElementById('productGrid');
+            const sponsoredGrid = document.getElementById('sponsoredGrid');
+            const masonry = document.getElementById('masonryGrid');
             let sponsored = products.filter(p => p.section === 'sponsored');
             let recommended = products.filter(p => p.section === 'recommended');
             if (activeCategory !== 'all') {
@@ -393,40 +397,27 @@ Apache License
                 recommended = recommended.filter(p => p.category === activeCategory);
             }
 
-            carousel.innerHTML = sponsored.map(p => `<div class="carousel-card" onclick="openFullScreen(${p.id})"><img src="${p.image}"><div class="info"><div class="title">${p.name}</div><div class="vendor">${p.vendor}</div></div></div>`).join('');
-
-            grid.innerHTML = recommended.map(p => `
-                <div class="product-card" onclick="openFullScreen(${p.id})">
-                    <img src="${p.image}"><div class="product-details">
+            sponsoredGrid.innerHTML = sponsored.map(p => `
+                <div class="masonry-item" onclick="openFullScreen(${p.id})">
+                    <div class="badge-sponsored">Sponsored</div>
+                    <img src="${p.image}">
+                    <div class="info">
                         <div class="title">${p.name}</div>
-                        <div class="product-rating">${stars(p.rating)} <span>(${p.rating})</span></div>
+                        <div class="price">${formatPrice(p.price)}</div>
                         <div class="vendor">${p.vendor}</div>
-                        <div class="product-price">${formatPrice(p.price)}</div>
-                        <button class="whatsapp-btn" onclick="event.stopPropagation(); sendWhatsApp(${p.id})">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-                            WhatsApp
-                        </button>
-                        <button class="unhide-btn" onclick="event.stopPropagation(); toggleDetails(${p.id})">Unhide Options</button>
-                        <div class="hidden-details" id="details-${p.id}">
-                            <p style="font-size: 13px; color: var(--text-secondary); margin-bottom: 8px;">${p.description || "Premium quality furniture."}</p>
-                            <label style="font-size: 12px; color: var(--text-secondary); display: block; margin-bottom: 8px;">Select Color: <input type="color" id="color-${p.id}" value="#ffffff" style="width: 25px; height: 25px; border: none; cursor: pointer; vertical-align: middle;"></label>
-                            <button class="copy-code-btn" onclick="event.stopPropagation(); copyCode('${p.code}')">📋 Copy Code: ${p.code}</button>
-                        </div>
                     </div>
                 </div>`).join('');
-        }
 
-        // ================= UNHIDE / HIDE DETAILS =================
-        function toggleDetails(productId) {
-            const details = document.getElementById(`details-${productId}`);
-            const btn = document.querySelector(`[onclick="toggleDetails(${productId})"]`);
-            if (details.style.display === 'block') {
-                details.style.display = 'none';
-                btn.textContent = 'Unhide Options';
-            } else {
-                details.style.display = 'block';
-                btn.textContent = 'Hide Options';
-            }
+            masonry.innerHTML = recommended.map(p => `
+                <div class="masonry-item" onclick="openFullScreen(${p.id})">
+                    <div class="badge-instock">In stock</div>
+                    <img src="${p.image}">
+                    <div class="info">
+                        <div class="title">${p.name}</div>
+                        <div class="price">${formatPrice(p.price)}</div>
+                        <div class="vendor">${p.vendor}</div>
+                    </div>
+                </div>`).join('');
         }
 
         // ================= COPY CODE =================
@@ -434,7 +425,6 @@ Apache License
             navigator.clipboard.writeText(code).then(() => {
                 showToast('✅ Code copied: ' + code);
             }).catch(() => {
-                // Fallback for older browsers
                 const tempInput = document.createElement('input');
                 tempInput.value = code;
                 document.body.appendChild(tempInput);
@@ -445,9 +435,36 @@ Apache License
             });
         }
 
-        // ================= WHATSAPP =================
-        function sendWhatsApp(productId) {
-            const p = products.find(x => x.id === productId);
+        // ================= FULL SCREEN / WHATSAPP =================
+        function openFullScreen(id) {
+            const p = products.find(x => x.id === id);
+            if (!p) return;
+            currentFullScreenProductId = id;
+            document.getElementById('fsTitle').textContent = p.name;
+            document.getElementById('fsDescription').textContent = p.description || "Premium quality furniture for your home.";
+            document.getElementById('fsCode').textContent = 'Code: ' + p.code;
+            document.getElementById('fullScreenImg').src = p.image;
+            document.getElementById('fsHiddenDetails').style.display = 'none';
+            document.getElementById('fsUnhideBtn').textContent = 'Unhide Details';
+            document.getElementById('fullScreenModal').classList.add('active');
+        }
+
+        function closeFullScreen() { document.getElementById('fullScreenModal').classList.remove('active'); currentFullScreenProductId = null; }
+
+        function toggleFullScreenDetails() {
+            const details = document.getElementById('fsHiddenDetails');
+            const btn = document.getElementById('fsUnhideBtn');
+            if (details.style.display === 'block') {
+                details.style.display = 'none';
+                btn.textContent = 'Unhide Details';
+            } else {
+                details.style.display = 'block';
+                btn.textContent = 'Hide Details';
+            }
+        }
+
+        function sendFullScreenWhatsApp() {
+            const p = products.find(x => x.id === currentFullScreenProductId);
             if (!p) return;
             const message = `Hello AmorD-Ng Furnitures, I need this furniture:\n\nProduct: ${p.name}\nPrice: ${formatPrice(p.price)}\nImage: ${p.image}\n\nPlease contact me regarding this item.`;
             window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`, '_blank');
@@ -532,26 +549,6 @@ Apache License
             }
         }
 
-        // ================= FULL SCREEN / WHATSAPP =================
-        function openFullScreen(id) {
-            const p = products.find(x => x.id === id);
-            if (!p) return;
-            currentFullScreenProductId = id;
-            document.getElementById('fsTitle').textContent = p.name;
-            document.getElementById('fsDescription').textContent = p.description || "Premium quality furniture for your home.";
-            document.getElementById('fullScreenImg').src = p.image;
-            document.getElementById('fullScreenModal').classList.add('active');
-        }
-
-        function closeFullScreen() { document.getElementById('fullScreenModal').classList.remove('active'); currentFullScreenProductId = null; }
-
-        function sendWhatsApp(productId) {
-            const p = products.find(x => x.id === productId);
-            if (!p) return;
-            const message = `Hello AmorD-Ng Furnitures, I need this furniture:\n\nProduct: ${p.name}\nPrice: ${formatPrice(p.price)}\nImage: ${p.image}\n\nPlease contact me regarding this item.`;
-            window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`, '_blank');
-        }
-
         // ================= AUTH =================
         function openAuth() { document.getElementById('authModal').classList.add('active'); document.getElementById('emailAuth').classList.remove('hidden'); document.getElementById('registerForm').classList.add('hidden'); document.getElementById('authTitle').textContent = 'Login'; document.getElementById('authToggleBtn').textContent = 'Create one'; }
         function closeAuth() { document.getElementById('authModal').classList.remove('active'); }
@@ -577,8 +574,8 @@ Apache License
             document.getElementById('searchInput').addEventListener('input', (e) => {
                 const q = e.target.value.toLowerCase();
                 const filtered = products.filter(p => p.name.toLowerCase().includes(q) || p.code.toLowerCase().includes(q) || p.vendor.toLowerCase().includes(q));
-                document.getElementById('productGrid').innerHTML = filtered.filter(p => p.section === 'recommended').map(p => `<div class="product-card" onclick="openFullScreen(${p.id})"><img src="${p.image}"><div class="product-details"><div class="title">${p.name}</div><div class="product-code">Code: ${p.code}</div></div></div>`).join('');
-                document.getElementById('carouselContainer').innerHTML = filtered.filter(p => p.section === 'sponsored').map(p => `<div class="carousel-card" onclick="openFullScreen(${p.id})"><img src="${p.image}"><div class="info"><div class="title">${p.name}</div></div></div>`).join('');
+                document.getElementById('masonryGrid').innerHTML = filtered.filter(p => p.section === 'recommended').map(p => `<div class="masonry-item" onclick="openFullScreen(${p.id})"><div class="badge-instock">In stock</div><img src="${p.image}"><div class="info"><div class="title">${p.name}</div><div class="price">${formatPrice(p.price)}</div><div class="vendor">${p.vendor}</div></div></div>`).join('');
+                document.getElementById('sponsoredGrid').innerHTML = filtered.filter(p => p.section === 'sponsored').map(p => `<div class="masonry-item" onclick="openFullScreen(${p.id})"><div class="badge-sponsored">Sponsored</div><img src="${p.image}"><div class="info"><div class="title">${p.name}</div><div class="price">${formatPrice(p.price)}</div><div class="vendor">${p.vendor}</div></div></div>`).join('');
             });
         }
 
