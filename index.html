@@ -58,7 +58,19 @@
         .section-header { padding: 20px 0 10px; }
         .section-title { font-size: 16px; font-weight: 700; color: var(--text-primary); border-left: 4px solid var(--accent); padding-left: 12px; text-transform: uppercase; letter-spacing: 0.5px; }
 
-        /* MASONRY / PINTEREST GRID */
+        /* HORIZONTAL CAROUSEL for Sponsored */
+        .carousel-container { display: flex; gap: 12px; padding: 10px 0 20px; overflow-x: auto; scrollbar-width: none; scroll-behavior: smooth; }
+        .carousel-container::-webkit-scrollbar { display: none; }
+        .carousel-card { flex: 0 0 180px; background: var(--bg-card); border-radius: var(--radius-md); overflow: hidden; border: 1px solid var(--border-color); cursor: pointer; transition: var(--transition); position: relative; }
+        .carousel-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); border-color: var(--border-hover); }
+        .carousel-card img { width: 100%; height: 160px; object-fit: cover; display: block; background: var(--bg-secondary); }
+        .carousel-card .info { padding: 10px; }
+        .carousel-card .title { font-size: 13px; font-weight: 600; margin-bottom: 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: var(--text-primary); }
+        .carousel-card .price { color: var(--accent); font-weight: 800; font-size: 14px; margin-bottom: 4px; }
+        .carousel-card .vendor { font-size: 11px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.3px; }
+        .badge-sponsored { position: absolute; top: 8px; left: 8px; background: rgba(0, 0, 0, 0.8); color: var(--text-primary); font-size: 9px; font-weight: 800; padding: 2px 6px; border-radius: 8px; }
+
+        /* MASONRY / PINTEREST GRID for Recommended */
         .masonry-grid { columns: 4; column-gap: 12px; padding-bottom: 40px; }
         .masonry-item { break-inside: avoid; margin-bottom: 12px; background: var(--bg-card); border-radius: var(--radius-md); overflow: hidden; border: 1px solid var(--border-color); cursor: pointer; transition: var(--transition); position: relative; }
         .masonry-item:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); border-color: var(--border-hover); }
@@ -68,7 +80,6 @@
         .masonry-item .price { color: var(--accent); font-weight: 800; font-size: 15px; margin-bottom: 4px; }
         .masonry-item .vendor { font-size: 11px; color: var(--text-muted); text-transform: capitalize; letter-spacing: 0.3px; }
         .badge-instock { position: absolute; top: 8px; right: 8px; background: rgba(0, 0, 0, 0.8); color: var(--success); font-size: 10px; font-weight: 700; padding: 3px 6px; border-radius: 8px; }
-        .badge-sponsored { position: absolute; top: 8px; left: 8px; background: rgba(0, 0, 0, 0.8); color: var(--text-primary); font-size: 9px; font-weight: 800; padding: 2px 6px; border-radius: 8px; }
 
         /* Footer */
         .footer { background: var(--bg-secondary); border-top: 1px solid var(--border-color); margin-top: auto; padding: 30px 30px 10px; }
@@ -172,8 +183,11 @@
 
     <!-- Store Content -->
     <div class="section-container">
+        <!-- Sponsored: Horizontal Carousel -->
         <div class="section-header"><div class="section-title">✨ Sponsored Products</div></div>
-        <div class="masonry-grid" id="sponsoredGrid"></div>
+        <div class="carousel-container" id="carouselContainer"></div>
+        
+        <!-- Recommended: Masonry / Pinterest Grid -->
         <div class="section-header"><div class="section-title">🔥 Recommended for you</div></div>
         <div class="masonry-grid" id="masonryGrid"></div>
     </div>
@@ -388,7 +402,7 @@ Apache License
 
         // ================= RENDER STORE =================
         function renderStore() {
-            const sponsoredGrid = document.getElementById('sponsoredGrid');
+            const carousel = document.getElementById('carouselContainer');
             const masonry = document.getElementById('masonryGrid');
             let sponsored = products.filter(p => p.section === 'sponsored');
             let recommended = products.filter(p => p.section === 'recommended');
@@ -397,8 +411,9 @@ Apache License
                 recommended = recommended.filter(p => p.category === activeCategory);
             }
 
-            sponsoredGrid.innerHTML = sponsored.map(p => `
-                <div class="masonry-item" onclick="openFullScreen(${p.id})">
+            // Sponsored: Side-scrolling carousel
+            carousel.innerHTML = sponsored.map(p => `
+                <div class="carousel-card" onclick="openFullScreen(${p.id})">
                     <div class="badge-sponsored">Sponsored</div>
                     <img src="${p.image}">
                     <div class="info">
@@ -408,6 +423,7 @@ Apache License
                     </div>
                 </div>`).join('');
 
+            // Recommended: Pinterest/Masonry grid
             masonry.innerHTML = recommended.map(p => `
                 <div class="masonry-item" onclick="openFullScreen(${p.id})">
                     <div class="badge-instock">In stock</div>
@@ -575,7 +591,7 @@ Apache License
                 const q = e.target.value.toLowerCase();
                 const filtered = products.filter(p => p.name.toLowerCase().includes(q) || p.code.toLowerCase().includes(q) || p.vendor.toLowerCase().includes(q));
                 document.getElementById('masonryGrid').innerHTML = filtered.filter(p => p.section === 'recommended').map(p => `<div class="masonry-item" onclick="openFullScreen(${p.id})"><div class="badge-instock">In stock</div><img src="${p.image}"><div class="info"><div class="title">${p.name}</div><div class="price">${formatPrice(p.price)}</div><div class="vendor">${p.vendor}</div></div></div>`).join('');
-                document.getElementById('sponsoredGrid').innerHTML = filtered.filter(p => p.section === 'sponsored').map(p => `<div class="masonry-item" onclick="openFullScreen(${p.id})"><div class="badge-sponsored">Sponsored</div><img src="${p.image}"><div class="info"><div class="title">${p.name}</div><div class="price">${formatPrice(p.price)}</div><div class="vendor">${p.vendor}</div></div></div>`).join('');
+                document.getElementById('carouselContainer').innerHTML = filtered.filter(p => p.section === 'sponsored').map(p => `<div class="carousel-card" onclick="openFullScreen(${p.id})"><div class="badge-sponsored">Sponsored</div><img src="${p.image}"><div class="info"><div class="title">${p.name}</div><div class="price">${formatPrice(p.price)}</div><div class="vendor">${p.vendor}</div></div></div>`).join('');
             });
         }
 
