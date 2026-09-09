@@ -3,51 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AmorD-Ng Furnitures | Premium Home Furnishings</title>
+    <title>FurniHub 9ja | Premium Home Furnishings</title>
     <style>
         :root {
-            --bg-primary: #121212;
-            --bg-secondary: #1e1e1e;
-            --bg-card: #1a1a1a;
-            --bg-card-hover: #222222;
-            --border-color: #2a2a2a;
-            --border-hover: #3a3a3a;
-            --text-primary: #ffffff;
-            --text-secondary: #b0b0b0;
-            --text-muted: #777777;
+            --bg-primary: #ffffff;
+            --bg-secondary: #f5f5f5;
+            --bg-card: #ffffff;
+            --bg-card-hover: #f8f8f8;
+            --border-color: #e0e0e0;
+            --border-hover: #cccccc;
+            --text-primary: #111111;
+            --text-secondary: #555555;
+            --text-muted: #888888;
             --accent: #ff6a00;
-            --accent-hover: #ff8c33;
-            --accent-soft: rgba(255, 106, 0, 0.15);
+            --accent-hover: #e05e00;
+            --accent-soft: rgba(255, 106, 0, 0.1);
             --danger: #ff4757;
             --success: #2ed573;
             --whatsapp: #25D366;
-            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.4);
-            --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.5);
-            --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.6);
+            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.15);
             --radius-sm: 8px;
             --radius-md: 12px;
             --radius-lg: 20px;
             --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
         }
-
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; }
         body { background-color: var(--bg-primary); color: var(--text-primary); display: flex; flex-direction: column; min-height: 100vh; line-height: 1.6; overflow-x: hidden; }
 
         /* Header - Scrolls away */
-        .header { background: rgba(18, 18, 18, 0.95); border-bottom: 1px solid var(--border-color); padding: 14px 30px; display: flex; justify-content: space-between; align-items: center; box-shadow: var(--shadow-sm); }
+        .header { background: #ffffff; border-bottom: 1px solid var(--border-color); padding: 14px 30px; display: flex; justify-content: space-between; align-items: center; box-shadow: var(--shadow-sm); }
         .logo { flex: 1; display: flex; justify-content: center; max-width: 100%; }
-        .logo img { width: 100%; max-width: 800px; height: auto; display: block; object-fit: contain; }
+        .logo img { width: 100%; max-width: 700px; height: auto; display: block; object-fit: contain; }
         .search-box { flex: 1; max-width: 650px; background: var(--bg-secondary); border-radius: 50px; padding: 10px 20px; display: flex; align-items: center; border: 1px solid var(--border-color); transition: var(--transition); margin-left: 20px; }
         .search-box:focus-within { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); }
         .search-box input { flex: 1; background: transparent; border: none; color: var(--text-primary); outline: none; font-size: 14px; }
-        .header-actions { display: flex; gap: 12px; align-items: center; margin-left: 20px; }
-        .btn { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 50px; padding: 8px 18px; color: var(--text-primary); font-weight: 600; font-size: 14px; cursor: pointer; transition: var(--transition); }
-        .btn:hover { background: var(--bg-card-hover); border-color: var(--border-hover); }
-        .btn-primary { background: var(--accent); border: 1px solid var(--accent); color: #fff; box-shadow: 0 2px 10px rgba(255, 106, 0, 0.3); }
-        .btn-primary:hover { background: var(--accent-hover); border-color: var(--accent-hover); }
 
         /* Category Nav */
-        .category-nav { background: #121212; border-bottom: 1px solid var(--border-color); padding: 0; display: flex; justify-content: center; gap: 0; overflow-x: auto; scrollbar-width: none; }
+        .category-nav { background: #ffffff; border-bottom: 1px solid var(--border-color); padding: 0; display: flex; justify-content: center; gap: 0; overflow-x: auto; scrollbar-width: none; }
         .category-nav::-webkit-scrollbar { display: none; }
         .nav-btn { background: transparent; color: var(--text-secondary); border: none; padding: 14px 20px; font-weight: 600; font-size: 13px; white-space: nowrap; cursor: pointer; position: relative; transition: var(--transition); border-bottom: 3px solid transparent; }
         .nav-btn:hover { color: var(--text-primary); background: var(--bg-secondary); }
@@ -58,7 +52,8 @@
         .section-header { padding: 20px 0 10px; }
         .section-title { font-size: 16px; font-weight: 700; color: var(--text-primary); border-left: 4px solid var(--accent); padding-left: 12px; text-transform: uppercase; letter-spacing: 0.5px; }
 
-        /* HORIZONTAL CAROUSEL for Sponsored */
+        /* Sponsored Carousel */
+        .carousel-wrapper { position: relative; overflow: hidden; }
         .carousel-container { display: flex; gap: 12px; padding: 10px 0 20px; overflow-x: auto; scrollbar-width: none; scroll-behavior: smooth; }
         .carousel-container::-webkit-scrollbar { display: none; }
         .carousel-card { flex: 0 0 180px; background: var(--bg-card); border-radius: var(--radius-md); overflow: hidden; border: 1px solid var(--border-color); cursor: pointer; transition: var(--transition); position: relative; }
@@ -68,9 +63,9 @@
         .carousel-card .title { font-size: 13px; font-weight: 600; margin-bottom: 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: var(--text-primary); }
         .carousel-card .price { color: var(--accent); font-weight: 800; font-size: 14px; margin-bottom: 4px; }
         .carousel-card .vendor { font-size: 11px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.3px; }
-        .badge-sponsored { position: absolute; top: 8px; left: 8px; background: rgba(0, 0, 0, 0.8); color: var(--text-primary); font-size: 9px; font-weight: 800; padding: 2px 6px; border-radius: 8px; }
+        .badge-sponsored { position: absolute; top: 8px; left: 8px; background: rgba(255,255,255,0.9); color: #333; font-size: 9px; font-weight: 800; padding: 2px 6px; border-radius: 8px; }
 
-        /* MASONRY / PINTEREST GRID for Recommended */
+        /* Masonry Grid */
         .masonry-grid { columns: 4; column-gap: 12px; padding-bottom: 40px; }
         .masonry-item { break-inside: avoid; margin-bottom: 12px; background: var(--bg-card); border-radius: var(--radius-md); overflow: hidden; border: 1px solid var(--border-color); cursor: pointer; transition: var(--transition); position: relative; }
         .masonry-item:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); border-color: var(--border-hover); }
@@ -79,7 +74,18 @@
         .masonry-item .title { font-size: 13px; font-weight: 600; margin-bottom: 4px; color: var(--text-primary); display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
         .masonry-item .price { color: var(--accent); font-weight: 800; font-size: 15px; margin-bottom: 4px; }
         .masonry-item .vendor { font-size: 11px; color: var(--text-muted); text-transform: capitalize; letter-spacing: 0.3px; }
-        .badge-instock { position: absolute; top: 8px; right: 8px; background: rgba(0, 0, 0, 0.8); color: var(--success); font-size: 10px; font-weight: 700; padding: 3px 6px; border-radius: 8px; }
+        .badge-instock { position: absolute; top: 8px; right: 8px; background: rgba(255,255,255,0.9); color: var(--success); font-size: 10px; font-weight: 700; padding: 3px 6px; border-radius: 8px; }
+        .delivery-tag { display: inline-block; background: #e6f9f0; color: #1a7a45; padding: 3px 8px; border-radius: 15px; font-size: 11px; font-weight: 700; margin-top: 6px; }
+
+        /* Help Button (Bouncing) */
+        .help-button { position: fixed; bottom: 20px; right: 20px; z-index: 9999; width: 50px; height: 50px; background: var(--accent); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 24px; cursor: pointer; box-shadow: var(--shadow-lg); animation: bounceHelp 3s ease-in-out infinite; transition: var(--transition); }
+        .help-button:hover { background: var(--accent-hover); transform: scale(1.1); }
+        @keyframes bounceHelp { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+
+        /* Admin (Hidden) */
+        .admin-fullstop { position: fixed; bottom: 20px; left: 20px; z-index: 9999; width: 25px; height: 25px; background: red; border-radius: 50%; border: 2px solid #fff; box-shadow: var(--shadow-md); cursor: pointer; transition: var(--transition); display: none; }
+        .admin-fullstop.active { display: block; }
+        .admin-fullstop:hover { transform: scale(1.2); }
 
         /* Footer */
         .footer { background: var(--bg-secondary); border-top: 1px solid var(--border-color); margin-top: auto; padding: 30px 30px 10px; }
@@ -89,17 +95,8 @@
         .footer-links a:hover { color: var(--accent); }
         .footer-copyright { color: var(--text-muted); font-size: 11px; text-align: center; border-top: 1px solid var(--border-color); padding-top: 10px; }
 
-        /* Red Fullstop Admin Button */
-        .admin-fullstop { position: fixed; bottom: 20px; left: 20px; z-index: 9999; width: 25px; height: 25px; background: red; border-radius: 50%; border: 2px solid #fff; box-shadow: var(--shadow-md); cursor: pointer; transition: var(--transition); }
-        .admin-fullstop:hover { transform: scale(1.2); }
-
-        /* Bouncing Badge */
-        .bouncing-logo-badge { position: fixed; top: 15px; right: 15px; z-index: 9998; width: 40px; height: 40px; border-radius: 50%; border: 2px solid var(--accent); box-shadow: var(--shadow-md); overflow: hidden; animation: bounceLogo 3s ease-in-out infinite; pointer-events: none; }
-        .bouncing-logo-badge img { width: 300%; height: 300%; object-fit: cover; position: absolute; top: -150%; left: -150%; }
-        @keyframes bounceLogo { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
-
         /* Modals */
-        .modal-overlay { position: fixed; inset: 0; background: rgba(0, 0, 0, 0.8); backdrop-filter: blur(4px); z-index: 10000; display: flex; align-items: center; justify-content: center; opacity: 0; visibility: hidden; transition: var(--transition); }
+        .modal-overlay { position: fixed; inset: 0; background: rgba(0, 0, 0, 0.5); backdrop-filter: blur(4px); z-index: 10000; display: flex; align-items: center; justify-content: center; opacity: 0; visibility: hidden; transition: var(--transition); }
         .modal-overlay.active { opacity: 1; visibility: visible; }
         .modal-box { background: var(--bg-card); border-radius: var(--radius-lg); max-width: 480px; width: 90%; padding: 30px; border: 1px solid var(--border-color); position: relative; max-height: 85vh; overflow-y: auto; box-shadow: var(--shadow-lg); }
         .modal-close { position: absolute; top: 15px; right: 15px; background: var(--bg-secondary); border: none; width: 32px; height: 32px; border-radius: 50%; font-size: 18px; cursor: pointer; color: var(--text-secondary); transition: var(--transition); display: flex; align-items: center; justify-content: center; }
@@ -117,59 +114,43 @@
         .admin-table img { width: 50px; height: 50px; object-fit: cover; border-radius: var(--radius-sm); }
         .admin-table button { background: var(--danger); border: none; color: #fff; padding: 6px 12px; border-radius: var(--radius-sm); cursor: pointer; font-weight: 600; font-size: 12px; }
 
-        /* Auth */
-        .google-btn { background: #fff; border: 1px solid var(--border-color); border-radius: 50px; padding: 12px; color: #333; font-weight: 700; font-size: 14px; cursor: pointer; width: 100%; margin-bottom: 20px; display: flex; align-items: center; justify-content: center; gap: 10px; box-shadow: var(--shadow-sm); transition: var(--transition); }
-        .google-btn img { width: 20px; }
-        .auth-card input { width: 100%; padding: 12px; margin-bottom: 12px; background: var(--bg-secondary); border: 1px solid var(--border-color); border-radius: var(--radius-sm); color: var(--text-primary); font-size: 14px; }
-        .hidden { display: none !important; }
-
         /* Toast */
-        .toast { position: fixed; bottom: 20px; right: 20px; background: var(--bg-card); color: var(--text-primary); padding: 14px 24px; border-radius: var(--radius-md); border-left: 4px solid var(--accent); box-shadow: var(--shadow-lg); z-index: 99999; font-weight: 500; font-size: 14px; animation: slideIn 0.3s ease; }
+        .toast { position: fixed; bottom: 20px; right: 20px; background: var(--text-primary); color: var(--bg-primary); padding: 14px 24px; border-radius: var(--radius-md); border-left: 4px solid var(--accent); box-shadow: var(--shadow-lg); z-index: 99999; font-weight: 500; font-size: 14px; animation: slideIn 0.3s ease; }
         @keyframes slideIn { from { transform: translateX(100px); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
 
         /* Full Screen Modal */
-        #fullScreenModal .modal-box { max-width: 95vw; max-height: 95vh; width: 100%; background: var(--bg-card); border: none; text-align: center; padding: 10px; }
+        #fullScreenModal .modal-box { max-width: 95vw; max-height: 95vh; width: 100%; background: #fff; border: none; text-align: center; padding: 10px; }
         #fullScreenImg { max-width: 100%; max-height: 75vh; object-fit: contain; border-radius: 10px; touch-action: pinch-zoom; margin: 10px 0; cursor: zoom-in; }
         .whatsapp-full-btn { background: var(--whatsapp); color: #fff; border: none; border-radius: 50px; padding: 12px 24px; font-size: 16px; font-weight: 700; cursor: pointer; display: inline-flex; align-items: center; gap: 10px; box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4); transition: var(--transition); margin-top: 10px; }
         .whatsapp-full-btn:hover { background: #20bd5a; transform: scale(1.05); }
+        .share-btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; background: var(--accent-soft); border: 1px solid var(--accent); color: var(--accent); border-radius: 8px; padding: 10px; width: 100%; font-weight: 700; font-size: 14px; cursor: pointer; margin-top: 10px; transition: var(--transition); }
+        .share-btn:hover { background: var(--accent); color: #fff; }
 
-        @media (max-width: 1200px) {
-            .masonry-grid { columns: 3; }
-        }
-        @media (max-width: 900px) {
-            .masonry-grid { columns: 2; }
-        }
-        @media (max-width: 600px) {
-            .masonry-grid { columns: 2; column-gap: 8px; }
-            .masonry-item { margin-bottom: 8px; }
-        }
-
+        @media (max-width: 1200px) { .masonry-grid { columns: 3; } }
+        @media (max-width: 900px) { .masonry-grid { columns: 2; } }
+        @media (max-width: 600px) { .masonry-grid { columns: 2; column-gap: 8px; } .masonry-item { margin-bottom: 8px; } }
         @media (max-width: 768px) {
             .header { padding: 12px 16px; gap: 12px; flex-wrap: wrap; }
             .logo { order: 1; width: 100%; margin-bottom: 10px; }
             .logo img { max-width: 100%; }
             .search-box { order: 2; max-width: 100%; flex-basis: 100%; margin-left: 0; }
-            .header-actions { order: 3; width: 100%; justify-content: space-between; margin-left: 0; }
             .category-nav { justify-content: flex-start; padding: 0 10px; }
         }
     </style>
 </head>
 <body>
 
-    <!-- Header (Scrolls up) -->
+    <!-- Header -->
     <header class="header">
-        <div class="logo"><img src="https://i.ibb.co/YTT56gY4/Chat-GPT-Image-Sep-8-2026-01-41-16-AM.png" alt="AmorD-Ng Furnitures Banner Logo"></div>
+        <div class="logo"><img src="https://i.ibb.co/JjpSbHHB/Chat-GPT-Image-Sep-9-2026-11-35-45-PM.png" alt="FurniHub 9ja"></div>
         <div class="search-box">
             <span style="color: var(--text-muted); margin-right: 8px;">🔍</span>
             <input type="text" placeholder="Search sofas, chairs, dining sets, or product code..." id="searchInput">
         </div>
-        <div class="header-actions">
-            <button class="btn" id="authBtn" onclick="openAuth()">Login</button>
-        </div>
     </header>
 
-    <!-- Bouncing Badge -->
-    <div class="bouncing-logo-badge"><img src="https://i.ibb.co/YTT56gY4/Chat-GPT-Image-Sep-8-2026-01-41-16-AM.png" alt="AmorD-Ng Logo"></div>
+    <!-- Help Button (Bouncing - Customer Care) -->
+    <div class="help-button" onclick="openHelp()" title="Customer Care">❓</div>
 
     <!-- Category Nav -->
     <nav class="category-nav" id="categoryNav">
@@ -183,22 +164,20 @@
 
     <!-- Store Content -->
     <div class="section-container">
-        <!-- Sponsored: Horizontal Carousel -->
         <div class="section-header"><div class="section-title">✨ Sponsored Products</div></div>
-        <div class="carousel-container" id="carouselContainer"></div>
-        
-        <!-- Recommended: Masonry / Pinterest Grid -->
+        <div class="carousel-wrapper"><div class="carousel-container" id="carouselContainer"></div></div>
         <div class="section-header"><div class="section-title">🔥 Recommended for you</div></div>
         <div class="masonry-grid" id="masonryGrid"></div>
     </div>
 
-    <!-- Admin Panel Container -->
+    <!-- Admin Panel (Hidden, only accessible by adding #admin to URL) -->
     <div id="adminPanelContainer" class="hidden section-container" style="max-width: 800px; padding-top: 40px;"></div>
 
     <!-- Footer -->
     <footer class="footer">
         <div class="footer-content">
             <div class="footer-links">
+                <a href="#" onclick="openSellerModal()">Become a Seller Free</a>
                 <a href="#" onclick="showAboutModal()">About Us</a>
                 <a href="#" onclick="showPolicyModal()">Payment & Delivery</a>
                 <a href="#" onclick="showPrivacyModal()">Privacy Policy</a>
@@ -206,35 +185,31 @@
                 <a href="https://wa.me/2348100578413" target="_blank">WhatsApp: +234 810 057 8413</a>
                 <a href="mailto:godwindouglas8@gmail.com">Gmail: godwindouglas8@gmail.com</a>
             </div>
-            <div class="footer-copyright">&copy; <span id="year"></span> <strong>AmorD-Ng Furnitures</strong>. All rights reserved.</div>
+            <div class="footer-copyright">&copy; <span id="year"></span> <strong>FurniHub 9ja</strong>. All rights reserved.</div>
         </div>
     </footer>
 
-    <!-- Red Fullstop Admin Button -->
-    <div class="admin-fullstop" onclick="toggleAdmin()" title="Admin Panel"></div>
+    <!-- Hidden Admin Padlock -->
+    <div class="admin-fullstop" id="adminBtn" onclick="toggleAdmin()" title="Admin Panel"></div>
 
-    <!-- Auth Modal -->
-    <div class="modal-overlay" id="authModal">
-        <div class="modal-box auth-card">
-            <button class="modal-close" onclick="closeAuth()">×</button>
-            <h2 id="authTitle" style="text-align: center; margin-bottom: 20px;">Login</h2>
-            <button class="google-btn" onclick="googleLogin()"><img src="https://www.svgrepo.com/show/475656/google-color.svg" alt="Google"> Continue with Google</button>
-            <div style="text-align: center; color: var(--text-muted); margin-bottom: 15px; font-size: 13px;">or sign in with email</div>
-            <div id="emailAuth">
-                <input type="email" id="emailInput" placeholder="Email address">
-                <input type="password" id="passwordInput" placeholder="Password">
-                <button class="btn btn-primary" style="width: 100%; padding: 12px;" onclick="emailLogin()">Sign In</button>
+    <!-- Seller Upload Modal -->
+    <div class="modal-overlay" id="sellerModal">
+        <div class="modal-box">
+            <button class="modal-close" onclick="closeSellerModal()">×</button>
+            <h2 style="margin-bottom: 15px;">Become a Seller & Upload Your Furniture</h2>
+            <div class="upload-form" style="background: var(--bg-secondary); padding: 15px; border-radius: var(--radius-md); border: 1px solid var(--border-color);">
+                <div class="form-group"><label>Your Name / Business Name</label><input type="text" id="sellerName" placeholder="e.g., Mma Amisco Furniture"></div>
+                <div class="form-group"><label>Your WhatsApp Number</label><input type="text" id="sellerWhatsApp" placeholder="e.g., 2348012345678"></div>
+                <div class="form-group"><label>Furniture Name</label><input type="text" id="sellerProdName" placeholder="e.g., Luxurious Sofa"></div>
+                <div class="form-group"><label>Price (₦)</label><input type="number" id="sellerProdPrice" placeholder="e.g., 150000"></div>
+                <div class="form-group"><label>Category</label><select id="sellerProdCategory"><option value="sofa">Sofa</option><option value="dining">Dining</option><option value="kitchen">Kitchen</option><option value="tv">TV Station</option><option value="bed">Bed Frame</option></select></div>
+                <div class="form-group"><label>Delivery Option</label><select id="sellerDelivery"><option value="free">Free Delivery</option><option value="paid">Delivery Fee Applies</option></select></div>
+                <div class="form-group"><label>Section (Where to place)</label><select id="sellerProdSection"><option value="sponsored">Sponsored</option><option value="recommended">Recommended</option></select></div>
+                <div class="form-group"><label>Full Description</label><textarea id="sellerProdDescription" rows="3" placeholder="Describe your furniture beautifully..."></textarea></div>
+                <div class="form-group"><label>Upload Image</label><input type="file" id="sellerProdImage" accept="image/*"></div>
+                <button class="btn btn-primary" style="width:100%; padding:14px; background: var(--accent); border: none; color: #fff;" onclick="submitSellerProduct()">Submit for Admin Approval</button>
+                <p style="color: var(--text-muted); font-size: 12px; margin-top: 10px; text-align: center;">Your product will be visible only after admin approval.</p>
             </div>
-            <div id="registerForm" class="hidden">
-                <input type="text" id="regName" placeholder="Full Name">
-                <input type="email" id="regEmail" placeholder="Email address">
-                <input type="password" id="regPassword" placeholder="Create password">
-                <button class="btn btn-primary" style="width: 100%; padding: 12px;" onclick="emailRegister()">Create Account</button>
-            </div>
-            <p style="text-align: center; margin-top: 15px; font-size: 13px; color: var(--text-muted);">
-                <span id="authToggleText">Don't have an account?</span> 
-                <button onclick="toggleAuthMode()" style="background: none; border: none; color: var(--accent); font-weight: 700; cursor: pointer; font-size: 13px; margin-left: 4px;" id="authToggleBtn">Create one</button>
-            </p>
         </div>
     </div>
 
@@ -242,17 +217,18 @@
     <div class="modal-overlay" id="fullScreenModal">
         <div class="modal-box">
             <button class="modal-close" onclick="closeFullScreen()">×</button>
-            <h3 id="fsTitle" style="margin-bottom: 5px; color: #fff;"></h3>
-            <p id="fsDescription" style="color: #b0b0b0; font-size: 14px; margin-bottom: 15px;"></p>
+            <h3 id="fsTitle" style="margin-bottom: 5px; color: #111;"></h3>
+            <p id="fsDescription" style="color: #555; font-size: 14px; margin-bottom: 15px;"></p>
             <img id="fullScreenImg" src="" alt="" style="touch-action: pinch-zoom;">
             <div style="margin-top: 10px;">
                 <button class="unhide-btn" id="fsUnhideBtn" onclick="toggleFullScreenDetails()" style="background: var(--bg-secondary); border: 1px solid var(--accent); color: var(--accent); border-radius: 8px; padding: 10px; width: 100%; font-weight: 700; cursor: pointer; margin-bottom: 10px;">Unhide Details</button>
                 <div id="fsHiddenDetails" style="display: none; margin-bottom: 15px;">
-                    <p id="fsCode" style="color: #b0b0b0; font-size: 13px; margin-bottom: 8px;"></p>
-                    <label style="font-size: 13px; color: #b0b0b0; display: block; margin-bottom: 8px;">Select Color: <input type="color" id="modalColor" value="#ffffff" style="width: 25px; height: 25px; vertical-align: middle;"></label>
-                    <button class="copy-code-btn" onclick="copyCode('${document.getElementById('fsCode').textContent.split(': ')[1]}')" style="background: var(--bg-secondary); border: 1px solid var(--border-color); color: #b0b0b0; border-radius: 4px; padding: 6px 10px; font-weight: 700; cursor: pointer; width: 100%;">📋 Copy Code</button>
+                    <p id="fsCode" style="color: #555; font-size: 13px; margin-bottom: 8px;"></p>
+                    <label style="font-size: 13px; color: #555; display: block; margin-bottom: 8px;">Select Color: <input type="color" id="modalColor" value="#ffffff" style="width: 25px; height: 25px; vertical-align: middle;"></label>
+                    <button class="copy-code-btn" onclick="copyCode('${document.getElementById('fsCode').textContent.split(': ')[1]}')" style="background: var(--bg-secondary); border: 1px solid var(--border-color); color: #555; border-radius: 4px; padding: 6px 10px; font-weight: 700; cursor: pointer; width: 100%;">📋 Copy Code</button>
                 </div>
             </div>
+            <button class="share-btn" onclick="shareProduct()">🔗 Share Product Link</button>
             <button class="whatsapp-full-btn" onclick="sendFullScreenWhatsApp()">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
                 Chat on WhatsApp
@@ -260,356 +236,133 @@
         </div>
     </div>
 
-    <!-- About, Policy, Privacy, License Modals -->
+    <!-- Footer Modals -->
     <div class="modal-overlay" id="aboutModal">
         <div class="modal-box">
             <button class="modal-close" onclick="closeModal('aboutModal')">×</button>
-            <h2 style="margin-bottom: 15px;">About AmorD-Ng Furnitures</h2>
-            <p style="color: var(--text-secondary); line-height: 1.8;">At AmorD-Ng Furnitures, we are dedicated to transforming your living spaces into havens of comfort, elegance, and functionality. As a premier furniture store in Nigeria, we specialize in crafting and delivering high-quality sofas, dining tables, kitchen units, TV stands, and bed frames that perfectly blend modern design with enduring durability. Our mission is simple: to bring world-class furniture within reach of every Nigerian home. We understand that furniture is an investment. That's why we focus on premium materials, meticulous craftsmanship, and customer-centric service.</p>
+            <h2 style="margin-bottom: 15px;">About FurniHub 9ja</h2>
+            <p style="color: var(--text-secondary); line-height: 1.8;">At FurniHub 9ja, we are dedicated to transforming your living spaces into havens of comfort, elegance, and functionality. As a premier furniture marketplace in Nigeria, we connect you with skilled furniture makers and vendors who craft high-quality sofas, dining tables, kitchen units, TV stands, and bed frames that perfectly blend modern design with enduring durability.</p>
         </div>
     </div>
     <div class="modal-overlay" id="policyModal">
         <div class="modal-box">
             <button class="modal-close" onclick="closeModal('policyModal')">×</button>
             <h2 style="margin-bottom: 15px;">Payment & Delivery Policy</h2>
-            <p style="color: var(--text-secondary); line-height: 1.8;"><strong>🚚 Free Delivery:</strong> We offer free delivery on all orders within major cities in Nigeria.<br><br><strong>💳 Flexible Payment Options:</strong> We offer two convenient payment methods: <br>1. <strong>Pay Half, Pay Balance on Delivery:</strong> Pay 50% upfront, settle the remaining 50% when delivered.<br>2. <strong>Pay Fully Upfront:</strong> Pay 100% now and enjoy priority delivery.</p>
+            <p style="color: var(--text-secondary); line-height: 1.8;"><strong>🚚 Delivery:</strong> Free delivery available on selected items.<br><br><strong>💳 Flexible Payment Options:</strong> Pay Half, Pay Balance on Delivery OR Pay Fully Upfront.</p>
         </div>
     </div>
     <div class="modal-overlay" id="privacyModal">
         <div class="modal-box">
             <button class="modal-close" onclick="closeModal('privacyModal')">×</button>
             <h2 style="margin-bottom: 15px;">Privacy Policy</h2>
-            <p style="color: var(--text-secondary); line-height: 1.8;">At AmorD-Ng Furnitures, your privacy is paramount. We only collect the information necessary to process your orders. We do not sell, rent, or share your personal data with third parties. We employ industry-standard security measures to protect your data.</p>
+            <p style="color: var(--text-secondary); line-height: 1.8;">At FurniHub 9ja, your privacy is paramount. We do not sell, rent, or share your personal data with third parties.</p>
         </div>
     </div>
     <div class="modal-overlay" id="licenseModal">
         <div class="modal-box" style="max-width: 700px;">
             <button class="modal-close" onclick="closeModal('licenseModal')">×</button>
             <h2 style="margin-bottom: 15px;">Apache License</h2>
-            <div style="color: var(--text-secondary); line-height: 1.6; font-size: 13px; max-height: 60vh; overflow-y: auto; padding-right: 10px;">
-                <pre style="white-space: pre-wrap; font-family: inherit; color: var(--text-secondary);">
-Apache License
-                           Version 2.0, January 2004
-                        http://www.apache.org/licenses/
-
-   TERMS AND CONDITIONS FOR USE, REPRODUCTION, AND DISTRIBUTION
-
-   1. Definitions.
-      "License" shall mean the terms and conditions for use, reproduction, and distribution as defined by Sections 1 through 9 of this document.
-      "Licensor" shall mean the copyright owner or entity authorized by the copyright owner that is granting the License.
-      "You" (or "Your") shall mean an individual or Legal Entity exercising permissions granted by this License.
-      "Source" form shall mean the preferred form for making modifications, including but not limited to software source code, documentation source, and configuration files.
-      "Object" form shall mean any form resulting from mechanical transformation or translation of a Source form, including but not limited to compiled object code, generated documentation, and conversions to other media types.
-      "Work" shall mean the work of authorship, whether in Source or Object form, made available under the License, as indicated by a copyright notice that is included in or attached to the work.
-      "Derivative Works" shall mean any work, whether in Source or Object form, that is based on (or derived from) the Work and for which the editorial revisions, annotations, elaborations, or other modifications represent, as a whole, an original work of authorship.
-      "Contribution" shall mean any work of authorship, including the original version of the Work and any modifications or additions to that Work or Derivative Works thereof, that is intentionally submitted to Licensor for inclusion in the Work.
-      "Contributor" shall mean Licensor and any individual or Legal Entity on behalf of whom a Contribution has been received by Licensor and subsequently incorporated within the Work.
-
-   2. Grant of Copyright License. Subject to the terms and conditions of this License, each Contributor hereby grants to You a perpetual, worldwide, non-exclusive, no-charge, royalty-free, irrevocable copyright license to reproduce, prepare Derivative Works of, publicly display, publicly perform, sublicense, and distribute the Work and such Derivative Works in Source or Object form.
-
-   3. Grant of Patent License. Subject to the terms and conditions of this License, each Contributor hereby grants to You a perpetual, worldwide, non-exclusive, no-charge, royalty-free, irrevocable (except as stated in this section) patent license to make, have made, use, offer to sell, sell, import, and otherwise transfer the Work.
-
-   4. Redistribution. You may reproduce and distribute copies of the Work or Derivative Works thereof in any medium, with or without modifications, and in Source or Object form, provided that You meet the following conditions:
-      (a) You must give any other recipients of the Work or Derivative Works a copy of this License; and
-      (b) You must cause any modified files to carry prominent notices stating that You changed the files; and
-      (c) You must retain, in the Source form of any Derivative Works that You distribute, all copyright, patent, trademark, and attribution notices from the Source form of the Work; and
-      (d) If the Work includes a "NOTICE" text file as part of its distribution, then any Derivative Works that You distribute must include a readable copy of the attribution notices contained within such NOTICE file.
-
-   5. Submission of Contributions. Unless You explicitly state otherwise, any Contribution intentionally submitted for inclusion in the Work by You to the Licensor shall be under the terms and conditions of this License, without any additional terms or conditions.
-
-   6. Trademarks. This License does not grant permission to use the trade names, trademarks, service marks, or product names of the Licensor, except as required for reasonable and customary use in describing the origin of the Work.
-
-   7. Disclaimer of Warranty. Unless required by applicable law or agreed to in writing, Licensor provides the Work (and each Contributor provides its Contributions) on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied, including, without limitation, any warranties or conditions of TITLE, NON-INFRINGEMENT, MERCHANTABILITY, or FITNESS FOR A PARTICULAR PURPOSE.
-
-   8. Limitation of Liability. In no event and under no legal theory, whether in tort (including negligence), contract, or otherwise, unless required by applicable law (such as deliberate and grossly negligent acts) or agreed to in writing, shall any Contributor be liable to You for damages, including any direct, indirect, special, incidental, or consequential damages of any character arising as a result of this License or out of the use or inability to use the Work.
-
-   9. Accepting Warranty or Additional Liability. While redistributing the Work or Derivative Works thereof, You may choose to offer, and charge a fee for, acceptance of support, warranty, indemnity, or other liability obligations and/or rights consistent with this License.
-
-   END OF TERMS AND CONDITIONS
-
-   APPENDIX: How to apply the Apache License to your work.
-      To apply the Apache License to your work, attach the following boilerplate notice, with the fields enclosed by brackets "[]" replaced with your own identifying information.
-      Copyright [yyyy] [name of copyright owner]
-      Licensed under the Apache License, Version 2.0 (the "License");
-      you may not use this file except in compliance with the License.
-      You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0
-                </pre>
-            </div>
+            <div style="color: var(--text-secondary); line-height: 1.6; font-size: 13px; max-height: 60vh; overflow-y: auto; padding-right: 10px;"><pre style="white-space: pre-wrap; font-family: inherit; color: var(--text-secondary);">Apache License, Version 2.0...</pre></div>
         </div>
     </div>
 
     <div id="toastContainer"></div>
 
     <script>
-        // ================= CONFIGURATION =================
         const IMGBB_API_KEY = 'f2564a98b97fece8b5a248255d39c472';
         const SHEETDB_URL = 'https://sheetdb.io/api/v1/167chhsgiemnd';
         const WHATSAPP_NUMBER = '2348100578413';
-        const COMPANY_GMAIL = 'godwindouglas8@gmail.com';
-
         let products = [];
-        let currentUser = null;
         let isAdmin = false;
         let activeCategory = 'all';
         let currentFullScreenProductId = null;
 
-        // ================= HELPERS =================
         function formatPrice(price) { return '₦' + Number(price).toLocaleString('en-NG'); }
-        function stars(rating) { let s=''; for(let i=1;i<=5;i++){ if(i<=Math.round(rating)) s+='★'; else s+='☆'; } return s; }
         function generateProductCode() { return Math.floor(10000 + Math.random() * 90000).toString(); }
         function showToast(msg) { const t = document.createElement('div'); t.className = 'toast'; t.textContent = msg; document.getElementById('toastContainer').appendChild(t); setTimeout(() => t.remove(), 3000); }
 
-        // ================= IMGBB UPLOAD =================
+        // Help Button
+        function openHelp() { window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent('Hello FurniHub 9ja, I need help with something.')}`, '_blank'); }
+
+        // Upload to ImgBB
         function uploadToImgBB(file) {
             return new Promise((resolve, reject) => {
-                const formData = new FormData();
-                formData.append('image', file);
+                const formData = new FormData(); formData.append('image', file);
                 fetch(`https://api.imgbb.com/1/upload?key=${IMGBB_API_KEY}`, { method: 'POST', body: formData })
-                .then(res => res.json())
-                .then(data => { if (data.success) resolve(data.data.url); else reject(new Error('Upload failed')); })
-                .catch(err => reject(err));
+                .then(res => res.json()).then(data => { if (data.success) resolve(data.data.url); else reject(new Error('Upload failed')); }).catch(err => reject(err));
             });
         }
 
-        // ================= SHEETDB OPERATIONS =================
+        // Fetch Products
         async function fetchProductsFromDB() {
             try {
-                const response = await fetch(SHEETDB_URL);
-                const data = await response.json();
+                const response = await fetch(SHEETDB_URL); const data = await response.json();
                 if (data && data.length > 0) {
-                    products = data.map(item => ({
-                        id: Number(item.id), code: item.code || generateProductCode(), name: item.name,
-                        price: Number(item.price), vendor: item.vendor, category: item.category,
-                        section: item.section, rating: Number(item.rating) || 4.5, image: item.image,
-                        description: item.description || "Premium quality furniture for your home."
-                    }));
-                } else {
-                    products = [
-                        { id: 1, code: "10001", name: "Double Seater Sofa", price: 320000, vendor: "Mma Amisco", category: "sofa", rating: 4.3, image: "https://via.placeholder.com/300x400/333/fff?text=Double+Sofa", section: "sponsored", description: "A beautifully crafted double seater sofa." },
-                        { id: 2, code: "10002", name: "3 Seater Green Sofa", price: 300000, vendor: "Mma Amisco", category: "sofa", rating: 4.1, image: "https://via.placeholder.com/300x250/333/fff?text=Green+Sofa", section: "recommended", description: "Elegant green 3-seater sofa." }
-                    ];
-                }
+                    products = data.map(item => ({ id: Number(item.id), code: item.code || generateProductCode(), name: item.name, price: Number(item.price), vendor: item.vendor || 'Unknown', category: item.category, section: item.section, rating: Number(item.rating) || 4.5, image: item.image, description: item.description || '', status: item.status || 'approved', sellerWhatsApp: item.sellerWhatsApp || '', delivery: item.delivery || 'free' }));
+                } else { products = []; }
                 renderStore();
-            } catch (error) {
-                console.error("Error fetching from SheetDB:", error);
-                products = [
-                    { id: 1, code: "10001", name: "Double Seater Sofa", price: 320000, vendor: "Mma Amisco", category: "sofa", rating: 4.3, image: "https://via.placeholder.com/300x400/333/fff?text=Double+Sofa", section: "sponsored", description: "A beautifully crafted double seater sofa." },
-                    { id: 2, code: "10002", name: "3 Seater Green Sofa", price: 300000, vendor: "Mma Amisco", category: "sofa", rating: 4.1, image: "https://via.placeholder.com/300x250/333/fff?text=Green+Sofa", section: "recommended", description: "Elegant green 3-seater sofa." }
-                ];
-                renderStore();
-            }
+            } catch (error) { console.error("Error:", error); products = []; renderStore(); }
         }
 
-        // ================= RENDER STORE =================
+        // Render Store
         function renderStore() {
-            const carousel = document.getElementById('carouselContainer');
-            const masonry = document.getElementById('masonryGrid');
-            let sponsored = products.filter(p => p.section === 'sponsored');
-            let recommended = products.filter(p => p.section === 'recommended');
-            if (activeCategory !== 'all') {
-                sponsored = sponsored.filter(p => p.category === activeCategory);
-                recommended = recommended.filter(p => p.category === activeCategory);
-            }
+            const carousel = document.getElementById('carouselContainer'); const masonry = document.getElementById('masonryGrid');
+            let sponsored = products.filter(p => p.section === 'sponsored' && p.status === 'approved');
+            let recommended = products.filter(p => p.section === 'recommended' && p.status === 'approved');
+            if (activeCategory !== 'all') { sponsored = sponsored.filter(p => p.category === activeCategory); recommended = recommended.filter(p => p.category === activeCategory); }
 
-            // Sponsored: Side-scrolling carousel
-            carousel.innerHTML = sponsored.map(p => `
-                <div class="carousel-card" onclick="openFullScreen(${p.id})">
-                    <div class="badge-sponsored">Sponsored</div>
-                    <img src="${p.image}">
-                    <div class="info">
-                        <div class="title">${p.name}</div>
-                        <div class="price">${formatPrice(p.price)}</div>
-                        <div class="vendor">${p.vendor}</div>
-                    </div>
-                </div>`).join('');
-
-            // Recommended: Pinterest/Masonry grid
-            masonry.innerHTML = recommended.map(p => `
-                <div class="masonry-item" onclick="openFullScreen(${p.id})">
-                    <div class="badge-instock">In stock</div>
-                    <img src="${p.image}">
-                    <div class="info">
-                        <div class="title">${p.name}</div>
-                        <div class="price">${formatPrice(p.price)}</div>
-                        <div class="vendor">${p.vendor}</div>
-                    </div>
-                </div>`).join('');
+            carousel.innerHTML = sponsored.map(p => `<div class="carousel-card" onclick="openFullScreen(${p.id})"><div class="badge-sponsored">Sponsored</div><img src="${p.image}"><div class="info"><div class="title">${p.name}</div><div class="price">${formatPrice(p.price)}</div><div class="vendor">${p.vendor}</div></div></div>`).join('');
+            masonry.innerHTML = recommended.map(p => `<div class="masonry-item" onclick="openFullScreen(${p.id})"><div class="badge-instock">In stock</div><img src="${p.image}"><div class="info"><div class="title">${p.name}</div><div class="price">${formatPrice(p.price)}</div><div class="vendor">${p.vendor}</div>${p.delivery === 'free' ? '<div class="delivery-tag">🚚 Free Delivery</div>' : '<div class="delivery-tag" style="background:#fff3e0;color:#b35c00;">Delivery Fee Applies</div>'}</div></div>`).join('');
         }
 
-        // ================= COPY CODE =================
-        function copyCode(code) {
-            navigator.clipboard.writeText(code).then(() => {
-                showToast('✅ Code copied: ' + code);
-            }).catch(() => {
-                const tempInput = document.createElement('input');
-                tempInput.value = code;
-                document.body.appendChild(tempInput);
-                tempInput.select();
-                document.execCommand('copy');
-                document.body.removeChild(tempInput);
-                showToast('✅ Code copied: ' + code);
-            });
-        }
-
-        // ================= FULL SCREEN / WHATSAPP =================
-        function openFullScreen(id) {
-            const p = products.find(x => x.id === id);
-            if (!p) return;
-            currentFullScreenProductId = id;
-            document.getElementById('fsTitle').textContent = p.name;
-            document.getElementById('fsDescription').textContent = p.description || "Premium quality furniture for your home.";
-            document.getElementById('fsCode').textContent = 'Code: ' + p.code;
-            document.getElementById('fullScreenImg').src = p.image;
-            document.getElementById('fsHiddenDetails').style.display = 'none';
-            document.getElementById('fsUnhideBtn').textContent = 'Unhide Details';
-            document.getElementById('fullScreenModal').classList.add('active');
-        }
-
-        function closeFullScreen() { document.getElementById('fullScreenModal').classList.remove('active'); currentFullScreenProductId = null; }
-
-        function toggleFullScreenDetails() {
-            const details = document.getElementById('fsHiddenDetails');
-            const btn = document.getElementById('fsUnhideBtn');
-            if (details.style.display === 'block') {
-                details.style.display = 'none';
-                btn.textContent = 'Unhide Details';
-            } else {
-                details.style.display = 'block';
-                btn.textContent = 'Hide Details';
-            }
-        }
-
-        function sendFullScreenWhatsApp() {
-            const p = products.find(x => x.id === currentFullScreenProductId);
-            if (!p) return;
-            const message = `Hello AmorD-Ng Furnitures, I need this furniture:\n\nProduct: ${p.name}\nPrice: ${formatPrice(p.price)}\nImage: ${p.image}\n\nPlease contact me regarding this item.`;
-            window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`, '_blank');
-        }
-
-        // ================= ADMIN =================
-        function toggleAdmin() {
-            const container = document.getElementById('adminPanelContainer');
-            if (isAdmin) { isAdmin = false; container.classList.add('hidden'); showToast('Exited Admin'); }
-            else {
-                container.classList.remove('hidden');
-                container.innerHTML = `
-                    <div id="adminLogin" style="text-align:center; padding:40px; background:var(--bg-card); border-radius:var(--radius-lg); border:1px solid var(--border-color);">
-                        <h2>Admin Access</h2><p style="color:var(--text-muted); margin:10px 0 20px;">Enter password</p>
-                        <input type="password" id="adminPass" placeholder="Enter Password" onkeypress="if(event.key==='Enter') checkAdminPass()">
-                        <button class="btn btn-primary" onclick="checkAdminPass()">Login</button>
-                    </div>
-                    <div id="adminDashboard" class="admin-dashboard hidden">
-                        <h3 style="margin-bottom:20px;">Upload New Furniture</h3>
-                        <div class="upload-form">
-                            <div class="form-group"><label>Product Name</label><input type="text" id="prodName" placeholder="e.g., Luxurious Sofa"></div>
-                            <div class="form-group"><label>Price (₦)</label><input type="number" id="prodPrice" placeholder="e.g., 150000"></div>
-                            <div class="form-group"><label>Vendor / Store</label><input type="text" id="prodVendor" placeholder="e.g., Mma Amisco"></div>
-                            <div class="form-group"><label>Category</label><select id="prodCategory"><option value="sofa">Sofa</option><option value="dining">Dining</option><option value="kitchen">Kitchen</option><option value="tv">TV Station</option><option value="bed">Bed Frame</option></select></div>
-                            <div class="form-group"><label>Section</label><select id="prodSection"><option value="sponsored">Sponsored</option><option value="recommended">Recommended</option></select></div>
-                            <div class="form-group"><label>Full Description</label><textarea id="prodDescription" rows="3" placeholder="Describe this furniture beautifully..."></textarea></div>
-                            <div class="form-group"><label>Upload Image</label><input type="file" id="prodImage" accept="image/*"></div>
-                            <button class="btn btn-primary" style="width:100%; padding:14px;" onclick="addProduct()">Add Product</button>
-                        </div>
-                        <h3 style="margin-bottom:20px;">Manage Products</h3>
-                        <table class="admin-table"><thead><tr><th>Image</th><th>Name</th><th>Price</th><th>Code</th><th>Section</th><th>Action</th></tr></thead><tbody id="adminProductList"></tbody></table>
-                    </div>`;
-                document.getElementById('adminLogin').style.display = 'block';
-                document.getElementById('adminDashboard').classList.add('hidden');
-            }
-        }
-
-        function checkAdminPass() {
-            const pass = document.getElementById('adminPass').value;
-            if (pass === 'Okwudiri@007') {
-                isAdmin = true;
-                document.getElementById('adminLogin').style.display = 'none';
-                document.getElementById('adminDashboard').classList.remove('hidden');
-                renderAdminList();
-                showToast('Welcome Admin!');
-            } else { showToast('❌ Wrong password'); }
-        }
-
-        async function addProduct() {
-            const name = document.getElementById('prodName').value;
-            const price = document.getElementById('prodPrice').value;
-            const vendor = document.getElementById('prodVendor').value;
-            const category = document.getElementById('prodCategory').value;
-            const section = document.getElementById('prodSection').value;
-            const description = document.getElementById('prodDescription').value;
-            const imgInput = document.getElementById('prodImage');
-            if (!name || !price || !vendor || !imgInput.files[0]) { showToast('Fill all fields and upload image'); return; }
-            showToast('Uploading image to ImgBB...');
+        // Seller Modal
+        function openSellerModal() { document.getElementById('sellerModal').classList.add('active'); }
+        function closeSellerModal() { document.getElementById('sellerModal').classList.remove('active'); }
+        async function submitSellerProduct() {
+            const name = document.getElementById('sellerName').value, whatsapp = document.getElementById('sellerWhatsApp').value, prodName = document.getElementById('sellerProdName').value, price = document.getElementById('sellerProdPrice').value, category = document.getElementById('sellerProdCategory').value, delivery = document.getElementById('sellerDelivery').value, section = document.getElementById('sellerProdSection').value, description = document.getElementById('sellerProdDescription').value, imgInput = document.getElementById('sellerProdImage');
+            if (!name || !whatsapp || !prodName || !price || !imgInput.files[0]) { showToast('Please fill all fields and upload image'); return; }
+            showToast('Uploading image...');
             try {
-                const imageUrl = await uploadToImgBB(imgInput.files[0]);
-                const productCode = generateProductCode();
-                const newProduct = { id: Date.now(), code: productCode, name, price: Number(price), vendor, category, section, rating: 4.5, image: imageUrl, description };
+                const imageUrl = await uploadToImgBB(imgInput.files[0]); const code = generateProductCode();
+                const newProduct = { id: Date.now(), code, name: prodName, price: Number(price), vendor: name, category, section, rating: 4.5, image: imageUrl, description, status: 'pending', sellerWhatsApp: whatsapp.replace(/\D/g, ''), delivery };
                 const response = await fetch(SHEETDB_URL, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(newProduct) });
-                const result = await response.json();
-                if (response.ok) {
-                    products.push(newProduct); renderStore(); renderAdminList(); showToast(`✅ Product added! Code: ${productCode}`);
-                    document.getElementById('prodName').value=''; document.getElementById('prodPrice').value=''; document.getElementById('prodVendor').value=''; document.getElementById('prodImage').value=''; document.getElementById('prodDescription').value='';
-                } else { showToast('❌ SheetDB rejected upload. Check columns!'); console.error('SheetDB error:', result); }
-            } catch (error) { showToast('❌ Error uploading: ' + error.message); console.error('Full error:', error); }
+                if (response.ok) { showToast('✅ Submitted! Waiting for approval.'); closeSellerModal(); document.getElementById('sellerName').value=''; document.getElementById('sellerWhatsApp').value=''; document.getElementById('sellerProdName').value=''; document.getElementById('sellerProdPrice').value=''; document.getElementById('sellerProdImage').value=''; document.getElementById('sellerProdDescription').value=''; }
+                else { showToast('❌ Failed.'); }
+            } catch (error) { showToast('❌ Error: ' + error.message); }
         }
 
-        function renderAdminList() {
-            const list = document.getElementById('adminProductList');
-            list.innerHTML = products.map(p => `<tr><td><img src="${p.image}"></td><td>${p.name}</td><td>${formatPrice(p.price)}</td><td>${p.code}</td><td>${p.section}</td><td><button onclick="deleteProduct(${p.id})">Delete</button></td></tr>`).join('');
-        }
+        // Full Screen / Share / WhatsApp
+        function openFullScreen(id) { const p = products.find(x => x.id === id); if (!p) return; currentFullScreenProductId = id; document.getElementById('fsTitle').textContent = p.name; document.getElementById('fsDescription').textContent = p.description; document.getElementById('fsCode').textContent = 'Code: ' + p.code; document.getElementById('fullScreenImg').src = p.image; document.getElementById('fsHiddenDetails').style.display = 'none'; document.getElementById('fsUnhideBtn').textContent = 'Unhide Details'; document.getElementById('fullScreenModal').classList.add('active'); }
+        function closeFullScreen() { document.getElementById('fullScreenModal').classList.remove('active'); currentFullScreenProductId = null; }
+        function toggleFullScreenDetails() { const d = document.getElementById('fsHiddenDetails'), b = document.getElementById('fsUnhideBtn'); if (d.style.display === 'block') { d.style.display = 'none'; b.textContent = 'Unhide Details'; } else { d.style.display = 'block'; b.textContent = 'Hide Details'; } }
+        function shareProduct() { const p = products.find(x => x.id === currentFullScreenProductId); if (!p) return; const link = `${window.location.href.split('?')[0].replace('index.html', '')}product.html?code=${p.code}`; navigator.clipboard.writeText(link).then(() => showToast('✅ Link copied!')).catch(() => showToast('❌ Copy failed')); }
+        function sendFullScreenWhatsApp() { const p = products.find(x => x.id === currentFullScreenProductId); if (!p) return; const target = p.sellerWhatsApp || WHATSAPP_NUMBER; const msg = `Hello, I need this furniture:\n\nProduct: ${p.name}\nPrice: ${formatPrice(p.price)}\nImage: ${p.image}`; window.open(`https://wa.me/${target}?text=${encodeURIComponent(msg)}`, '_blank'); }
 
-        async function deleteProduct(id) {
-            if (confirm('Delete this product?')) {
-                const product = products.find(p => p.id === id);
-                if (product) { await fetch(`${SHEETDB_URL}/id/${id}`, { method: 'DELETE' }); }
-                products = products.filter(p => p.id !== id); renderStore(); renderAdminList(); showToast('🗑️ Product deleted');
-            }
-        }
+        // Admin Access (Hidden)
+        function checkAdminAccess() { if (window.location.hash === '#admin') { document.getElementById('adminBtn').classList.add('active'); } }
+        window.addEventListener('hashchange', checkAdminAccess);
+        function toggleAdmin() { const c = document.getElementById('adminPanelContainer'); if (isAdmin) { isAdmin = false; c.classList.add('hidden'); showToast('Exited'); } else { c.classList.remove('hidden'); c.innerHTML = `<div id="adminLogin" style="text-align:center;padding:40px;"><h2>Admin</h2><input type="password" id="adminPass" placeholder="Password" onkeypress="if(event.key==='Enter') checkAdminPass()"><button onclick="checkAdminPass()" class="btn btn-primary" style="margin-top:10px;">Login</button></div>`; } }
+        function checkAdminPass() { const p = document.getElementById('adminPass').value; if (p === 'Okwudiri@007') { isAdmin = true; document.getElementById('adminLogin').style.display='none'; const d = document.createElement('div'); d.innerHTML = `<h3>Pending</h3><div id="pendingList"></div><h3>All</h3><div id="allList"></div>`; document.getElementById('adminPanelContainer').innerHTML = ''; document.getElementById('adminPanelContainer').appendChild(d); renderAdminLists(); showToast('Welcome!'); } else { showToast('❌ Wrong'); } }
+        function renderAdminLists() { const pending = products.filter(p => p.status === 'pending'); const all = products; document.getElementById('pendingList').innerHTML = pending.map(p => `<p>${p.name} - <button onclick="approveProduct(${p.id})">Approve</button></p>`).join('') || 'None'; document.getElementById('allList').innerHTML = all.map(p => `<p>${p.name} - <button onclick="deleteProduct(${p.id})">Delete</button></p>`).join(''); }
+        async function approveProduct(id) { const p = products.find(x => x.id === id); if (p) { p.status = 'approved'; await fetch(`${SHEETDB_URL}/id/${id}`, { method: 'PATCH', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ status: 'approved' }) }); renderStore(); renderAdminLists(); showToast('Approved!'); } }
+        async function deleteProduct(id) { if (confirm('Delete?')) { await fetch(`${SHEETDB_URL}/id/${id}`, { method: 'DELETE' }); products = products.filter(p => p.id !== id); renderStore(); renderAdminLists(); } }
 
-        // ================= AUTH =================
-        function openAuth() { document.getElementById('authModal').classList.add('active'); document.getElementById('emailAuth').classList.remove('hidden'); document.getElementById('registerForm').classList.add('hidden'); document.getElementById('authTitle').textContent = 'Login'; document.getElementById('authToggleBtn').textContent = 'Create one'; }
-        function closeAuth() { document.getElementById('authModal').classList.remove('active'); }
-        function googleLogin() { currentUser = { name: "Google User", email: "user@gmail.com" }; saveUser(); updateAuthUI(); closeAuth(); showToast('👋 Welcome!'); }
-        function emailLogin() { const e = document.getElementById('emailInput').value, p = document.getElementById('passwordInput').value; if (!e || !p) return showToast('Enter email and password'); currentUser = { name: e.split('@')[0], email: e }; saveUser(); updateAuthUI(); closeAuth(); showToast('Logged in'); }
-        function emailRegister() { const n = document.getElementById('regName').value, e = document.getElementById('regEmail').value, p = document.getElementById('regPassword').value; if (!n || !e || !p) return showToast('Fill all fields'); currentUser = { name: n, email: e }; saveUser(); updateAuthUI(); closeAuth(); showToast('Account created!'); }
-        function toggleAuthMode() { const ea = document.getElementById('emailAuth'), rf = document.getElementById('registerForm'); const t = document.getElementById('authTitle'), btn = document.getElementById('authToggleBtn'); if (rf.classList.contains('hidden')) { rf.classList.remove('hidden'); ea.classList.add('hidden'); t.textContent = 'Register'; btn.textContent = 'Sign In'; } else { rf.classList.add('hidden'); ea.classList.remove('hidden'); t.textContent = 'Login'; btn.textContent = 'Create one'; } }
-        function saveUser() { localStorage.setItem('currentUser', JSON.stringify(currentUser)); }
-        function updateAuthUI() { const btn = document.getElementById('authBtn'); if (currentUser) { const firstLetter = currentUser.name.charAt(0).toUpperCase(); btn.textContent = '👤 ' + firstLetter; btn.onclick = logout; } else { btn.textContent = 'Login'; btn.onclick = openAuth; } }
-        function logout() { currentUser = null; localStorage.removeItem('currentUser'); updateAuthUI(); showToast('Logged out'); }
+        // Auto Rotate Sponsored
+        function startCarouselRotation() { const c = document.getElementById('carouselContainer'); if (c.children.length <= 1) return; setInterval(() => { if (c.scrollLeft + c.clientWidth >= c.scrollWidth - 5) { c.scrollTo({ left: 0, behavior: 'smooth' }); } else { c.scrollBy({ left: 200, behavior: 'smooth' }); } }, 5000); }
 
-        // ================= SEARCH & CATEGORY =================
-        function setupCategoryNav() {
-            document.getElementById('categoryNav').querySelectorAll('.nav-btn').forEach(btn => {
-                btn.addEventListener('click', () => {
-                    document.getElementById('categoryNav').querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
-                    btn.classList.add('active'); activeCategory = btn.dataset.category; renderStore();
-                });
-            });
-        }
+        // Search & Category
+        function setupCategoryNav() { document.getElementById('categoryNav').querySelectorAll('.nav-btn').forEach(btn => btn.addEventListener('click', () => { document.getElementById('categoryNav').querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active')); btn.classList.add('active'); activeCategory = btn.dataset.category; renderStore(); })); }
+        function setupSearch() { document.getElementById('searchInput').addEventListener('input', (e) => { const q = e.target.value.toLowerCase(); const f = products.filter(p => p.name.toLowerCase().includes(q) || p.code.toLowerCase().includes(q) || p.vendor.toLowerCase().includes(q)); document.getElementById('masonryGrid').innerHTML = f.filter(p => p.section === 'recommended' && p.status === 'approved').map(p => `<div class="masonry-item" onclick="openFullScreen(${p.id})"><img src="${p.image}"><div class="info"><div class="title">${p.name}</div><div class="price">${formatPrice(p.price)}</div></div></div>`).join(''); document.getElementById('carouselContainer').innerHTML = f.filter(p => p.section === 'sponsored' && p.status === 'approved').map(p => `<div class="carousel-card" onclick="openFullScreen(${p.id})"><img src="${p.image}"><div class="info"><div class="title">${p.name}</div><div class="price">${formatPrice(p.price)}</div></div></div>`).join(''); }); }
 
-        function setupSearch() {
-            document.getElementById('searchInput').addEventListener('input', (e) => {
-                const q = e.target.value.toLowerCase();
-                const filtered = products.filter(p => p.name.toLowerCase().includes(q) || p.code.toLowerCase().includes(q) || p.vendor.toLowerCase().includes(q));
-                document.getElementById('masonryGrid').innerHTML = filtered.filter(p => p.section === 'recommended').map(p => `<div class="masonry-item" onclick="openFullScreen(${p.id})"><div class="badge-instock">In stock</div><img src="${p.image}"><div class="info"><div class="title">${p.name}</div><div class="price">${formatPrice(p.price)}</div><div class="vendor">${p.vendor}</div></div></div>`).join('');
-                document.getElementById('carouselContainer').innerHTML = filtered.filter(p => p.section === 'sponsored').map(p => `<div class="carousel-card" onclick="openFullScreen(${p.id})"><div class="badge-sponsored">Sponsored</div><img src="${p.image}"><div class="info"><div class="title">${p.name}</div><div class="price">${formatPrice(p.price)}</div><div class="vendor">${p.vendor}</div></div></div>`).join('');
-            });
-        }
-
-        // ================= FOOTER MODALS =================
+        // Footer Modals
         function showAboutModal() { document.getElementById('aboutModal').classList.add('active'); }
         function showPolicyModal() { document.getElementById('policyModal').classList.add('active'); }
         function showPrivacyModal() { document.getElementById('privacyModal').classList.add('active'); }
         function showLicenseModal() { document.getElementById('licenseModal').classList.add('active'); }
         function closeModal(id) { document.getElementById(id).classList.remove('active'); }
 
-        // ================= INIT =================
-        function init() {
-            document.getElementById('year').textContent = new Date().getFullYear();
-            fetchProductsFromDB(); updateAuthUI(); setupCategoryNav(); setupSearch();
-            if (localStorage.getItem('currentUser')) currentUser = JSON.parse(localStorage.getItem('currentUser'));
-            updateAuthUI();
-        }
-
+        // Init
+        function init() { document.getElementById('year').textContent = new Date().getFullYear(); fetchProductsFromDB(); setupCategoryNav(); setupSearch(); startCarouselRotation(); checkAdminAccess(); }
         init();
     </script>
 </body>
