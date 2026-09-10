@@ -2,16 +2,14 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FurniHub 9ja | Premium Home Furnishings</title>
     <style>
         :root {
             --bg-primary: #ffffff;
             --bg-secondary: #f5f5f5;
             --bg-card: #ffffff;
-            --bg-card-hover: #f8f8f8;
             --border-color: #e0e0e0;
-            --border-hover: #cccccc;
             --text-primary: #111111;
             --text-secondary: #555555;
             --text-muted: #888888;
@@ -40,9 +38,9 @@
         .search-box:focus-within { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); }
         .search-box input { flex: 1; background: transparent; border: none; color: var(--text-primary); outline: none; font-size: 14px; }
 
-        /* Top Ad Banner (scaled to match desktop size) */
-        .top-ad-banner { background: #fff; border-bottom: 1px solid var(--border-color); padding: 8px 0; text-align: center; position: relative; display: flex; align-items: center; justify-content: center; overflow: hidden; height: 106px; }
-        .top-ad-banner iframe { width: 728px; height: 90px; border: none; overflow: hidden; max-width: 100%; }
+        /* Top Ad Banner - Direct Adsterra Script */
+        .top-ad-banner { background: #fff; border-bottom: 1px solid var(--border-color); padding: 10px 0; text-align: center; position: relative; overflow: hidden; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 100px; }
+        .top-ad-banner .ad-wrapper { width: 728px; height: 90px; max-width: 100%; display: flex; align-items: center; justify-content: center; }
         .top-ad-banner .ad-sponsor-label { position: absolute; top: 5px; right: 8px; background: rgba(0,0,0,0.7); color: #fff; font-size: 9px; font-weight: 700; padding: 2px 6px; border-radius: 10px; z-index: 10; }
 
         /* Category Nav */
@@ -62,7 +60,7 @@
         .carousel-container { display: flex; gap: 12px; padding: 10px 0 20px; overflow-x: auto; scrollbar-width: none; scroll-behavior: smooth; }
         .carousel-container::-webkit-scrollbar { display: none; }
         .carousel-card { flex: 0 0 180px; background: var(--bg-card); border-radius: var(--radius-md); overflow: hidden; border: 1px solid var(--border-color); cursor: pointer; transition: var(--transition); position: relative; }
-        .carousel-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); border-color: var(--border-hover); }
+        .carousel-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); border-color: var(--border-color); }
         .carousel-card img { width: 100%; height: 160px; object-fit: cover; display: block; background: var(--bg-secondary); }
         .carousel-card .info { padding: 10px; }
         .carousel-card .title { font-size: 13px; font-weight: 600; margin-bottom: 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: var(--text-primary); }
@@ -73,7 +71,7 @@
         /* Masonry Grid */
         .masonry-grid { columns: 4; column-gap: 12px; padding-bottom: 40px; }
         .masonry-item { break-inside: avoid; margin-bottom: 12px; background: var(--bg-card); border-radius: var(--radius-md); overflow: hidden; border: 1px solid var(--border-color); cursor: pointer; transition: var(--transition); position: relative; }
-        .masonry-item:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); border-color: var(--border-hover); }
+        .masonry-item:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
         .masonry-item img { width: 100%; display: block; background: var(--bg-secondary); }
         .masonry-item .info { padding: 10px; }
         .masonry-item .title { font-size: 13px; font-weight: 600; margin-bottom: 4px; color: var(--text-primary); display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
@@ -84,13 +82,11 @@
 
         /* Help Button */
         .help-button { position: fixed; bottom: 20px; right: 20px; z-index: 9999; width: 50px; height: 50px; background: var(--accent); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 24px; cursor: pointer; box-shadow: var(--shadow-lg); animation: bounceHelp 3s ease-in-out infinite; transition: var(--transition); }
-        .help-button:hover { background: var(--accent-hover); transform: scale(1.1); }
         @keyframes bounceHelp { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
 
         /* Admin */
         .admin-fullstop { position: fixed; bottom: 20px; left: 20px; z-index: 9999; width: 25px; height: 25px; background: red; border-radius: 50%; border: 2px solid #fff; box-shadow: var(--shadow-md); cursor: pointer; transition: var(--transition); display: none; }
         .admin-fullstop.active { display: block; }
-        .admin-fullstop:hover { transform: scale(1.2); }
 
         /* Footer */
         .footer { background: var(--bg-secondary); border-top: 1px solid var(--border-color); margin-top: auto; padding: 30px 30px 10px; }
@@ -104,8 +100,7 @@
         .modal-overlay { position: fixed; inset: 0; background: rgba(0, 0, 0, 0.5); backdrop-filter: blur(4px); z-index: 10000; display: flex; align-items: center; justify-content: center; opacity: 0; visibility: hidden; transition: var(--transition); }
         .modal-overlay.active { opacity: 1; visibility: visible; }
         .modal-box { background: var(--bg-card); border-radius: var(--radius-lg); max-width: 480px; width: 90%; padding: 30px; border: 1px solid var(--border-color); position: relative; max-height: 85vh; overflow-y: auto; box-shadow: var(--shadow-lg); }
-        .modal-close { position: absolute; top: 15px; right: 15px; background: var(--bg-secondary); border: none; width: 32px; height: 32px; border-radius: 50%; font-size: 18px; cursor: pointer; color: var(--text-secondary); transition: var(--transition); display: flex; align-items: center; justify-content: center; }
-        .modal-close:hover { background: var(--accent); color: #fff; }
+        .modal-close { position: absolute; top: 15px; right: 15px; background: var(--bg-secondary); border: none; width: 32px; height: 32px; border-radius: 50%; font-size: 18px; cursor: pointer; color: var(--text-secondary); display: flex; align-items: center; justify-content: center; }
 
         /* Toast */
         .toast { position: fixed; bottom: 20px; right: 20px; background: var(--text-primary); color: var(--bg-primary); padding: 14px 24px; border-radius: var(--radius-md); border-left: 4px solid var(--accent); box-shadow: var(--shadow-lg); z-index: 99999; font-weight: 500; font-size: 14px; animation: slideIn 0.3s ease; }
@@ -113,13 +108,11 @@
 
         /* Full Screen Modal */
         #fullScreenModal .modal-box { max-width: 95vw; max-height: 95vh; width: 100%; background: #fff; border: none; text-align: center; padding: 10px; }
-        #fullScreenImg { max-width: 100%; max-height: 75vh; object-fit: contain; border-radius: 10px; touch-action: pinch-zoom; margin: 10px 0; cursor: zoom-in; }
-        .whatsapp-full-btn { background: var(--whatsapp); color: #fff; border: none; border-radius: 50px; padding: 12px 24px; font-size: 16px; font-weight: 700; cursor: pointer; display: inline-flex; align-items: center; gap: 10px; box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4); transition: var(--transition); margin-top: 10px; }
-        .whatsapp-full-btn:hover { background: #20bd5a; transform: scale(1.05); }
+        #fullScreenImg { max-width: 100%; max-height: 75vh; object-fit: contain; border-radius: 10px; touch-action: pinch-zoom; margin: 10px 0; }
+        .whatsapp-full-btn { background: var(--whatsapp); color: #fff; border: none; border-radius: 50px; padding: 12px 24px; font-size: 16px; font-weight: 700; cursor: pointer; display: inline-flex; align-items: center; gap: 10px; transition: var(--transition); margin-top: 10px; }
         .share-btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; background: var(--accent-soft); border: 1px solid var(--accent); color: var(--accent); border-radius: 8px; padding: 10px; width: 100%; font-weight: 700; font-size: 14px; cursor: pointer; margin-top: 10px; transition: var(--transition); }
-        .share-btn:hover { background: var(--accent); color: #fff; }
 
-        /* ============ MOBILE: SCALED DESKTOP ============ */
+        /* ============ MOBILE: SCALED DESKTOP LOOK ============ */
         @media (max-width: 900px) {
             .header { padding: 10px 12px; gap: 10px; flex-wrap: nowrap; }
             .logo img { height: 45px; }
@@ -139,28 +132,28 @@
             .masonry-grid { columns: 4; column-gap: 6px; padding-bottom: 20px; }
             .masonry-item { margin-bottom: 6px; border-radius: 8px; }
             .masonry-item .info { padding: 5px; }
-            .masonry-item .title { font-size: 10px; margin-bottom: 2px; }
-            .masonry-item .price { font-size: 11px; margin-bottom: 2px; }
+            .masonry-item .title { font-size: 10px; }
+            .masonry-item .price { font-size: 11px; }
             .masonry-item .vendor { font-size: 8px; }
-            .badge-instock { font-size: 7px; padding: 2px 4px; border-radius: 4px; top: 4px; right: 4px; }
-            .badge-sponsored { font-size: 7px; padding: 2px 4px; border-radius: 4px; top: 4px; left: 4px; }
-            .delivery-tag { font-size: 8px; padding: 2px 5px; }
+            .badge-instock { font-size: 7px; padding: 2px 4px; }
+            .badge-sponsored { font-size: 7px; padding: 2px 4px; }
             .footer { padding: 15px 10px 8px; }
             .footer-links { gap: 8px; }
             .footer-links a { font-size: 9px; }
-            .footer-copyright { font-size: 8px; padding-top: 6px; }
+            .footer-copyright { font-size: 8px; }
             .help-button { width: 40px; height: 40px; font-size: 20px; bottom: 15px; right: 15px; }
 
-            /* Make ad fit mobile screen (scale down but keep same aspect ratio) */
-            .top-ad-banner { height: 60px; padding: 4px 0; }
-            .top-ad-banner iframe { transform: scale(0.65); transform-origin: center center; width: 728px; height: 90px; }
+            /* SCALE DOWN AD on mobile to match desktop ratio */
+            .top-ad-banner { min-height: 80px; padding: 8px 0; }
+            .top-ad-banner .ad-wrapper { transform: scale(0.55); transform-origin: center top; height: 60px; width: 100%; }
         }
         @media (max-width: 500px) {
             .logo img { height: 38px; }
             .carousel-card { flex: 0 0 110px; }
             .carousel-card img { height: 95px; }
             .masonry-grid { column-gap: 5px; }
-            .top-ad-banner iframe { transform: scale(0.5); }
+            .top-ad-banner { min-height: 70px; }
+            .top-ad-banner .ad-wrapper { transform: scale(0.45); height: 50px; }
         }
     </style>
 </head>
@@ -175,10 +168,21 @@
         </div>
     </header>
 
-    <!-- TOP AD BANNER (scaled to match desktop size even on mobile) -->
+    <!-- TOP AD BANNER - DIRECT ADSTERRA SCRIPT (works on desktop, scaled on mobile) -->
     <div class="top-ad-banner">
         <div class="ad-sponsor-label">Sponsored</div>
-        <iframe id="adFrame" scrolling="no"></iframe>
+        <div class="ad-wrapper">
+            <script type="text/javascript">
+                atOptions = {
+                    'key' : '84e0d2e547e6c4cb1970fa5bff894187',
+                    'format' : 'iframe',
+                    'height' : 90,
+                    'width' : 728,
+                    'params' : {}
+                };
+            </script>
+            <script type="text/javascript" src="//www.highperformanceformat.com/84e0d2e547e6c4cb1970fa5bff894187/invoke.js"></script>
+        </div>
     </div>
 
     <!-- Help Button -->
@@ -228,7 +232,7 @@
     <div class="modal-overlay" id="sellerModal">
         <div class="modal-box">
             <button class="modal-close" onclick="closeSellerModal()">×</button>
-            <h2 style="margin-bottom: 15px;">Become a Seller & Upload Your Furniture</h2>
+            <h2 style="margin-bottom: 15px;">Become a Seller</h2>
             <div style="background: var(--bg-secondary); padding: 15px; border-radius: 12px; border: 1px solid var(--border-color);">
                 <div style="margin-bottom:12px;"><label style="display:block;font-size:13px;margin-bottom:4px;">Your Name / Business Name</label><input type="text" id="sellerName" placeholder="e.g., Mma Amisco Furniture" style="width:100%;padding:10px;border:1px solid var(--border-color);border-radius:8px;"></div>
                 <div style="margin-bottom:12px;"><label style="display:block;font-size:13px;margin-bottom:4px;">Your WhatsApp Number</label><input type="text" id="sellerWhatsApp" placeholder="e.g., 2348012345678" style="width:100%;padding:10px;border:1px solid var(--border-color);border-radius:8px;"></div>
@@ -237,7 +241,7 @@
                 <div style="margin-bottom:12px;"><label style="display:block;font-size:13px;margin-bottom:4px;">Category</label><select id="sellerProdCategory" style="width:100%;padding:10px;border:1px solid var(--border-color);border-radius:8px;"><option value="sofa">Sofa</option><option value="dining">Dining</option><option value="kitchen">Kitchen</option><option value="tv">TV Station</option><option value="bed">Bed Frame</option></select></div>
                 <div style="margin-bottom:12px;"><label style="display:block;font-size:13px;margin-bottom:4px;">Delivery Option</label><select id="sellerDelivery" style="width:100%;padding:10px;border:1px solid var(--border-color);border-radius:8px;"><option value="free">Free Delivery</option><option value="paid">Delivery Fee Applies</option></select></div>
                 <div style="margin-bottom:12px;"><label style="display:block;font-size:13px;margin-bottom:4px;">Section</label><select id="sellerProdSection" style="width:100%;padding:10px;border:1px solid var(--border-color);border-radius:8px;"><option value="sponsored">Sponsored</option><option value="recommended">Recommended</option></select></div>
-                <div style="margin-bottom:12px;"><label style="display:block;font-size:13px;margin-bottom:4px;">Full Description</label><textarea id="sellerProdDescription" rows="3" placeholder="Describe your furniture beautifully..." style="width:100%;padding:10px;border:1px solid var(--border-color);border-radius:8px;"></textarea></div>
+                <div style="margin-bottom:12px;"><label style="display:block;font-size:13px;margin-bottom:4px;">Full Description</label><textarea id="sellerProdDescription" rows="3" placeholder="Describe your furniture..." style="width:100%;padding:10px;border:1px solid var(--border-color);border-radius:8px;"></textarea></div>
                 <div style="margin-bottom:12px;"><label style="display:block;font-size:13px;margin-bottom:4px;">Upload Image</label><input type="file" id="sellerProdImage" accept="image/*" style="width:100%;padding:10px;border:1px solid var(--border-color);border-radius:8px;"></div>
                 <button style="width:100%;padding:14px;background:var(--accent);color:#fff;border:none;border-radius:8px;font-weight:700;cursor:pointer;" onclick="submitSellerProduct()">Submit for Admin Approval</button>
             </div>
@@ -250,12 +254,12 @@
             <button class="modal-close" onclick="closeFullScreen()">×</button>
             <h3 id="fsTitle" style="margin-bottom: 5px; color: #111;"></h3>
             <p id="fsDescription" style="color: #555; font-size: 14px; margin-bottom: 15px;"></p>
-            <img id="fullScreenImg" src="" alt="" style="touch-action: pinch-zoom;">
+            <img id="fullScreenImg" src="" alt="">
             <div style="margin-top: 10px;">
                 <button id="fsUnhideBtn" onclick="toggleFullScreenDetails()" style="background: var(--bg-secondary); border: 1px solid var(--accent); color: var(--accent); border-radius: 8px; padding: 10px; width: 100%; font-weight: 700; cursor: pointer; margin-bottom: 10px;">Unhide Details</button>
                 <div id="fsHiddenDetails" style="display: none; margin-bottom: 15px;">
                     <p id="fsCode" style="color: #555; font-size: 13px; margin-bottom: 8px;"></p>
-                    <label style="font-size: 13px; color: #555; display: block; margin-bottom: 8px;">Select Color: <input type="color" id="modalColor" value="#ffffff" style="width: 25px; height: 25px; vertical-align: middle;"></label>
+                    <label style="font-size: 13px; color: #555; display: block; margin-bottom: 8px;">Color: <input type="color" id="modalColor" value="#ffffff" style="width: 25px; height: 25px; vertical-align: middle;"></label>
                     <button onclick="copyCode(document.getElementById('fsCode').textContent.split(': ')[1])" style="background: var(--bg-secondary); border: 1px solid var(--border-color); color: #555; border-radius: 4px; padding: 6px 10px; font-weight: 700; cursor: pointer; width: 100%;">📋 Copy Code</button>
                 </div>
             </div>
@@ -267,9 +271,8 @@
         </div>
     </div>
 
-    <!-- Footer Modals -->
     <div class="modal-overlay" id="aboutModal"><div class="modal-box"><button class="modal-close" onclick="closeModal('aboutModal')">×</button><h2>About FurniHub 9ja</h2><p style="color:#555;margin-top:15px;">Nigeria's premier furniture marketplace.</p></div></div>
-    <div class="modal-overlay" id="policyModal"><div class="modal-box"><button class="modal-close" onclick="closeModal('policyModal')">×</button><h2>Payment & Delivery</h2><p style="color:#555;margin-top:15px;">Free delivery on selected items. Pay Half, Pay Balance on Delivery.</p></div></div>
+    <div class="modal-overlay" id="policyModal"><div class="modal-box"><button class="modal-close" onclick="closeModal('policyModal')">×</button><h2>Payment & Delivery</h2><p style="color:#555;margin-top:15px;">Free delivery on selected items.</p></div></div>
     <div class="modal-overlay" id="privacyModal"><div class="modal-box"><button class="modal-close" onclick="closeModal('privacyModal')">×</button><h2>Privacy Policy</h2><p style="color:#555;margin-top:15px;">Your privacy is paramount.</p></div></div>
     <div class="modal-overlay" id="licenseModal"><div class="modal-box"><button class="modal-close" onclick="closeModal('licenseModal')">×</button><h2>Apache License</h2><p style="color:#555;margin-top:15px;">Apache 2.0</p></div></div>
 
@@ -288,28 +291,6 @@
         function generateProductCode() { return Math.floor(10000 + Math.random() * 90000).toString(); }
         function showToast(msg) { const t = document.createElement('div'); t.className = 'toast'; t.textContent = msg; document.getElementById('toastContainer').appendChild(t); setTimeout(() => t.remove(), 3000); }
         function openHelp() { window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent('Hello FurniHub 9ja, I need help.')}`, '_blank'); }
-
-        // Load Adsterra into iframe (safe)
-        function loadAdInIframe() {
-            const iframe = document.getElementById('adFrame');
-            const doc = iframe.contentDocument || iframe.contentWindow.document;
-            doc.open();
-            doc.write(`
-                <html><body style="margin:0;padding:0;display:flex;justify-content:center;align-items:center;height:100%;background:#fff;">
-                <script type="text/javascript">
-                    atOptions = {
-                        'key' : '84e0d2e547e6c4cb1970fa5bff894187',
-                        'format' : 'iframe',
-                        'height' : 90,
-                        'width' : 728,
-                        'params' : {}
-                    };
-                <\/script>
-                <script type="text/javascript" src="//www.highperformanceformat.com/84e0d2e547e6c4cb1970fa5bff894187/invoke.js"><\/script>
-                </body></html>
-            `);
-            doc.close();
-        }
 
         function uploadToImgBB(file) {
             return new Promise((resolve, reject) => {
@@ -398,7 +379,6 @@
 
         function init() { 
             document.getElementById('year').textContent = new Date().getFullYear(); 
-            loadAdInIframe();
             fetchProductsFromDB(); 
             setupCategoryNav(); 
             setupSearch(); 
