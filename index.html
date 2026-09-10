@@ -32,13 +32,17 @@
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; }
         body { background-color: var(--bg-primary); color: var(--text-primary); display: flex; flex-direction: column; min-height: 100vh; line-height: 1.6; overflow-x: hidden; }
 
-        /* Header - Scrolls away */
+        /* Header */
         .header { background: #ffffff; border-bottom: 1px solid var(--border-color); padding: 14px 30px; display: flex; justify-content: space-between; align-items: center; box-shadow: var(--shadow-sm); }
         .logo { flex: 1; display: flex; justify-content: center; max-width: 100%; }
         .logo img { width: 100%; max-width: 700px; height: auto; display: block; object-fit: contain; }
         .search-box { flex: 1; max-width: 650px; background: var(--bg-secondary); border-radius: 50px; padding: 10px 20px; display: flex; align-items: center; border: 1px solid var(--border-color); transition: var(--transition); margin-left: 20px; }
         .search-box:focus-within { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); }
         .search-box input { flex: 1; background: transparent; border: none; color: var(--text-primary); outline: none; font-size: 14px; }
+
+        /* Top Sticky Ad Banner */
+        .top-ad-banner { background: #fff; border-bottom: 1px solid var(--border-color); padding: 8px 0; text-align: center; position: relative; min-height: 60px; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+        .top-ad-banner .ad-sponsor-label { position: absolute; top: 5px; right: 8px; background: rgba(0,0,0,0.7); color: #fff; font-size: 9px; font-weight: 700; padding: 2px 6px; border-radius: 10px; z-index: 10; }
 
         /* Category Nav */
         .category-nav { background: #ffffff; border-bottom: 1px solid var(--border-color); padding: 0; display: flex; justify-content: center; gap: 0; overflow-x: auto; scrollbar-width: none; }
@@ -52,7 +56,7 @@
         .section-header { padding: 20px 0 10px; }
         .section-title { font-size: 16px; font-weight: 700; color: var(--text-primary); border-left: 4px solid var(--accent); padding-left: 12px; text-transform: uppercase; letter-spacing: 0.5px; }
 
-        /* Sponsored Carousel */
+        /* Sponsored Products */
         .carousel-wrapper { position: relative; overflow: hidden; }
         .carousel-container { display: flex; gap: 12px; padding: 10px 0 20px; overflow-x: auto; scrollbar-width: none; scroll-behavior: smooth; }
         .carousel-container::-webkit-scrollbar { display: none; }
@@ -77,12 +81,12 @@
         .badge-instock { position: absolute; top: 8px; right: 8px; background: rgba(255,255,255,0.9); color: var(--success); font-size: 10px; font-weight: 700; padding: 3px 6px; border-radius: 8px; }
         .delivery-tag { display: inline-block; background: #e6f9f0; color: #1a7a45; padding: 3px 8px; border-radius: 15px; font-size: 11px; font-weight: 700; margin-top: 6px; }
 
-        /* Help Button (Bouncing) */
+        /* Help Button */
         .help-button { position: fixed; bottom: 20px; right: 20px; z-index: 9999; width: 50px; height: 50px; background: var(--accent); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 24px; cursor: pointer; box-shadow: var(--shadow-lg); animation: bounceHelp 3s ease-in-out infinite; transition: var(--transition); }
         .help-button:hover { background: var(--accent-hover); transform: scale(1.1); }
         @keyframes bounceHelp { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
 
-        /* Admin (Hidden) */
+        /* Admin */
         .admin-fullstop { position: fixed; bottom: 20px; left: 20px; z-index: 9999; width: 25px; height: 25px; background: red; border-radius: 50%; border: 2px solid #fff; box-shadow: var(--shadow-md); cursor: pointer; transition: var(--transition); display: none; }
         .admin-fullstop.active { display: block; }
         .admin-fullstop:hover { transform: scale(1.2); }
@@ -140,6 +144,10 @@
 </head>
 <body>
 
+    <!-- ✅ ADSTERRA SOCIAL BAR (Best performing - floating side ad) -->
+    <script async="async" data-cfasync="false" src="https://pl31267888.profitableratecpmnetwork.com/84e0d2e547e6c4cb1970fa5bff894187/invoke.js"></script>
+    <div id="container-84e0d2e547e6c4cb1970fa5bff894187"></div>
+
     <!-- Header -->
     <header class="header">
         <div class="logo"><img src="https://i.ibb.co/JjpSbHHB/Chat-GPT-Image-Sep-9-2026-11-35-45-PM.png" alt="FurniHub 9ja"></div>
@@ -149,7 +157,13 @@
         </div>
     </header>
 
-    <!-- Help Button (Bouncing - Customer Care) -->
+    <!-- ✅ TOP STICKY AD BANNER (Replaces annoying Popunder) -->
+    <div class="top-ad-banner">
+        <div class="ad-sponsor-label">Sponsored</div>
+        <script src="https://pl31267886.profitableratecpmnetwork.com/d8/95/4c/d8954c9cac24a4e4fa080bd08eaf7b1e.js"></script>
+    </div>
+
+    <!-- Help Button -->
     <div class="help-button" onclick="openHelp()" title="Customer Care">❓</div>
 
     <!-- Category Nav -->
@@ -170,7 +184,7 @@
         <div class="masonry-grid" id="masonryGrid"></div>
     </div>
 
-    <!-- Admin Panel (Hidden, only accessible by adding #admin to URL) -->
+    <!-- Admin Panel -->
     <div id="adminPanelContainer" class="hidden section-container" style="max-width: 800px; padding-top: 40px;"></div>
 
     <!-- Footer -->
@@ -241,28 +255,28 @@
         <div class="modal-box">
             <button class="modal-close" onclick="closeModal('aboutModal')">×</button>
             <h2 style="margin-bottom: 15px;">About FurniHub 9ja</h2>
-            <p style="color: var(--text-secondary); line-height: 1.8;">At FurniHub 9ja, we are dedicated to transforming your living spaces into havens of comfort, elegance, and functionality. As a premier furniture marketplace in Nigeria, we connect you with skilled furniture makers and vendors who craft high-quality sofas, dining tables, kitchen units, TV stands, and bed frames that perfectly blend modern design with enduring durability.</p>
+            <p style="color: var(--text-secondary); line-height: 1.8;">At FurniHub 9ja, we are dedicated to transforming your living spaces into havens of comfort, elegance, and functionality. As a premier furniture marketplace in Nigeria, we connect you with skilled furniture makers and vendors.</p>
         </div>
     </div>
     <div class="modal-overlay" id="policyModal">
         <div class="modal-box">
             <button class="modal-close" onclick="closeModal('policyModal')">×</button>
             <h2 style="margin-bottom: 15px;">Payment & Delivery Policy</h2>
-            <p style="color: var(--text-secondary); line-height: 1.8;"><strong>🚚 Delivery:</strong> Free delivery available on selected items.<br><br><strong>💳 Flexible Payment Options:</strong> Pay Half, Pay Balance on Delivery OR Pay Fully Upfront.</p>
+            <p style="color: var(--text-secondary); line-height: 1.8;">Free delivery on selected items. Pay Half, Pay Balance on Delivery OR Pay Fully Upfront.</p>
         </div>
     </div>
     <div class="modal-overlay" id="privacyModal">
         <div class="modal-box">
             <button class="modal-close" onclick="closeModal('privacyModal')">×</button>
             <h2 style="margin-bottom: 15px;">Privacy Policy</h2>
-            <p style="color: var(--text-secondary); line-height: 1.8;">At FurniHub 9ja, your privacy is paramount. We do not sell, rent, or share your personal data with third parties.</p>
+            <p style="color: var(--text-secondary); line-height: 1.8;">Your privacy is paramount. We do not sell, rent, or share your personal data with third parties.</p>
         </div>
     </div>
     <div class="modal-overlay" id="licenseModal">
         <div class="modal-box" style="max-width: 700px;">
             <button class="modal-close" onclick="closeModal('licenseModal')">×</button>
             <h2 style="margin-bottom: 15px;">Apache License</h2>
-            <div style="color: var(--text-secondary); line-height: 1.6; font-size: 13px; max-height: 60vh; overflow-y: auto; padding-right: 10px;"><pre style="white-space: pre-wrap; font-family: inherit; color: var(--text-secondary);">Apache License, Version 2.0...</pre></div>
+            <div style="color: var(--text-secondary); line-height: 1.6; font-size: 13px; max-height: 60vh; overflow-y: auto; padding-right: 10px;"><pre style="white-space: pre-wrap; font-family: inherit; color: var(--text-secondary);">Apache License 2.0... See full text in footer.</pre></div>
         </div>
     </div>
 
@@ -280,8 +294,6 @@
         function formatPrice(price) { return '₦' + Number(price).toLocaleString('en-NG'); }
         function generateProductCode() { return Math.floor(10000 + Math.random() * 90000).toString(); }
         function showToast(msg) { const t = document.createElement('div'); t.className = 'toast'; t.textContent = msg; document.getElementById('toastContainer').appendChild(t); setTimeout(() => t.remove(), 3000); }
-
-        // Help Button
         function openHelp() { window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent('Hello FurniHub 9ja, I need help with something.')}`, '_blank'); }
 
         // Upload to ImgBB
@@ -298,7 +310,7 @@
             try {
                 const response = await fetch(SHEETDB_URL); const data = await response.json();
                 if (data && data.length > 0) {
-                    products = data.map(item => ({ id: Number(item.id), code: item.code || generateProductCode(), name: item.name, price: Number(item.price), vendor: item.vendor || 'Unknown', category: item.category, section: item.section, rating: Number(item.rating) || 4.5, image: item.image, description: item.description || '', status: item.status || 'approved', sellerWhatsApp: item.sellerWhatsApp || '', delivery: item.delivery || 'free' }));
+                    products = data.map(item => ({ id: Number(item.id), code: item.code || generateProductCode(), name: item.name, price: Number(item.price), vendor: item.vendor || 'Unknown', category: item.category, section: item.section, rating: Number(item.rating) || 4.5, image: item.image, description: item.description || '', status: item.status || 'approved', sellerWhatsApp: item.sellerWhatsApp || '', delivery: item.delivery || '' }));
                 } else { products = []; }
                 renderStore();
             } catch (error) { console.error("Error:", error); products = []; renderStore(); }
@@ -312,7 +324,13 @@
             if (activeCategory !== 'all') { sponsored = sponsored.filter(p => p.category === activeCategory); recommended = recommended.filter(p => p.category === activeCategory); }
 
             carousel.innerHTML = sponsored.map(p => `<div class="carousel-card" onclick="openFullScreen(${p.id})"><div class="badge-sponsored">Sponsored</div><img src="${p.image}"><div class="info"><div class="title">${p.name}</div><div class="price">${formatPrice(p.price)}</div><div class="vendor">${p.vendor}</div></div></div>`).join('');
-            masonry.innerHTML = recommended.map(p => `<div class="masonry-item" onclick="openFullScreen(${p.id})"><div class="badge-instock">In stock</div><img src="${p.image}"><div class="info"><div class="title">${p.name}</div><div class="price">${formatPrice(p.price)}</div><div class="vendor">${p.vendor}</div>${p.delivery === 'free' ? '<div class="delivery-tag">🚚 Free Delivery</div>' : '<div class="delivery-tag" style="background:#fff3e0;color:#b35c00;">Delivery Fee Applies</div>'}</div></div>`).join('');
+
+            masonry.innerHTML = recommended.map(p => {
+                let deliveryTag = '';
+                if (p.delivery === 'free') deliveryTag = '<div class="delivery-tag">🚚 Free Delivery</div>';
+                else if (p.delivery === 'paid') deliveryTag = '<div class="delivery-tag" style="background:#fff3e0;color:#b35c00;">Delivery Fee Applies</div>';
+                return `<div class="masonry-item" onclick="openFullScreen(${p.id})"><div class="badge-instock">In stock</div><img src="${p.image}"><div class="info"><div class="title">${p.name}</div><div class="price">${formatPrice(p.price)}</div><div class="vendor">${p.vendor}</div>${deliveryTag}</div></div>`;
+            }).join('');
         }
 
         // Seller Modal
@@ -337,15 +355,16 @@
         function toggleFullScreenDetails() { const d = document.getElementById('fsHiddenDetails'), b = document.getElementById('fsUnhideBtn'); if (d.style.display === 'block') { d.style.display = 'none'; b.textContent = 'Unhide Details'; } else { d.style.display = 'block'; b.textContent = 'Hide Details'; } }
         function shareProduct() { const p = products.find(x => x.id === currentFullScreenProductId); if (!p) return; const link = `${window.location.href.split('?')[0].replace('index.html', '')}product.html?code=${p.code}`; navigator.clipboard.writeText(link).then(() => showToast('✅ Link copied!')).catch(() => showToast('❌ Copy failed')); }
         function sendFullScreenWhatsApp() { const p = products.find(x => x.id === currentFullScreenProductId); if (!p) return; const target = p.sellerWhatsApp || WHATSAPP_NUMBER; const msg = `Hello, I need this furniture:\n\nProduct: ${p.name}\nPrice: ${formatPrice(p.price)}\nImage: ${p.image}`; window.open(`https://wa.me/${target}?text=${encodeURIComponent(msg)}`, '_blank'); }
+        function copyCode(code) { navigator.clipboard.writeText(code).then(() => showToast('✅ Code copied: ' + code)).catch(() => showToast('❌ Copy failed')); }
 
-        // Admin Access (Hidden)
+        // Admin
         function checkAdminAccess() { if (window.location.hash === '#admin') { document.getElementById('adminBtn').classList.add('active'); } }
         window.addEventListener('hashchange', checkAdminAccess);
-        function toggleAdmin() { const c = document.getElementById('adminPanelContainer'); if (isAdmin) { isAdmin = false; c.classList.add('hidden'); showToast('Exited'); } else { c.classList.remove('hidden'); c.innerHTML = `<div id="adminLogin" style="text-align:center;padding:40px;"><h2>Admin</h2><input type="password" id="adminPass" placeholder="Password" onkeypress="if(event.key==='Enter') checkAdminPass()"><button onclick="checkAdminPass()" class="btn btn-primary" style="margin-top:10px;">Login</button></div>`; } }
-        function checkAdminPass() { const p = document.getElementById('adminPass').value; if (p === 'Okwudiri@007') { isAdmin = true; document.getElementById('adminLogin').style.display='none'; const d = document.createElement('div'); d.innerHTML = `<h3>Pending</h3><div id="pendingList"></div><h3>All</h3><div id="allList"></div>`; document.getElementById('adminPanelContainer').innerHTML = ''; document.getElementById('adminPanelContainer').appendChild(d); renderAdminLists(); showToast('Welcome!'); } else { showToast('❌ Wrong'); } }
-        function renderAdminLists() { const pending = products.filter(p => p.status === 'pending'); const all = products; document.getElementById('pendingList').innerHTML = pending.map(p => `<p>${p.name} - <button onclick="approveProduct(${p.id})">Approve</button></p>`).join('') || 'None'; document.getElementById('allList').innerHTML = all.map(p => `<p>${p.name} - <button onclick="deleteProduct(${p.id})">Delete</button></p>`).join(''); }
+        function toggleAdmin() { const c = document.getElementById('adminPanelContainer'); if (isAdmin) { isAdmin = false; c.classList.add('hidden'); showToast('Exited'); } else { c.classList.remove('hidden'); c.innerHTML = `<div id="adminLogin" style="text-align:center;padding:40px;"><h2>Admin</h2><input type="password" id="adminPass" placeholder="Password" onkeypress="if(event.key==='Enter') checkAdminPass()"><button onclick="checkAdminPass()" class="btn btn-primary" style="margin-top:10px;background:var(--accent);color:#fff;border:none;padding:10px 20px;border-radius:6px;cursor:pointer;">Login</button></div>`; } }
+        function checkAdminPass() { const p = document.getElementById('adminPass').value; if (p === 'Okwudiri@007') { isAdmin = true; const c = document.getElementById('adminPanelContainer'); c.innerHTML = `<h3>Pending Approvals</h3><div id="pendingList" style="margin-bottom:20px;"></div><h3>All Products</h3><div id="allList"></div>`; renderAdminLists(); showToast('Welcome!'); } else { showToast('❌ Wrong'); } }
+        function renderAdminLists() { const pending = products.filter(p => p.status === 'pending'); const all = products; document.getElementById('pendingList').innerHTML = pending.map(p => `<p style="padding:10px;border:1px solid #ddd;margin:5px 0;border-radius:6px;">${p.name} - ${p.vendor} <button onclick="approveProduct(${p.id})" style="background:green;color:#fff;border:none;padding:5px 10px;border-radius:4px;cursor:pointer;">Approve</button> <button onclick="deleteProduct(${p.id})" style="background:red;color:#fff;border:none;padding:5px 10px;border-radius:4px;cursor:pointer;">Delete</button></p>`).join('') || '<p>None</p>'; document.getElementById('allList').innerHTML = all.map(p => `<p style="padding:10px;border:1px solid #ddd;margin:5px 0;border-radius:6px;">${p.name} - ${p.status} <button onclick="deleteProduct(${p.id})" style="background:red;color:#fff;border:none;padding:5px 10px;border-radius:4px;cursor:pointer;">Delete</button></p>`).join(''); }
         async function approveProduct(id) { const p = products.find(x => x.id === id); if (p) { p.status = 'approved'; await fetch(`${SHEETDB_URL}/id/${id}`, { method: 'PATCH', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ status: 'approved' }) }); renderStore(); renderAdminLists(); showToast('Approved!'); } }
-        async function deleteProduct(id) { if (confirm('Delete?')) { await fetch(`${SHEETDB_URL}/id/${id}`, { method: 'DELETE' }); products = products.filter(p => p.id !== id); renderStore(); renderAdminLists(); } }
+        async function deleteProduct(id) { if (confirm('Delete?')) { await fetch(`${SHEETDB_URL}/id/${id}`, { method: 'DELETE' }); products = products.filter(p => p.id !== id); renderStore(); renderAdminLists(); showToast('Deleted'); } }
 
         // Auto Rotate Sponsored
         function startCarouselRotation() { const c = document.getElementById('carouselContainer'); if (c.children.length <= 1) return; setInterval(() => { if (c.scrollLeft + c.clientWidth >= c.scrollWidth - 5) { c.scrollTo({ left: 0, behavior: 'smooth' }); } else { c.scrollBy({ left: 200, behavior: 'smooth' }); } }, 5000); }
@@ -365,5 +384,6 @@
         function init() { document.getElementById('year').textContent = new Date().getFullYear(); fetchProductsFromDB(); setupCategoryNav(); setupSearch(); startCarouselRotation(); checkAdminAccess(); }
         init();
     </script>
+
 </body>
 </html>
