@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FurniHub 9ja | Premium Home Furnishings</title>
     <style>
         :root {
@@ -14,49 +14,65 @@
             --text-secondary: #555555;
             --text-muted: #888888;
             --accent: #ff6a00;
-            --accent-hover: #e05e00;
             --accent-soft: rgba(255, 106, 0, 0.1);
-            --danger: #ff4757;
             --success: #2ed573;
             --whatsapp: #25D366;
-            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.05);
-            --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.1);
-            --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.15);
-            --radius-sm: 8px;
             --radius-md: 12px;
             --radius-lg: 20px;
-            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
         }
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; }
-        body { background-color: var(--bg-primary); color: var(--text-primary); display: flex; flex-direction: column; min-height: 100vh; line-height: 1.6; overflow-x: hidden; }
-
-        /* Force Desktop-like rendering on mobile (width = 1200px so it doesn't wrap) */
-        .page-wrapper { min-width: 1200px; width: 100%; }
+        body { background: #ffffff; color: var(--text-primary); line-height: 1.6; overflow-x: hidden; }
 
         /* Header */
-        .header { background: #ffffff; border-bottom: 1px solid var(--border-color); padding: 14px 30px; display: flex; justify-content: space-between; align-items: center; box-shadow: var(--shadow-sm); gap: 20px; }
-        .logo { flex: 0 0 auto; display: flex; justify-content: center; }
-        .logo img { height: 60px; width: auto; display: block; object-fit: contain; }
+        .header { background: #ffffff; border-bottom: 1px solid var(--border-color); padding: 14px 30px; display: flex; justify-content: space-between; align-items: center; gap: 20px; }
+        .logo img { height: 60px; width: auto; display: block; }
         .search-box { flex: 1; background: var(--bg-secondary); border-radius: 50px; padding: 10px 20px; display: flex; align-items: center; border: 1px solid var(--border-color); }
-        .search-box input { flex: 1; background: transparent; border: none; color: var(--text-primary); outline: none; font-size: 14px; }
+        .search-box input { flex: 1; background: transparent; border: none; outline: none; font-size: 14px; }
 
-        /* Top Ad Banner */
-        .top-ad-banner { background: #fff; border-bottom: 1px solid var(--border-color); padding: 8px 0; text-align: center; position: relative; display: flex; align-items: center; justify-content: center; overflow: hidden; min-height: 106px; }
-        .top-ad-banner .ad-sponsor-label { position: absolute; top: 5px; right: 8px; background: rgba(0,0,0,0.7); color: #fff; font-size: 9px; font-weight: 700; padding: 2px 6px; border-radius: 10px; z-index: 10; }
+        /* ============ NATIVE BANNER AD ROW (4 squares) ============ */
+        .top-square-ads {
+            background: #fff;
+            border-bottom: 1px solid var(--border-color);
+            padding: 10px 12px;
+            position: relative;
+            min-height: 200px;
+        }
+        .top-square-ads .ad-sponsor-label {
+            position: absolute;
+            top: 5px;
+            right: 15px;
+            background: rgba(0,0,0,0.7);
+            color: #fff;
+            font-size: 9px;
+            font-weight: 700;
+            padding: 2px 6px;
+            border-radius: 10px;
+            z-index: 10;
+        }
+        .top-square-ads-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
 
         /* Category Nav */
-        .category-nav { background: #ffffff; border-bottom: 1px solid var(--border-color); padding: 0; display: flex; justify-content: center; gap: 0; overflow-x: auto; }
-        .nav-btn { background: transparent; color: var(--text-secondary); border: none; padding: 12px 18px; font-weight: 600; font-size: 13px; white-space: nowrap; cursor: pointer; border-bottom: 3px solid transparent; }
+        .category-nav { background: #ffffff; border-bottom: 1px solid var(--border-color); padding: 0; display: flex; justify-content: center; }
+        .nav-btn { background: transparent; color: var(--text-secondary); border: none; padding: 12px 18px; font-weight: 600; font-size: 13px; cursor: pointer; border-bottom: 3px solid transparent; white-space: nowrap; }
         .nav-btn.active { color: var(--accent); border-bottom-color: var(--accent); background: var(--accent-soft); }
 
         /* Sections */
         .section-container { max-width: 1400px; margin: 0 auto; padding: 0 30px; width: 100%; }
         .section-header { padding: 20px 0 10px; }
-        .section-title { font-size: 16px; font-weight: 700; color: var(--text-primary); border-left: 4px solid var(--accent); padding-left: 12px; text-transform: uppercase; letter-spacing: 0.5px; }
+        .section-title { font-size: 16px; font-weight: 700; border-left: 4px solid var(--accent); padding-left: 12px; text-transform: uppercase; letter-spacing: 0.5px; }
 
         /* Sponsored Carousel */
         .carousel-wrapper { overflow: hidden; }
-        .carousel-container { display: flex; gap: 12px; padding: 10px 0 20px; overflow-x: auto; scroll-behavior: smooth; }
+        .carousel-container { display: flex; gap: 12px; padding: 10px 0 20px; overflow-x: auto; scroll-behavior: smooth; scrollbar-width: none; }
+        .carousel-container::-webkit-scrollbar { display: none; }
         .carousel-card { flex: 0 0 180px; background: var(--bg-card); border-radius: var(--radius-md); overflow: hidden; border: 1px solid var(--border-color); cursor: pointer; position: relative; }
         .carousel-card img { width: 100%; height: 160px; object-fit: cover; display: block; }
         .carousel-card .info { padding: 10px; }
@@ -65,7 +81,7 @@
         .carousel-card .vendor { font-size: 11px; color: var(--text-muted); text-transform: uppercase; }
         .badge-sponsored { position: absolute; top: 8px; left: 8px; background: rgba(255,255,255,0.9); color: #333; font-size: 9px; font-weight: 800; padding: 2px 6px; border-radius: 8px; }
 
-        /* Masonry Grid - 4 columns (like desktop) */
+        /* Masonry Grid */
         .masonry-grid { columns: 4; column-gap: 12px; padding-bottom: 40px; }
         .masonry-item { break-inside: avoid; margin-bottom: 12px; background: var(--bg-card); border-radius: var(--radius-md); overflow: hidden; border: 1px solid var(--border-color); cursor: pointer; position: relative; }
         .masonry-item img { width: 100%; display: block; }
@@ -77,193 +93,182 @@
         .delivery-tag { display: inline-block; background: #e6f9f0; color: #1a7a45; padding: 3px 8px; border-radius: 15px; font-size: 11px; font-weight: 700; margin-top: 6px; }
 
         /* Help Button */
-        .help-button { position: fixed; bottom: 20px; right: 20px; z-index: 9999; width: 50px; height: 50px; background: var(--accent); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 24px; cursor: pointer; box-shadow: var(--shadow-lg); animation: bounceHelp 3s ease-in-out infinite; }
-        @keyframes bounceHelp { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
-
-        /* Admin */
+        .help-button { position: fixed; bottom: 20px; right: 20px; z-index: 9999; width: 50px; height: 50px; background: var(--accent); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 24px; cursor: pointer; }
         .admin-fullstop { position: fixed; bottom: 20px; left: 20px; z-index: 9999; width: 25px; height: 25px; background: red; border-radius: 50%; border: 2px solid #fff; display: none; }
         .admin-fullstop.active { display: block; }
 
         /* Footer */
-        .footer { background: var(--bg-secondary); border-top: 1px solid var(--border-color); margin-top: auto; padding: 30px 30px 10px; }
-        .footer-content { max-width: 1400px; margin: 0 auto; }
-        .footer-links { display: flex; justify-content: center; flex-wrap: wrap; gap: 15px; margin-bottom: 15px; }
+        .footer { background: var(--bg-secondary); border-top: 1px solid var(--border-color); padding: 30px 30px 10px; }
+        .footer-links { display: flex; justify-content: center; gap: 15px; margin-bottom: 15px; flex-wrap: wrap; }
         .footer-links a { color: var(--text-secondary); text-decoration: none; font-size: 12px; font-weight: 500; }
         .footer-copyright { color: var(--text-muted); font-size: 11px; text-align: center; border-top: 1px solid var(--border-color); padding-top: 10px; }
 
         /* Modals */
-        .modal-overlay { position: fixed; inset: 0; background: rgba(0, 0, 0, 0.5); z-index: 10000; display: flex; align-items: center; justify-content: center; opacity: 0; visibility: hidden; }
+        .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 10000; display: flex; align-items: center; justify-content: center; opacity: 0; visibility: hidden; }
         .modal-overlay.active { opacity: 1; visibility: visible; }
-        .modal-box { background: var(--bg-card); border-radius: var(--radius-lg); max-width: 480px; width: 90%; padding: 30px; position: relative; max-height: 85vh; overflow-y: auto; box-shadow: var(--shadow-lg); }
-        .modal-close { position: absolute; top: 15px; right: 15px; background: var(--bg-secondary); border: none; width: 32px; height: 32px; border-radius: 50%; font-size: 18px; cursor: pointer; }
-
-        /* Toast */
-        .toast { position: fixed; bottom: 20px; right: 20px; background: var(--text-primary); color: var(--bg-primary); padding: 14px 24px; border-radius: var(--radius-md); border-left: 4px solid var(--accent); z-index: 99999; font-weight: 500; }
-
-        /* Full Screen Modal */
-        #fullScreenModal .modal-box { max-width: 95vw; max-height: 95vh; width: 100%; background: #fff; border: none; text-align: center; padding: 10px; }
+        .modal-box { background: #fff; border-radius: var(--radius-lg); max-width: 480px; width: 90%; padding: 30px; position: relative; max-height: 85vh; overflow-y: auto; }
+        .modal-close { position: absolute; top: 15px; right: 15px; background: #f5f5f5; border: none; width: 32px; height: 32px; border-radius: 50%; font-size: 18px; cursor: pointer; }
+        #fullScreenModal .modal-box { max-width: 95vw; width: 100%; background: #fff; border: none; text-align: center; padding: 10px; }
         #fullScreenImg { max-width: 100%; max-height: 75vh; object-fit: contain; border-radius: 10px; margin: 10px 0; }
         .whatsapp-full-btn { background: var(--whatsapp); color: #fff; border: none; border-radius: 50px; padding: 12px 24px; font-size: 16px; font-weight: 700; cursor: pointer; margin-top: 10px; }
         .share-btn { background: var(--accent-soft); border: 1px solid var(--accent); color: var(--accent); border-radius: 8px; padding: 10px; width: 100%; font-weight: 700; cursor: pointer; margin-top: 10px; }
+        .toast { position: fixed; bottom: 20px; right: 20px; background: #111; color: #fff; padding: 14px 24px; border-radius: var(--radius-md); border-left: 4px solid var(--accent); z-index: 99999; font-weight: 500; }
 
-        /* ============ MOBILE: ZOOM OUT TO MATCH DESKTOP ============ */
-        /* This is the key - we zoom out the whole page so mobile looks exactly like desktop but smaller */
+        /* ============ MOBILE: SAME AS DESKTOP ============ */
         @media (max-width: 900px) {
-            body { overflow-x: auto; }
-            .page-wrapper {
-                width: 1200px;
-                transform: scale(0.35);
-                transform-origin: 0 0;
-                min-height: 2857px; /* 1000 / 0.35 = 2857 so the page scrolls properly */
-            }
+            .header { padding: 10px 12px; gap: 10px; flex-wrap: nowrap; }
+            .logo img { height: 40px; }
+            .search-box { padding: 8px 14px; flex: 1; }
+            .search-box input { font-size: 11px; }
+
+            .top-square-ads { padding: 6px 8px; min-height: 130px; }
+            .top-square-ads-container { gap: 5px; }
+
+            .category-nav { justify-content: flex-start; padding: 0 5px; overflow-x: auto; scrollbar-width: none; }
+            .nav-btn { padding: 10px 12px; font-size: 11px; }
+
+            .section-container { padding: 0 12px; }
+            .section-header { padding: 15px 0 8px; }
+            .section-title { font-size: 13px; padding-left: 8px; }
+
+            .carousel-container { gap: 8px; padding: 8px 0 15px; }
+            .carousel-card { flex: 0 0 130px; }
+            .carousel-card img { height: 110px; }
+            .carousel-card .info { padding: 6px; }
+            .carousel-card .title { font-size: 10px; }
+            .carousel-card .price { font-size: 11px; }
+            .carousel-card .vendor { font-size: 8px; }
+            .badge-sponsored { font-size: 7px; padding: 2px 4px; top: 4px; left: 4px; }
+
+            .masonry-grid { columns: 4; column-gap: 6px; padding-bottom: 20px; }
+            .masonry-item { margin-bottom: 6px; border-radius: 6px; }
+            .masonry-item .info { padding: 4px; }
+            .masonry-item .title { font-size: 9px; margin-bottom: 2px; }
+            .masonry-item .price { font-size: 10px; }
+            .masonry-item .vendor { font-size: 7px; }
+            .badge-instock { font-size: 6px; padding: 1px 3px; top: 3px; right: 3px; }
+            .delivery-tag { font-size: 7px; padding: 2px 5px; margin-top: 3px; }
+
+            .footer { padding: 15px 10px 8px; }
+            .footer-links { gap: 8px; }
+            .footer-links a { font-size: 9px; }
+            .footer-copyright { font-size: 8px; }
+
+            .help-button { width: 40px; height: 40px; font-size: 18px; bottom: 15px; right: 15px; }
         }
         @media (max-width: 500px) {
-            .page-wrapper {
-                transform: scale(0.30);
-                min-height: 3333px;
-            }
+            .logo img { height: 35px; }
+            .carousel-card { flex: 0 0 110px; }
+            .carousel-card img { height: 95px; }
+            .masonry-grid { column-gap: 5px; }
         }
     </style>
 </head>
 <body>
 
-    <!-- ADSTERRA SOCIAL BAR -->
-    <script async="async" data-cfasync="false" src="https://pl31267888.profitableratecpmnetwork.com/84e0d2e547e6c4cb1970fa5bff894187/invoke.js"></script>
-    <div id="container-84e0d2e547e6c4cb1970fa5bff894187"></div>
-
-    <!-- PAGE WRAPPER - everything inside gets zoomed out on mobile -->
-    <div class="page-wrapper">
-
-        <!-- Header -->
-        <header class="header">
-            <div class="logo"><img src="https://i.ibb.co/JjpSbHHB/Chat-GPT-Image-Sep-9-2026-11-35-45-PM.png" alt="FurniHub 9ja"></div>
-            <div class="search-box">
-                <span style="color: var(--text-muted); margin-right: 8px;">🔍</span>
-                <input type="text" placeholder="Search sofas, chairs, dining sets, or product code..." id="searchInput">
-            </div>
-        </header>
-
-        <!-- TOP AD BANNER - Desktop 728x90 / Mobile 320x50 -->
-        <div class="top-ad-banner">
-            <div class="ad-sponsor-label">Sponsored</div>
-
-            <!-- Desktop 728x90 -->
-            <div class="ad-desktop">
-                <script type="text/javascript">
-                    atOptions = {
-                        'key' : 'a0858180525454aeda69b31e465039de',
-                        'format' : 'iframe',
-                        'height' : 90,
-                        'width' : 728,
-                        'params' : {}
-                    };
-                </script>
-                <script src="https://www.highrevenueformat.com/a0858180525454aeda69b31e465039de/invoke.js"></script>
-            </div>
-
-            <!-- Mobile 320x50 (only shows on small screens) -->
-            <div class="ad-mobile" style="display:none;">
-                <script type="text/javascript">
-                    atOptions = {
-                        'key' : 'ee776547b003ffb7aa0abb20ee46ee5d',
-                        'format' : 'iframe',
-                        'height' : 50,
-                        'width' : 320,
-                        'params' : {}
-                    };
-                </script>
-                <script src="https://www.highrevenueformat.com/ee776547b003ffb7aa0abb20ee46ee5d/invoke.js"></script>
-            </div>
+    <!-- Header -->
+    <header class="header">
+        <div class="logo"><img src="https://i.ibb.co/JjpSbHHB/Chat-GPT-Image-Sep-9-2026-11-35-45-PM.png" alt="FurniHub 9ja"></div>
+        <div class="search-box">
+            <span style="color: #888; margin-right: 8px;">🔍</span>
+            <input type="text" placeholder="Search sofas, chairs, dining sets, or product code..." id="searchInput">
         </div>
+    </header>
 
-        <!-- Help Button -->
-        <div class="help-button" onclick="openHelp()">❓</div>
-
-        <!-- Category Nav -->
-        <nav class="category-nav" id="categoryNav">
-            <button class="nav-btn active" data-category="all">All</button>
-            <button class="nav-btn" data-category="sofa">Sofa</button>
-            <button class="nav-btn" data-category="dining">Dining</button>
-            <button class="nav-btn" data-category="kitchen">Kitchen</button>
-            <button class="nav-btn" data-category="tv">TV Station</button>
-            <button class="nav-btn" data-category="bed">Bed Frame</button>
-        </nav>
-
-        <!-- Store Content -->
-        <div class="section-container">
-            <div class="section-header"><div class="section-title">✨ Sponsored Products</div></div>
-            <div class="carousel-wrapper"><div class="carousel-container" id="carouselContainer"></div></div>
-            <div class="section-header"><div class="section-title">🔥 Recommended for you</div></div>
-            <div class="masonry-grid" id="masonryGrid"></div>
+    <!-- ============ NATIVE BANNER + SOCIAL BAR (single code, 4 square ads) ============ -->
+    <div class="top-square-ads">
+        <div class="ad-sponsor-label">Sponsored</div>
+        <div class="top-square-ads-container">
+            <!-- Adsterra Native Banner (auto fills with 4 square tiles) + Social Bar -->
+            <script async="async" data-cfasync="false" src="https://pl31267888.profitableratecpmnetwork.com/84e0d2e547e6c4cb1970fa5bff894187/invoke.js"></script>
+            <div id="container-84e0d2e547e6c4cb1970fa5bff894187"></div>
         </div>
-
-        <!-- Admin Panel -->
-        <div id="adminPanelContainer" class="hidden section-container" style="max-width: 800px; padding-top: 40px;"></div>
-
-        <!-- Footer -->
-        <footer class="footer">
-            <div class="footer-content">
-                <div class="footer-links">
-                    <a href="#" onclick="openSellerModal()">Become a Seller Free</a>
-                    <a href="#" onclick="showAboutModal()">About Us</a>
-                    <a href="#" onclick="showPolicyModal()">Payment & Delivery</a>
-                    <a href="#" onclick="showPrivacyModal()">Privacy Policy</a>
-                    <a href="#" onclick="showLicenseModal()">License</a>
-                    <a href="https://wa.me/2348100578413" target="_blank">WhatsApp: +234 810 057 8413</a>
-                    <a href="mailto:godwindouglas8@gmail.com">Gmail: godwindouglas8@gmail.com</a>
-                </div>
-                <div class="footer-copyright">&copy; <span id="year"></span> <strong>FurniHub 9ja</strong>. All rights reserved.</div>
-            </div>
-        </footer>
-
-        <!-- Hidden Admin Padlock -->
-        <div class="admin-fullstop" id="adminBtn" onclick="toggleAdmin()"></div>
-
-        <!-- Seller Upload Modal -->
-        <div class="modal-overlay" id="sellerModal">
-            <div class="modal-box">
-                <button class="modal-close" onclick="closeSellerModal()">×</button>
-                <h2 style="margin-bottom: 15px;">Become a Seller</h2>
-                <div style="background: var(--bg-secondary); padding: 15px; border-radius: 12px;">
-                    <div style="margin-bottom:12px;"><label style="display:block;font-size:13px;margin-bottom:4px;">Your Name / Business Name</label><input type="text" id="sellerName" placeholder="e.g., Mma Amisco Furniture" style="width:100%;padding:10px;border:1px solid #ddd;border-radius:8px;"></div>
-                    <div style="margin-bottom:12px;"><label style="display:block;font-size:13px;margin-bottom:4px;">Your WhatsApp Number</label><input type="text" id="sellerWhatsApp" placeholder="e.g., 2348012345678" style="width:100%;padding:10px;border:1px solid #ddd;border-radius:8px;"></div>
-                    <div style="margin-bottom:12px;"><label style="display:block;font-size:13px;margin-bottom:4px;">Furniture Name</label><input type="text" id="sellerProdName" placeholder="e.g., Luxurious Sofa" style="width:100%;padding:10px;border:1px solid #ddd;border-radius:8px;"></div>
-                    <div style="margin-bottom:12px;"><label style="display:block;font-size:13px;margin-bottom:4px;">Price (₦)</label><input type="number" id="sellerProdPrice" placeholder="e.g., 150000" style="width:100%;padding:10px;border:1px solid #ddd;border-radius:8px;"></div>
-                    <div style="margin-bottom:12px;"><label style="display:block;font-size:13px;margin-bottom:4px;">Category</label><select id="sellerProdCategory" style="width:100%;padding:10px;border:1px solid #ddd;border-radius:8px;"><option value="sofa">Sofa</option><option value="dining">Dining</option><option value="kitchen">Kitchen</option><option value="tv">TV Station</option><option value="bed">Bed Frame</option></select></div>
-                    <div style="margin-bottom:12px;"><label style="display:block;font-size:13px;margin-bottom:4px;">Delivery Option</label><select id="sellerDelivery" style="width:100%;padding:10px;border:1px solid #ddd;border-radius:8px;"><option value="free">Free Delivery</option><option value="paid">Delivery Fee Applies</option></select></div>
-                    <div style="margin-bottom:12px;"><label style="display:block;font-size:13px;margin-bottom:4px;">Section</label><select id="sellerProdSection" style="width:100%;padding:10px;border:1px solid #ddd;border-radius:8px;"><option value="sponsored">Sponsored</option><option value="recommended">Recommended</option></select></div>
-                    <div style="margin-bottom:12px;"><label style="display:block;font-size:13px;margin-bottom:4px;">Full Description</label><textarea id="sellerProdDescription" rows="3" style="width:100%;padding:10px;border:1px solid #ddd;border-radius:8px;"></textarea></div>
-                    <div style="margin-bottom:12px;"><label style="display:block;font-size:13px;margin-bottom:4px;">Upload Image</label><input type="file" id="sellerProdImage" accept="image/*" style="width:100%;padding:10px;border:1px solid #ddd;border-radius:8px;"></div>
-                    <button style="width:100%;padding:14px;background:var(--accent);color:#fff;border:none;border-radius:8px;font-weight:700;cursor:pointer;" onclick="submitSellerProduct()">Submit for Admin Approval</button>
-                </div>
-            </div>
-        </div>
-
-        <!-- Full Screen Modal -->
-        <div class="modal-overlay" id="fullScreenModal">
-            <div class="modal-box">
-                <button class="modal-close" onclick="closeFullScreen()">×</button>
-                <h3 id="fsTitle" style="margin-bottom: 5px;"></h3>
-                <p id="fsDescription" style="color: #555; font-size: 14px; margin-bottom: 15px;"></p>
-                <img id="fullScreenImg" src="" alt="">
-                <div style="margin-top: 10px;">
-                    <button id="fsUnhideBtn" onclick="toggleFullScreenDetails()" style="background: var(--bg-secondary); border: 1px solid var(--accent); color: var(--accent); border-radius: 8px; padding: 10px; width: 100%; font-weight: 700; cursor: pointer; margin-bottom: 10px;">Unhide Details</button>
-                    <div id="fsHiddenDetails" style="display: none; margin-bottom: 15px;">
-                        <p id="fsCode" style="color: #555; font-size: 13px;"></p>
-                        <button onclick="copyCode(document.getElementById('fsCode').textContent.split(': ')[1])" style="background: var(--bg-secondary); border: 1px solid #ddd; padding: 6px 10px; font-weight: 700; cursor: pointer; width: 100%; border-radius: 4px;">📋 Copy Code</button>
-                    </div>
-                </div>
-                <button class="share-btn" onclick="shareProduct()">🔗 Share Product Link</button>
-                <button class="whatsapp-full-btn" onclick="sendFullScreenWhatsApp()">💬 Chat on WhatsApp</button>
-            </div>
-        </div>
-
-        <div class="modal-overlay" id="aboutModal"><div class="modal-box"><button class="modal-close" onclick="closeModal('aboutModal')">×</button><h2>About FurniHub 9ja</h2><p style="color:#555;margin-top:15px;">Nigeria's premier furniture marketplace.</p></div></div>
-        <div class="modal-overlay" id="policyModal"><div class="modal-box"><button class="modal-close" onclick="closeModal('policyModal')">×</button><h2>Payment & Delivery</h2><p style="color:#555;margin-top:15px;">Free delivery on selected items.</p></div></div>
-        <div class="modal-overlay" id="privacyModal"><div class="modal-box"><button class="modal-close" onclick="closeModal('privacyModal')">×</button><h2>Privacy Policy</h2><p style="color:#555;margin-top:15px;">Your privacy is paramount.</p></div></div>
-        <div class="modal-overlay" id="licenseModal"><div class="modal-box"><button class="modal-close" onclick="closeModal('licenseModal')">×</button><h2>Apache License</h2><p style="color:#555;margin-top:15px;">Apache 2.0</p></div></div>
-
     </div>
+
+    <!-- Category Nav -->
+    <nav class="category-nav" id="categoryNav">
+        <button class="nav-btn active" data-category="all">All</button>
+        <button class="nav-btn" data-category="sofa">Sofa</button>
+        <button class="nav-btn" data-category="dining">Dining</button>
+        <button class="nav-btn" data-category="kitchen">Kitchen</button>
+        <button class="nav-btn" data-category="tv">TV Station</button>
+        <button class="nav-btn" data-category="bed">Bed Frame</button>
+    </nav>
+
+    <!-- Store Content -->
+    <div class="section-container">
+        <div class="section-header"><div class="section-title">✨ Sponsored Products</div></div>
+        <div class="carousel-wrapper"><div class="carousel-container" id="carouselContainer"></div></div>
+        <div class="section-header"><div class="section-title">🔥 Recommended for you</div></div>
+        <div class="masonry-grid" id="masonryGrid"></div>
+    </div>
+
+    <!-- Admin Panel -->
+    <div id="adminPanelContainer" style="display:none; max-width: 800px; margin: 0 auto; padding: 40px 30px;"></div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-links">
+            <a href="#" onclick="openSellerModal()">Become a Seller Free</a>
+            <a href="#" onclick="showAboutModal()">About Us</a>
+            <a href="#" onclick="showPolicyModal()">Payment & Delivery</a>
+            <a href="#" onclick="showPrivacyModal()">Privacy Policy</a>
+            <a href="#" onclick="showLicenseModal()">License</a>
+            <a href="https://wa.me/2348100578413" target="_blank">WhatsApp: +234 810 057 8413</a>
+            <a href="mailto:godwindouglas8@gmail.com">Gmail: godwindouglas8@gmail.com</a>
+        </div>
+        <div class="footer-copyright">&copy; <span id="year"></span> <strong>FurniHub 9ja</strong>. All rights reserved.</div>
+    </footer>
+
+    <!-- Help Button -->
+    <div class="help-button" onclick="openHelp()">❓</div>
+
+    <!-- Admin Padlock -->
+    <div class="admin-fullstop" id="adminBtn" onclick="toggleAdmin()"></div>
+
+    <!-- Seller Upload Modal -->
+    <div class="modal-overlay" id="sellerModal">
+        <div class="modal-box">
+            <button class="modal-close" onclick="closeSellerModal()">×</button>
+            <h2 style="margin-bottom: 15px;">Become a Seller</h2>
+            <div style="background: #f5f5f5; padding: 15px; border-radius: 12px;">
+                <div style="margin-bottom:12px;"><label style="display:block;font-size:13px;margin-bottom:4px;">Your Name / Business Name</label><input type="text" id="sellerName" style="width:100%;padding:10px;border:1px solid #ddd;border-radius:8px;"></div>
+                <div style="margin-bottom:12px;"><label style="display:block;font-size:13px;margin-bottom:4px;">Your WhatsApp Number</label><input type="text" id="sellerWhatsApp" style="width:100%;padding:10px;border:1px solid #ddd;border-radius:8px;"></div>
+                <div style="margin-bottom:12px;"><label style="display:block;font-size:13px;margin-bottom:4px;">Furniture Name</label><input type="text" id="sellerProdName" style="width:100%;padding:10px;border:1px solid #ddd;border-radius:8px;"></div>
+                <div style="margin-bottom:12px;"><label style="display:block;font-size:13px;margin-bottom:4px;">Price (₦)</label><input type="number" id="sellerProdPrice" style="width:100%;padding:10px;border:1px solid #ddd;border-radius:8px;"></div>
+                <div style="margin-bottom:12px;"><label style="display:block;font-size:13px;margin-bottom:4px;">Category</label><select id="sellerProdCategory" style="width:100%;padding:10px;border:1px solid #ddd;border-radius:8px;"><option value="sofa">Sofa</option><option value="dining">Dining</option><option value="kitchen">Kitchen</option><option value="tv">TV Station</option><option value="bed">Bed Frame</option></select></div>
+                <div style="margin-bottom:12px;"><label style="display:block;font-size:13px;margin-bottom:4px;">Delivery Option</label><select id="sellerDelivery" style="width:100%;padding:10px;border:1px solid #ddd;border-radius:8px;"><option value="free">Free Delivery</option><option value="paid">Delivery Fee Applies</option></select></div>
+                <div style="margin-bottom:12px;"><label style="display:block;font-size:13px;margin-bottom:4px;">Section</label><select id="sellerProdSection" style="width:100%;padding:10px;border:1px solid #ddd;border-radius:8px;"><option value="sponsored">Sponsored</option><option value="recommended">Recommended</option></select></div>
+                <div style="margin-bottom:12px;"><label style="display:block;font-size:13px;margin-bottom:4px;">Full Description</label><textarea id="sellerProdDescription" rows="3" style="width:100%;padding:10px;border:1px solid #ddd;border-radius:8px;"></textarea></div>
+                <div style="margin-bottom:12px;"><label style="display:block;font-size:13px;margin-bottom:4px;">Upload Image</label><input type="file" id="sellerProdImage" accept="image/*" style="width:100%;padding:10px;border:1px solid #ddd;border-radius:8px;"></div>
+                <button style="width:100%;padding:14px;background:var(--accent);color:#fff;border:none;border-radius:8px;font-weight:700;cursor:pointer;" onclick="submitSellerProduct()">Submit for Admin Approval</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Full Screen Modal -->
+    <div class="modal-overlay" id="fullScreenModal">
+        <div class="modal-box">
+            <button class="modal-close" onclick="closeFullScreen()">×</button>
+            <h3 id="fsTitle" style="margin-bottom: 5px;"></h3>
+            <p id="fsDescription" style="color: #555; font-size: 14px; margin-bottom: 15px;"></p>
+            <img id="fullScreenImg" src="" alt="">
+            <div style="margin-top: 10px;">
+                <button id="fsUnhideBtn" onclick="toggleFullScreenDetails()" style="background: #f5f5f5; border: 1px solid var(--accent); color: var(--accent); border-radius: 8px; padding: 10px; width: 100%; font-weight: 700; cursor: pointer; margin-bottom: 10px;">Unhide Details</button>
+                <div id="fsHiddenDetails" style="display: none; margin-bottom: 15px;">
+                    <p id="fsCode" style="color: #555; font-size: 13px;"></p>
+                    <button onclick="copyCode(document.getElementById('fsCode').textContent.split(': ')[1])" style="background: #f5f5f5; border: 1px solid #ddd; padding: 6px 10px; font-weight: 700; cursor: pointer; width: 100%; border-radius: 4px;">📋 Copy Code</button>
+                </div>
+            </div>
+            <button class="share-btn" onclick="shareProduct()">🔗 Share Product Link</button>
+            <button class="whatsapp-full-btn" onclick="sendFullScreenWhatsApp()">💬 Chat on WhatsApp</button>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="aboutModal"><div class="modal-box"><button class="modal-close" onclick="closeModal('aboutModal')">×</button><h2>About FurniHub 9ja</h2><p style="color:#555;margin-top:15px;">Nigeria's premier furniture marketplace.</p></div></div>
+    <div class="modal-overlay" id="policyModal"><div class="modal-box"><button class="modal-close" onclick="closeModal('policyModal')">×</button><h2>Payment & Delivery</h2><p style="color:#555;margin-top:15px;">Free delivery on selected items.</p></div></div>
+    <div class="modal-overlay" id="privacyModal"><div class="modal-box"><button class="modal-close" onclick="closeModal('privacyModal')">×</button><h2>Privacy Policy</h2><p style="color:#555;margin-top:15px;">Your privacy is paramount.</p></div></div>
+    <div class="modal-overlay" id="licenseModal"><div class="modal-box"><button class="modal-close" onclick="closeModal('licenseModal')">×</button><h2>Apache License</h2><p style="color:#555;margin-top:15px;">Apache 2.0</p></div></div>
 
     <div id="toastContainer"></div>
 
@@ -350,7 +355,7 @@
 
         function checkAdminAccess() { if (window.location.hash === '#admin') { document.getElementById('adminBtn').classList.add('active'); } }
         window.addEventListener('hashchange', checkAdminAccess);
-        function toggleAdmin() { const c = document.getElementById('adminPanelContainer'); if (isAdmin) { isAdmin = false; c.classList.add('hidden'); } else { c.classList.remove('hidden'); c.innerHTML = `<div style="text-align:center;padding:40px;"><h2>Admin</h2><input type="password" id="adminPass" placeholder="Password" style="padding:12px;border:1px solid #ddd;border-radius:8px;margin-bottom:10px;" onkeypress="if(event.key==='Enter') checkAdminPass()"><br><button onclick="checkAdminPass()" style="background:var(--accent);color:#fff;border:none;padding:10px 20px;border-radius:8px;cursor:pointer;">Login</button></div>`; } }
+        function toggleAdmin() { const c = document.getElementById('adminPanelContainer'); if (isAdmin) { isAdmin = false; c.style.display = 'none'; } else { c.style.display = 'block'; c.innerHTML = `<div style="text-align:center;padding:40px;"><h2>Admin</h2><input type="password" id="adminPass" placeholder="Password" style="padding:12px;border:1px solid #ddd;border-radius:8px;margin-bottom:10px;" onkeypress="if(event.key==='Enter') checkAdminPass()"><br><button onclick="checkAdminPass()" style="background:var(--accent);color:#fff;border:none;padding:10px 20px;border-radius:8px;cursor:pointer;">Login</button></div>`; } }
         function checkAdminPass() { const p = document.getElementById('adminPass').value; if (p === 'Okwudiri@007') { isAdmin = true; const c = document.getElementById('adminPanelContainer'); c.innerHTML = `<h3>Pending</h3><div id="pendingList"></div><h3>All</h3><div id="allList"></div>`; renderAdminLists(); } else { showToast('❌ Wrong'); } }
         function renderAdminLists() { const pending = products.filter(p => p.status === 'pending'); document.getElementById('pendingList').innerHTML = pending.map(p => `<p style="padding:10px;border:1px solid #ddd;margin:5px 0;">${p.name} <button onclick="approveProduct(${p.id})" style="background:green;color:#fff;border:none;padding:5px 10px;">Approve</button> <button onclick="deleteProduct(${p.id})" style="background:red;color:#fff;border:none;padding:5px 10px;">Delete</button></p>`).join('') || '<p>None</p>'; document.getElementById('allList').innerHTML = products.map(p => `<p style="padding:10px;border:1px solid #ddd;margin:5px 0;">${p.name} - ${p.status} <button onclick="deleteProduct(${p.id})" style="background:red;color:#fff;border:none;padding:5px 10px;">Delete</button></p>`).join(''); }
         async function approveProduct(id) { const p = products.find(x => x.id === id); if (p) { p.status = 'approved'; await fetch(`${SHEETDB_URL}/id/${id}`, { method: 'PATCH', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ status: 'approved' }) }); renderStore(); renderAdminLists(); startCarouselRotation(); } }
