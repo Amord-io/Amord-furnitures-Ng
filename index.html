@@ -38,9 +38,32 @@
         .search-box:focus-within { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); }
         .search-box input { flex: 1; background: transparent; border: none; color: var(--text-primary); outline: none; font-size: 14px; }
 
-        /* Top Ad Banner */
-        .top-ad-banner { background: #fff; border-bottom: 1px solid var(--border-color); padding: 10px 0; text-align: center; position: relative; overflow: hidden; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 80px; }
-        .top-ad-banner .ad-sponsor-label { position: absolute; top: 5px; right: 8px; background: rgba(0,0,0,0.7); color: #fff; font-size: 9px; font-weight: 700; padding: 2px 6px; border-radius: 10px; z-index: 10; }
+        /* Top Ad Banner - FIXED SIZE */
+        .top-ad-banner {
+            background: #fff;
+            border-bottom: 1px solid var(--border-color);
+            padding: 8px 0;
+            text-align: center;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            min-height: 66px;
+            max-height: 110px;
+        }
+        .top-ad-banner .ad-sponsor-label {
+            position: absolute;
+            top: 5px;
+            right: 8px;
+            background: rgba(0,0,0,0.7);
+            color: #fff;
+            font-size: 9px;
+            font-weight: 700;
+            padding: 2px 6px;
+            border-radius: 10px;
+            z-index: 10;
+        }
         .top-ad-banner .ad-desktop { display: block; }
         .top-ad-banner .ad-mobile { display: none; }
 
@@ -144,8 +167,8 @@
             .footer-copyright { font-size: 8px; }
             .help-button { width: 40px; height: 40px; font-size: 20px; bottom: 15px; right: 15px; }
 
-            /* Swap ads on mobile */
-            .top-ad-banner { min-height: 60px; padding: 5px 0; }
+            /* Switch ads on mobile - tight height */
+            .top-ad-banner { min-height: 60px; max-height: 60px; padding: 5px 0; }
             .top-ad-banner .ad-desktop { display: none; }
             .top-ad-banner .ad-mobile { display: block; }
         }
@@ -159,7 +182,7 @@
 </head>
 <body>
 
-    <!-- Social Bar -->
+    <!-- ADSTERRA SOCIAL BAR (Floating, works on all devices) -->
     <script async="async" data-cfasync="false" src="https://pl31267888.profitableratecpmnetwork.com/84e0d2e547e6c4cb1970fa5bff894187/invoke.js"></script>
     <div id="container-84e0d2e547e6c4cb1970fa5bff894187"></div>
 
@@ -172,16 +195,25 @@
         </div>
     </header>
 
-    <!-- TOP AD BANNER - Shows MOBILE ad on phones, DESKTOP ad on computers -->
+    <!-- TOP AD BANNER - Desktop 728x90 / Mobile 320x50 -->
     <div class="top-ad-banner">
         <div class="ad-sponsor-label">Sponsored</div>
 
-        <!-- DESKTOP ad (hidden on mobile) -->
+        <!-- DESKTOP: 728×90 banner -->
         <div class="ad-desktop">
-            <script src="https://pl31267886.profitableratecpmnetwork.com/d8/95/4c/d8954c9cac24a4e4fa080bd08eaf7b1e.js"></script>
+            <script type="text/javascript">
+                atOptions = {
+                    'key' : 'a0858180525454aeda69b31e465039de',
+                    'format' : 'iframe',
+                    'height' : 90,
+                    'width' : 728,
+                    'params' : {}
+                };
+            </script>
+            <script src="https://www.highrevenueformat.com/a0858180525454aeda69b31e465039de/invoke.js"></script>
         </div>
 
-        <!-- MOBILE ad (your new 320x50 banner) -->
+        <!-- MOBILE: 320×50 banner -->
         <div class="ad-mobile">
             <script type="text/javascript">
                 atOptions = {
