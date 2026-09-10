@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>FurniHub 9ja | Premium Home Furnishings</title>
     <style>
         :root {
@@ -30,48 +30,23 @@
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; }
         body { background-color: var(--bg-primary); color: var(--text-primary); display: flex; flex-direction: column; min-height: 100vh; line-height: 1.6; overflow-x: hidden; }
 
+        /* Force Desktop-like rendering on mobile (width = 1200px so it doesn't wrap) */
+        .page-wrapper { min-width: 1200px; width: 100%; }
+
         /* Header */
         .header { background: #ffffff; border-bottom: 1px solid var(--border-color); padding: 14px 30px; display: flex; justify-content: space-between; align-items: center; box-shadow: var(--shadow-sm); gap: 20px; }
         .logo { flex: 0 0 auto; display: flex; justify-content: center; }
         .logo img { height: 60px; width: auto; display: block; object-fit: contain; }
-        .search-box { flex: 1; background: var(--bg-secondary); border-radius: 50px; padding: 10px 20px; display: flex; align-items: center; border: 1px solid var(--border-color); transition: var(--transition); }
-        .search-box:focus-within { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); }
+        .search-box { flex: 1; background: var(--bg-secondary); border-radius: 50px; padding: 10px 20px; display: flex; align-items: center; border: 1px solid var(--border-color); }
         .search-box input { flex: 1; background: transparent; border: none; color: var(--text-primary); outline: none; font-size: 14px; }
 
-        /* Top Ad Banner - FIXED SIZE */
-        .top-ad-banner {
-            background: #fff;
-            border-bottom: 1px solid var(--border-color);
-            padding: 8px 0;
-            text-align: center;
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-            min-height: 66px;
-            max-height: 110px;
-        }
-        .top-ad-banner .ad-sponsor-label {
-            position: absolute;
-            top: 5px;
-            right: 8px;
-            background: rgba(0,0,0,0.7);
-            color: #fff;
-            font-size: 9px;
-            font-weight: 700;
-            padding: 2px 6px;
-            border-radius: 10px;
-            z-index: 10;
-        }
-        .top-ad-banner .ad-desktop { display: block; }
-        .top-ad-banner .ad-mobile { display: none; }
+        /* Top Ad Banner */
+        .top-ad-banner { background: #fff; border-bottom: 1px solid var(--border-color); padding: 8px 0; text-align: center; position: relative; display: flex; align-items: center; justify-content: center; overflow: hidden; min-height: 106px; }
+        .top-ad-banner .ad-sponsor-label { position: absolute; top: 5px; right: 8px; background: rgba(0,0,0,0.7); color: #fff; font-size: 9px; font-weight: 700; padding: 2px 6px; border-radius: 10px; z-index: 10; }
 
         /* Category Nav */
-        .category-nav { background: #ffffff; border-bottom: 1px solid var(--border-color); padding: 0; display: flex; justify-content: center; gap: 0; overflow-x: auto; scrollbar-width: none; }
-        .category-nav::-webkit-scrollbar { display: none; }
-        .nav-btn { background: transparent; color: var(--text-secondary); border: none; padding: 12px 18px; font-weight: 600; font-size: 13px; white-space: nowrap; cursor: pointer; position: relative; transition: var(--transition); border-bottom: 3px solid transparent; }
-        .nav-btn:hover { color: var(--text-primary); background: var(--bg-secondary); }
+        .category-nav { background: #ffffff; border-bottom: 1px solid var(--border-color); padding: 0; display: flex; justify-content: center; gap: 0; overflow-x: auto; }
+        .nav-btn { background: transparent; color: var(--text-secondary); border: none; padding: 12px 18px; font-weight: 600; font-size: 13px; white-space: nowrap; cursor: pointer; border-bottom: 3px solid transparent; }
         .nav-btn.active { color: var(--accent); border-bottom-color: var(--accent); background: var(--accent-soft); }
 
         /* Sections */
@@ -80,36 +55,33 @@
         .section-title { font-size: 16px; font-weight: 700; color: var(--text-primary); border-left: 4px solid var(--accent); padding-left: 12px; text-transform: uppercase; letter-spacing: 0.5px; }
 
         /* Sponsored Carousel */
-        .carousel-wrapper { position: relative; overflow: hidden; }
-        .carousel-container { display: flex; gap: 12px; padding: 10px 0 20px; overflow-x: auto; scrollbar-width: none; scroll-behavior: smooth; }
-        .carousel-container::-webkit-scrollbar { display: none; }
-        .carousel-card { flex: 0 0 180px; background: var(--bg-card); border-radius: var(--radius-md); overflow: hidden; border: 1px solid var(--border-color); cursor: pointer; transition: var(--transition); position: relative; }
-        .carousel-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
-        .carousel-card img { width: 100%; height: 160px; object-fit: cover; display: block; background: var(--bg-secondary); }
+        .carousel-wrapper { overflow: hidden; }
+        .carousel-container { display: flex; gap: 12px; padding: 10px 0 20px; overflow-x: auto; scroll-behavior: smooth; }
+        .carousel-card { flex: 0 0 180px; background: var(--bg-card); border-radius: var(--radius-md); overflow: hidden; border: 1px solid var(--border-color); cursor: pointer; position: relative; }
+        .carousel-card img { width: 100%; height: 160px; object-fit: cover; display: block; }
         .carousel-card .info { padding: 10px; }
-        .carousel-card .title { font-size: 13px; font-weight: 600; margin-bottom: 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: var(--text-primary); }
-        .carousel-card .price { color: var(--accent); font-weight: 800; font-size: 14px; margin-bottom: 4px; }
-        .carousel-card .vendor { font-size: 11px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.3px; }
+        .carousel-card .title { font-size: 13px; font-weight: 600; margin-bottom: 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .carousel-card .price { color: var(--accent); font-weight: 800; font-size: 14px; }
+        .carousel-card .vendor { font-size: 11px; color: var(--text-muted); text-transform: uppercase; }
         .badge-sponsored { position: absolute; top: 8px; left: 8px; background: rgba(255,255,255,0.9); color: #333; font-size: 9px; font-weight: 800; padding: 2px 6px; border-radius: 8px; }
 
-        /* Masonry Grid */
+        /* Masonry Grid - 4 columns (like desktop) */
         .masonry-grid { columns: 4; column-gap: 12px; padding-bottom: 40px; }
-        .masonry-item { break-inside: avoid; margin-bottom: 12px; background: var(--bg-card); border-radius: var(--radius-md); overflow: hidden; border: 1px solid var(--border-color); cursor: pointer; transition: var(--transition); position: relative; }
-        .masonry-item:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
-        .masonry-item img { width: 100%; display: block; background: var(--bg-secondary); }
+        .masonry-item { break-inside: avoid; margin-bottom: 12px; background: var(--bg-card); border-radius: var(--radius-md); overflow: hidden; border: 1px solid var(--border-color); cursor: pointer; position: relative; }
+        .masonry-item img { width: 100%; display: block; }
         .masonry-item .info { padding: 10px; }
-        .masonry-item .title { font-size: 13px; font-weight: 600; margin-bottom: 4px; color: var(--text-primary); display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
-        .masonry-item .price { color: var(--accent); font-weight: 800; font-size: 15px; margin-bottom: 4px; }
-        .masonry-item .vendor { font-size: 11px; color: var(--text-muted); text-transform: capitalize; letter-spacing: 0.3px; }
+        .masonry-item .title { font-size: 13px; font-weight: 600; margin-bottom: 4px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+        .masonry-item .price { color: var(--accent); font-weight: 800; font-size: 15px; }
+        .masonry-item .vendor { font-size: 11px; color: var(--text-muted); text-transform: capitalize; }
         .badge-instock { position: absolute; top: 8px; right: 8px; background: rgba(255,255,255,0.9); color: var(--success); font-size: 10px; font-weight: 700; padding: 3px 6px; border-radius: 8px; }
         .delivery-tag { display: inline-block; background: #e6f9f0; color: #1a7a45; padding: 3px 8px; border-radius: 15px; font-size: 11px; font-weight: 700; margin-top: 6px; }
 
         /* Help Button */
-        .help-button { position: fixed; bottom: 20px; right: 20px; z-index: 9999; width: 50px; height: 50px; background: var(--accent); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 24px; cursor: pointer; box-shadow: var(--shadow-lg); animation: bounceHelp 3s ease-in-out infinite; transition: var(--transition); }
+        .help-button { position: fixed; bottom: 20px; right: 20px; z-index: 9999; width: 50px; height: 50px; background: var(--accent); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 24px; cursor: pointer; box-shadow: var(--shadow-lg); animation: bounceHelp 3s ease-in-out infinite; }
         @keyframes bounceHelp { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
 
         /* Admin */
-        .admin-fullstop { position: fixed; bottom: 20px; left: 20px; z-index: 9999; width: 25px; height: 25px; background: red; border-radius: 50%; border: 2px solid #fff; box-shadow: var(--shadow-md); cursor: pointer; display: none; }
+        .admin-fullstop { position: fixed; bottom: 20px; left: 20px; z-index: 9999; width: 25px; height: 25px; background: red; border-radius: 50%; border: 2px solid #fff; display: none; }
         .admin-fullstop.active { display: block; }
 
         /* Footer */
@@ -117,207 +89,181 @@
         .footer-content { max-width: 1400px; margin: 0 auto; }
         .footer-links { display: flex; justify-content: center; flex-wrap: wrap; gap: 15px; margin-bottom: 15px; }
         .footer-links a { color: var(--text-secondary); text-decoration: none; font-size: 12px; font-weight: 500; }
-        .footer-links a:hover { color: var(--accent); }
         .footer-copyright { color: var(--text-muted); font-size: 11px; text-align: center; border-top: 1px solid var(--border-color); padding-top: 10px; }
 
         /* Modals */
-        .modal-overlay { position: fixed; inset: 0; background: rgba(0, 0, 0, 0.5); backdrop-filter: blur(4px); z-index: 10000; display: flex; align-items: center; justify-content: center; opacity: 0; visibility: hidden; transition: var(--transition); }
+        .modal-overlay { position: fixed; inset: 0; background: rgba(0, 0, 0, 0.5); z-index: 10000; display: flex; align-items: center; justify-content: center; opacity: 0; visibility: hidden; }
         .modal-overlay.active { opacity: 1; visibility: visible; }
-        .modal-box { background: var(--bg-card); border-radius: var(--radius-lg); max-width: 480px; width: 90%; padding: 30px; border: 1px solid var(--border-color); position: relative; max-height: 85vh; overflow-y: auto; box-shadow: var(--shadow-lg); }
-        .modal-close { position: absolute; top: 15px; right: 15px; background: var(--bg-secondary); border: none; width: 32px; height: 32px; border-radius: 50%; font-size: 18px; cursor: pointer; color: var(--text-secondary); display: flex; align-items: center; justify-content: center; }
+        .modal-box { background: var(--bg-card); border-radius: var(--radius-lg); max-width: 480px; width: 90%; padding: 30px; position: relative; max-height: 85vh; overflow-y: auto; box-shadow: var(--shadow-lg); }
+        .modal-close { position: absolute; top: 15px; right: 15px; background: var(--bg-secondary); border: none; width: 32px; height: 32px; border-radius: 50%; font-size: 18px; cursor: pointer; }
 
         /* Toast */
-        .toast { position: fixed; bottom: 20px; right: 20px; background: var(--text-primary); color: var(--bg-primary); padding: 14px 24px; border-radius: var(--radius-md); border-left: 4px solid var(--accent); box-shadow: var(--shadow-lg); z-index: 99999; font-weight: 500; font-size: 14px; animation: slideIn 0.3s ease; }
-        @keyframes slideIn { from { transform: translateX(100px); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+        .toast { position: fixed; bottom: 20px; right: 20px; background: var(--text-primary); color: var(--bg-primary); padding: 14px 24px; border-radius: var(--radius-md); border-left: 4px solid var(--accent); z-index: 99999; font-weight: 500; }
 
         /* Full Screen Modal */
         #fullScreenModal .modal-box { max-width: 95vw; max-height: 95vh; width: 100%; background: #fff; border: none; text-align: center; padding: 10px; }
-        #fullScreenImg { max-width: 100%; max-height: 75vh; object-fit: contain; border-radius: 10px; touch-action: pinch-zoom; margin: 10px 0; }
-        .whatsapp-full-btn { background: var(--whatsapp); color: #fff; border: none; border-radius: 50px; padding: 12px 24px; font-size: 16px; font-weight: 700; cursor: pointer; display: inline-flex; align-items: center; gap: 10px; margin-top: 10px; }
-        .share-btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; background: var(--accent-soft); border: 1px solid var(--accent); color: var(--accent); border-radius: 8px; padding: 10px; width: 100%; font-weight: 700; font-size: 14px; cursor: pointer; margin-top: 10px; }
+        #fullScreenImg { max-width: 100%; max-height: 75vh; object-fit: contain; border-radius: 10px; margin: 10px 0; }
+        .whatsapp-full-btn { background: var(--whatsapp); color: #fff; border: none; border-radius: 50px; padding: 12px 24px; font-size: 16px; font-weight: 700; cursor: pointer; margin-top: 10px; }
+        .share-btn { background: var(--accent-soft); border: 1px solid var(--accent); color: var(--accent); border-radius: 8px; padding: 10px; width: 100%; font-weight: 700; cursor: pointer; margin-top: 10px; }
 
-        /* ============ MOBILE: SCALED DESKTOP LOOK ============ */
+        /* ============ MOBILE: ZOOM OUT TO MATCH DESKTOP ============ */
+        /* This is the key - we zoom out the whole page so mobile looks exactly like desktop but smaller */
         @media (max-width: 900px) {
-            .header { padding: 10px 12px; gap: 10px; flex-wrap: nowrap; }
-            .logo img { height: 45px; }
-            .search-box { padding: 8px 14px; }
-            .search-box input { font-size: 12px; }
-            .category-nav { justify-content: flex-start; padding: 0 5px; }
-            .nav-btn { padding: 10px 14px; font-size: 12px; }
-            .section-container { padding: 0 12px; }
-            .section-title { font-size: 13px; padding-left: 8px; }
-            .carousel-container { gap: 8px; padding: 8px 0 15px; }
-            .carousel-card { flex: 0 0 130px; }
-            .carousel-card img { height: 110px; }
-            .carousel-card .info { padding: 6px; }
-            .carousel-card .title { font-size: 11px; }
-            .carousel-card .price { font-size: 12px; }
-            .carousel-card .vendor { font-size: 9px; }
-            .masonry-grid { columns: 4; column-gap: 6px; padding-bottom: 20px; }
-            .masonry-item { margin-bottom: 6px; }
-            .masonry-item .info { padding: 5px; }
-            .masonry-item .title { font-size: 10px; }
-            .masonry-item .price { font-size: 11px; }
-            .masonry-item .vendor { font-size: 8px; }
-            .badge-instock { font-size: 7px; padding: 2px 4px; }
-            .badge-sponsored { font-size: 7px; padding: 2px 4px; }
-            .footer { padding: 15px 10px 8px; }
-            .footer-links { gap: 8px; }
-            .footer-links a { font-size: 9px; }
-            .footer-copyright { font-size: 8px; }
-            .help-button { width: 40px; height: 40px; font-size: 20px; bottom: 15px; right: 15px; }
-
-            /* Switch ads on mobile - tight height */
-            .top-ad-banner { min-height: 60px; max-height: 60px; padding: 5px 0; }
-            .top-ad-banner .ad-desktop { display: none; }
-            .top-ad-banner .ad-mobile { display: block; }
+            body { overflow-x: auto; }
+            .page-wrapper {
+                width: 1200px;
+                transform: scale(0.35);
+                transform-origin: 0 0;
+                min-height: 2857px; /* 1000 / 0.35 = 2857 so the page scrolls properly */
+            }
         }
         @media (max-width: 500px) {
-            .logo img { height: 38px; }
-            .carousel-card { flex: 0 0 110px; }
-            .carousel-card img { height: 95px; }
-            .masonry-grid { column-gap: 5px; }
+            .page-wrapper {
+                transform: scale(0.30);
+                min-height: 3333px;
+            }
         }
     </style>
 </head>
 <body>
 
-    <!-- ADSTERRA SOCIAL BAR (Floating, works on all devices) -->
+    <!-- ADSTERRA SOCIAL BAR -->
     <script async="async" data-cfasync="false" src="https://pl31267888.profitableratecpmnetwork.com/84e0d2e547e6c4cb1970fa5bff894187/invoke.js"></script>
     <div id="container-84e0d2e547e6c4cb1970fa5bff894187"></div>
 
-    <!-- Header -->
-    <header class="header">
-        <div class="logo"><img src="https://i.ibb.co/JjpSbHHB/Chat-GPT-Image-Sep-9-2026-11-35-45-PM.png" alt="FurniHub 9ja"></div>
-        <div class="search-box">
-            <span style="color: var(--text-muted); margin-right: 8px;">🔍</span>
-            <input type="text" placeholder="Search sofas, chairs, dining sets, or product code..." id="searchInput">
-        </div>
-    </header>
+    <!-- PAGE WRAPPER - everything inside gets zoomed out on mobile -->
+    <div class="page-wrapper">
 
-    <!-- TOP AD BANNER - Desktop 728x90 / Mobile 320x50 -->
-    <div class="top-ad-banner">
-        <div class="ad-sponsor-label">Sponsored</div>
-
-        <!-- DESKTOP: 728×90 banner -->
-        <div class="ad-desktop">
-            <script type="text/javascript">
-                atOptions = {
-                    'key' : 'a0858180525454aeda69b31e465039de',
-                    'format' : 'iframe',
-                    'height' : 90,
-                    'width' : 728,
-                    'params' : {}
-                };
-            </script>
-            <script src="https://www.highrevenueformat.com/a0858180525454aeda69b31e465039de/invoke.js"></script>
-        </div>
-
-        <!-- MOBILE: 320×50 banner -->
-        <div class="ad-mobile">
-            <script type="text/javascript">
-                atOptions = {
-                    'key' : 'ee776547b003ffb7aa0abb20ee46ee5d',
-                    'format' : 'iframe',
-                    'height' : 50,
-                    'width' : 320,
-                    'params' : {}
-                };
-            </script>
-            <script src="https://www.highrevenueformat.com/ee776547b003ffb7aa0abb20ee46ee5d/invoke.js"></script>
-        </div>
-    </div>
-
-    <!-- Help Button -->
-    <div class="help-button" onclick="openHelp()" title="Customer Care">❓</div>
-
-    <!-- Category Nav -->
-    <nav class="category-nav" id="categoryNav">
-        <button class="nav-btn active" data-category="all">All</button>
-        <button class="nav-btn" data-category="sofa">Sofa</button>
-        <button class="nav-btn" data-category="dining">Dining</button>
-        <button class="nav-btn" data-category="kitchen">Kitchen</button>
-        <button class="nav-btn" data-category="tv">TV Station</button>
-        <button class="nav-btn" data-category="bed">Bed Frame</button>
-    </nav>
-
-    <!-- Store Content -->
-    <div class="section-container">
-        <div class="section-header"><div class="section-title">✨ Sponsored Products</div></div>
-        <div class="carousel-wrapper"><div class="carousel-container" id="carouselContainer"></div></div>
-        <div class="section-header"><div class="section-title">🔥 Recommended for you</div></div>
-        <div class="masonry-grid" id="masonryGrid"></div>
-    </div>
-
-    <!-- Admin Panel -->
-    <div id="adminPanelContainer" class="hidden section-container" style="max-width: 800px; padding-top: 40px;"></div>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="footer-content">
-            <div class="footer-links">
-                <a href="#" onclick="openSellerModal()">Become a Seller Free</a>
-                <a href="#" onclick="showAboutModal()">About Us</a>
-                <a href="#" onclick="showPolicyModal()">Payment & Delivery</a>
-                <a href="#" onclick="showPrivacyModal()">Privacy Policy</a>
-                <a href="#" onclick="showLicenseModal()">License</a>
-                <a href="https://wa.me/2348100578413" target="_blank">WhatsApp: +234 810 057 8413</a>
-                <a href="mailto:godwindouglas8@gmail.com">Gmail: godwindouglas8@gmail.com</a>
+        <!-- Header -->
+        <header class="header">
+            <div class="logo"><img src="https://i.ibb.co/JjpSbHHB/Chat-GPT-Image-Sep-9-2026-11-35-45-PM.png" alt="FurniHub 9ja"></div>
+            <div class="search-box">
+                <span style="color: var(--text-muted); margin-right: 8px;">🔍</span>
+                <input type="text" placeholder="Search sofas, chairs, dining sets, or product code..." id="searchInput">
             </div>
-            <div class="footer-copyright">&copy; <span id="year"></span> <strong>FurniHub 9ja</strong>. All rights reserved.</div>
-        </div>
-    </footer>
+        </header>
 
-    <!-- Hidden Admin Padlock -->
-    <div class="admin-fullstop" id="adminBtn" onclick="toggleAdmin()" title="Admin Panel"></div>
+        <!-- TOP AD BANNER - Desktop 728x90 / Mobile 320x50 -->
+        <div class="top-ad-banner">
+            <div class="ad-sponsor-label">Sponsored</div>
 
-    <!-- Seller Upload Modal -->
-    <div class="modal-overlay" id="sellerModal">
-        <div class="modal-box">
-            <button class="modal-close" onclick="closeSellerModal()">×</button>
-            <h2 style="margin-bottom: 15px;">Become a Seller</h2>
-            <div style="background: var(--bg-secondary); padding: 15px; border-radius: 12px; border: 1px solid var(--border-color);">
-                <div style="margin-bottom:12px;"><label style="display:block;font-size:13px;margin-bottom:4px;">Your Name / Business Name</label><input type="text" id="sellerName" placeholder="e.g., Mma Amisco Furniture" style="width:100%;padding:10px;border:1px solid var(--border-color);border-radius:8px;"></div>
-                <div style="margin-bottom:12px;"><label style="display:block;font-size:13px;margin-bottom:4px;">Your WhatsApp Number</label><input type="text" id="sellerWhatsApp" placeholder="e.g., 2348012345678" style="width:100%;padding:10px;border:1px solid var(--border-color);border-radius:8px;"></div>
-                <div style="margin-bottom:12px;"><label style="display:block;font-size:13px;margin-bottom:4px;">Furniture Name</label><input type="text" id="sellerProdName" placeholder="e.g., Luxurious Sofa" style="width:100%;padding:10px;border:1px solid var(--border-color);border-radius:8px;"></div>
-                <div style="margin-bottom:12px;"><label style="display:block;font-size:13px;margin-bottom:4px;">Price (₦)</label><input type="number" id="sellerProdPrice" placeholder="e.g., 150000" style="width:100%;padding:10px;border:1px solid var(--border-color);border-radius:8px;"></div>
-                <div style="margin-bottom:12px;"><label style="display:block;font-size:13px;margin-bottom:4px;">Category</label><select id="sellerProdCategory" style="width:100%;padding:10px;border:1px solid var(--border-color);border-radius:8px;"><option value="sofa">Sofa</option><option value="dining">Dining</option><option value="kitchen">Kitchen</option><option value="tv">TV Station</option><option value="bed">Bed Frame</option></select></div>
-                <div style="margin-bottom:12px;"><label style="display:block;font-size:13px;margin-bottom:4px;">Delivery Option</label><select id="sellerDelivery" style="width:100%;padding:10px;border:1px solid var(--border-color);border-radius:8px;"><option value="free">Free Delivery</option><option value="paid">Delivery Fee Applies</option></select></div>
-                <div style="margin-bottom:12px;"><label style="display:block;font-size:13px;margin-bottom:4px;">Section</label><select id="sellerProdSection" style="width:100%;padding:10px;border:1px solid var(--border-color);border-radius:8px;"><option value="sponsored">Sponsored</option><option value="recommended">Recommended</option></select></div>
-                <div style="margin-bottom:12px;"><label style="display:block;font-size:13px;margin-bottom:4px;">Full Description</label><textarea id="sellerProdDescription" rows="3" placeholder="Describe your furniture..." style="width:100%;padding:10px;border:1px solid var(--border-color);border-radius:8px;"></textarea></div>
-                <div style="margin-bottom:12px;"><label style="display:block;font-size:13px;margin-bottom:4px;">Upload Image</label><input type="file" id="sellerProdImage" accept="image/*" style="width:100%;padding:10px;border:1px solid var(--border-color);border-radius:8px;"></div>
-                <button style="width:100%;padding:14px;background:var(--accent);color:#fff;border:none;border-radius:8px;font-weight:700;cursor:pointer;" onclick="submitSellerProduct()">Submit for Admin Approval</button>
+            <!-- Desktop 728x90 -->
+            <div class="ad-desktop">
+                <script type="text/javascript">
+                    atOptions = {
+                        'key' : 'a0858180525454aeda69b31e465039de',
+                        'format' : 'iframe',
+                        'height' : 90,
+                        'width' : 728,
+                        'params' : {}
+                    };
+                </script>
+                <script src="https://www.highrevenueformat.com/a0858180525454aeda69b31e465039de/invoke.js"></script>
+            </div>
+
+            <!-- Mobile 320x50 (only shows on small screens) -->
+            <div class="ad-mobile" style="display:none;">
+                <script type="text/javascript">
+                    atOptions = {
+                        'key' : 'ee776547b003ffb7aa0abb20ee46ee5d',
+                        'format' : 'iframe',
+                        'height' : 50,
+                        'width' : 320,
+                        'params' : {}
+                    };
+                </script>
+                <script src="https://www.highrevenueformat.com/ee776547b003ffb7aa0abb20ee46ee5d/invoke.js"></script>
             </div>
         </div>
-    </div>
 
-    <!-- Full Screen Modal -->
-    <div class="modal-overlay" id="fullScreenModal">
-        <div class="modal-box">
-            <button class="modal-close" onclick="closeFullScreen()">×</button>
-            <h3 id="fsTitle" style="margin-bottom: 5px; color: #111;"></h3>
-            <p id="fsDescription" style="color: #555; font-size: 14px; margin-bottom: 15px;"></p>
-            <img id="fullScreenImg" src="" alt="">
-            <div style="margin-top: 10px;">
-                <button id="fsUnhideBtn" onclick="toggleFullScreenDetails()" style="background: var(--bg-secondary); border: 1px solid var(--accent); color: var(--accent); border-radius: 8px; padding: 10px; width: 100%; font-weight: 700; cursor: pointer; margin-bottom: 10px;">Unhide Details</button>
-                <div id="fsHiddenDetails" style="display: none; margin-bottom: 15px;">
-                    <p id="fsCode" style="color: #555; font-size: 13px; margin-bottom: 8px;"></p>
-                    <label style="font-size: 13px; color: #555; display: block; margin-bottom: 8px;">Color: <input type="color" id="modalColor" value="#ffffff" style="width: 25px; height: 25px; vertical-align: middle;"></label>
-                    <button onclick="copyCode(document.getElementById('fsCode').textContent.split(': ')[1])" style="background: var(--bg-secondary); border: 1px solid var(--border-color); color: #555; border-radius: 4px; padding: 6px 10px; font-weight: 700; cursor: pointer; width: 100%;">📋 Copy Code</button>
+        <!-- Help Button -->
+        <div class="help-button" onclick="openHelp()">❓</div>
+
+        <!-- Category Nav -->
+        <nav class="category-nav" id="categoryNav">
+            <button class="nav-btn active" data-category="all">All</button>
+            <button class="nav-btn" data-category="sofa">Sofa</button>
+            <button class="nav-btn" data-category="dining">Dining</button>
+            <button class="nav-btn" data-category="kitchen">Kitchen</button>
+            <button class="nav-btn" data-category="tv">TV Station</button>
+            <button class="nav-btn" data-category="bed">Bed Frame</button>
+        </nav>
+
+        <!-- Store Content -->
+        <div class="section-container">
+            <div class="section-header"><div class="section-title">✨ Sponsored Products</div></div>
+            <div class="carousel-wrapper"><div class="carousel-container" id="carouselContainer"></div></div>
+            <div class="section-header"><div class="section-title">🔥 Recommended for you</div></div>
+            <div class="masonry-grid" id="masonryGrid"></div>
+        </div>
+
+        <!-- Admin Panel -->
+        <div id="adminPanelContainer" class="hidden section-container" style="max-width: 800px; padding-top: 40px;"></div>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-content">
+                <div class="footer-links">
+                    <a href="#" onclick="openSellerModal()">Become a Seller Free</a>
+                    <a href="#" onclick="showAboutModal()">About Us</a>
+                    <a href="#" onclick="showPolicyModal()">Payment & Delivery</a>
+                    <a href="#" onclick="showPrivacyModal()">Privacy Policy</a>
+                    <a href="#" onclick="showLicenseModal()">License</a>
+                    <a href="https://wa.me/2348100578413" target="_blank">WhatsApp: +234 810 057 8413</a>
+                    <a href="mailto:godwindouglas8@gmail.com">Gmail: godwindouglas8@gmail.com</a>
+                </div>
+                <div class="footer-copyright">&copy; <span id="year"></span> <strong>FurniHub 9ja</strong>. All rights reserved.</div>
+            </div>
+        </footer>
+
+        <!-- Hidden Admin Padlock -->
+        <div class="admin-fullstop" id="adminBtn" onclick="toggleAdmin()"></div>
+
+        <!-- Seller Upload Modal -->
+        <div class="modal-overlay" id="sellerModal">
+            <div class="modal-box">
+                <button class="modal-close" onclick="closeSellerModal()">×</button>
+                <h2 style="margin-bottom: 15px;">Become a Seller</h2>
+                <div style="background: var(--bg-secondary); padding: 15px; border-radius: 12px;">
+                    <div style="margin-bottom:12px;"><label style="display:block;font-size:13px;margin-bottom:4px;">Your Name / Business Name</label><input type="text" id="sellerName" placeholder="e.g., Mma Amisco Furniture" style="width:100%;padding:10px;border:1px solid #ddd;border-radius:8px;"></div>
+                    <div style="margin-bottom:12px;"><label style="display:block;font-size:13px;margin-bottom:4px;">Your WhatsApp Number</label><input type="text" id="sellerWhatsApp" placeholder="e.g., 2348012345678" style="width:100%;padding:10px;border:1px solid #ddd;border-radius:8px;"></div>
+                    <div style="margin-bottom:12px;"><label style="display:block;font-size:13px;margin-bottom:4px;">Furniture Name</label><input type="text" id="sellerProdName" placeholder="e.g., Luxurious Sofa" style="width:100%;padding:10px;border:1px solid #ddd;border-radius:8px;"></div>
+                    <div style="margin-bottom:12px;"><label style="display:block;font-size:13px;margin-bottom:4px;">Price (₦)</label><input type="number" id="sellerProdPrice" placeholder="e.g., 150000" style="width:100%;padding:10px;border:1px solid #ddd;border-radius:8px;"></div>
+                    <div style="margin-bottom:12px;"><label style="display:block;font-size:13px;margin-bottom:4px;">Category</label><select id="sellerProdCategory" style="width:100%;padding:10px;border:1px solid #ddd;border-radius:8px;"><option value="sofa">Sofa</option><option value="dining">Dining</option><option value="kitchen">Kitchen</option><option value="tv">TV Station</option><option value="bed">Bed Frame</option></select></div>
+                    <div style="margin-bottom:12px;"><label style="display:block;font-size:13px;margin-bottom:4px;">Delivery Option</label><select id="sellerDelivery" style="width:100%;padding:10px;border:1px solid #ddd;border-radius:8px;"><option value="free">Free Delivery</option><option value="paid">Delivery Fee Applies</option></select></div>
+                    <div style="margin-bottom:12px;"><label style="display:block;font-size:13px;margin-bottom:4px;">Section</label><select id="sellerProdSection" style="width:100%;padding:10px;border:1px solid #ddd;border-radius:8px;"><option value="sponsored">Sponsored</option><option value="recommended">Recommended</option></select></div>
+                    <div style="margin-bottom:12px;"><label style="display:block;font-size:13px;margin-bottom:4px;">Full Description</label><textarea id="sellerProdDescription" rows="3" style="width:100%;padding:10px;border:1px solid #ddd;border-radius:8px;"></textarea></div>
+                    <div style="margin-bottom:12px;"><label style="display:block;font-size:13px;margin-bottom:4px;">Upload Image</label><input type="file" id="sellerProdImage" accept="image/*" style="width:100%;padding:10px;border:1px solid #ddd;border-radius:8px;"></div>
+                    <button style="width:100%;padding:14px;background:var(--accent);color:#fff;border:none;border-radius:8px;font-weight:700;cursor:pointer;" onclick="submitSellerProduct()">Submit for Admin Approval</button>
                 </div>
             </div>
-            <button class="share-btn" onclick="shareProduct()">🔗 Share Product Link</button>
-            <button class="whatsapp-full-btn" onclick="sendFullScreenWhatsApp()">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-                Chat on WhatsApp
-            </button>
         </div>
-    </div>
 
-    <div class="modal-overlay" id="aboutModal"><div class="modal-box"><button class="modal-close" onclick="closeModal('aboutModal')">×</button><h2>About FurniHub 9ja</h2><p style="color:#555;margin-top:15px;">Nigeria's premier furniture marketplace.</p></div></div>
-    <div class="modal-overlay" id="policyModal"><div class="modal-box"><button class="modal-close" onclick="closeModal('policyModal')">×</button><h2>Payment & Delivery</h2><p style="color:#555;margin-top:15px;">Free delivery on selected items.</p></div></div>
-    <div class="modal-overlay" id="privacyModal"><div class="modal-box"><button class="modal-close" onclick="closeModal('privacyModal')">×</button><h2>Privacy Policy</h2><p style="color:#555;margin-top:15px;">Your privacy is paramount.</p></div></div>
-    <div class="modal-overlay" id="licenseModal"><div class="modal-box"><button class="modal-close" onclick="closeModal('licenseModal')">×</button><h2>Apache License</h2><p style="color:#555;margin-top:15px;">Apache 2.0</p></div></div>
+        <!-- Full Screen Modal -->
+        <div class="modal-overlay" id="fullScreenModal">
+            <div class="modal-box">
+                <button class="modal-close" onclick="closeFullScreen()">×</button>
+                <h3 id="fsTitle" style="margin-bottom: 5px;"></h3>
+                <p id="fsDescription" style="color: #555; font-size: 14px; margin-bottom: 15px;"></p>
+                <img id="fullScreenImg" src="" alt="">
+                <div style="margin-top: 10px;">
+                    <button id="fsUnhideBtn" onclick="toggleFullScreenDetails()" style="background: var(--bg-secondary); border: 1px solid var(--accent); color: var(--accent); border-radius: 8px; padding: 10px; width: 100%; font-weight: 700; cursor: pointer; margin-bottom: 10px;">Unhide Details</button>
+                    <div id="fsHiddenDetails" style="display: none; margin-bottom: 15px;">
+                        <p id="fsCode" style="color: #555; font-size: 13px;"></p>
+                        <button onclick="copyCode(document.getElementById('fsCode').textContent.split(': ')[1])" style="background: var(--bg-secondary); border: 1px solid #ddd; padding: 6px 10px; font-weight: 700; cursor: pointer; width: 100%; border-radius: 4px;">📋 Copy Code</button>
+                    </div>
+                </div>
+                <button class="share-btn" onclick="shareProduct()">🔗 Share Product Link</button>
+                <button class="whatsapp-full-btn" onclick="sendFullScreenWhatsApp()">💬 Chat on WhatsApp</button>
+            </div>
+        </div>
+
+        <div class="modal-overlay" id="aboutModal"><div class="modal-box"><button class="modal-close" onclick="closeModal('aboutModal')">×</button><h2>About FurniHub 9ja</h2><p style="color:#555;margin-top:15px;">Nigeria's premier furniture marketplace.</p></div></div>
+        <div class="modal-overlay" id="policyModal"><div class="modal-box"><button class="modal-close" onclick="closeModal('policyModal')">×</button><h2>Payment & Delivery</h2><p style="color:#555;margin-top:15px;">Free delivery on selected items.</p></div></div>
+        <div class="modal-overlay" id="privacyModal"><div class="modal-box"><button class="modal-close" onclick="closeModal('privacyModal')">×</button><h2>Privacy Policy</h2><p style="color:#555;margin-top:15px;">Your privacy is paramount.</p></div></div>
+        <div class="modal-overlay" id="licenseModal"><div class="modal-box"><button class="modal-close" onclick="closeModal('licenseModal')">×</button><h2>Apache License</h2><p style="color:#555;margin-top:15px;">Apache 2.0</p></div></div>
+
+    </div>
 
     <div id="toastContainer"></div>
 
@@ -332,14 +278,14 @@
 
         function formatPrice(price) { return '₦' + Number(price).toLocaleString('en-NG'); }
         function generateProductCode() { return Math.floor(10000 + Math.random() * 90000).toString(); }
-        function showToast(msg) { const t = document.createElement('div'); t.className = 'toast'; t.textContent = msg; document.getElementById('toastContainer').appendChild(t); setTimeout(() => t.remove(), 3000); }
+        function showToast(msg) { const t = document.createElement('div'); t.className = 'toast'; t.textContent = msg; document.body.appendChild(t); setTimeout(() => t.remove(), 3000); }
         function openHelp() { window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent('Hello FurniHub 9ja, I need help.')}`, '_blank'); }
 
         function uploadToImgBB(file) {
             return new Promise((resolve, reject) => {
                 const formData = new FormData(); formData.append('image', file);
                 fetch(`https://api.imgbb.com/1/upload?key=${IMGBB_API_KEY}`, { method: 'POST', body: formData })
-                .then(res => res.json()).then(data => { if (data.success) resolve(data.data.url); else reject(new Error('Upload failed')); }).catch(err => reject(err));
+                .then(res => res.json()).then(data => { if (data.success) resolve(data.data.url); else reject(new Error('Upload failed')); });
             });
         }
 
@@ -349,8 +295,7 @@
                 if (data && data.length > 0) {
                     products = data.map(item => ({ id: Number(item.id), code: item.code || generateProductCode(), name: item.name, price: Number(item.price), vendor: item.vendor || 'Unknown', category: item.category, section: item.section, rating: Number(item.rating) || 4.5, image: item.image, description: item.description || '', status: item.status || 'approved', sellerWhatsApp: item.sellerWhatsApp || '', delivery: item.delivery || '' }));
                 } else { products = []; }
-                renderStore();
-                startCarouselRotation();
+                renderStore(); startCarouselRotation();
             } catch (error) { products = []; renderStore(); startCarouselRotation(); }
         }
 
@@ -392,7 +337,7 @@
                 const imageUrl = await uploadToImgBB(imgInput.files[0]); const code = generateProductCode();
                 const newProduct = { id: Date.now(), code, name: prodName, price: Number(price), vendor: name, category, section, rating: 4.5, image: imageUrl, description, status: 'pending', sellerWhatsApp: whatsapp.replace(/\D/g, ''), delivery };
                 await fetch(SHEETDB_URL, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(newProduct) });
-                showToast('✅ Submitted for approval!'); closeSellerModal();
+                showToast('✅ Submitted!'); closeSellerModal();
             } catch (error) { showToast('❌ Error'); }
         }
 
@@ -401,15 +346,15 @@
         function toggleFullScreenDetails() { const d = document.getElementById('fsHiddenDetails'), b = document.getElementById('fsUnhideBtn'); if (d.style.display === 'block') { d.style.display = 'none'; b.textContent = 'Unhide Details'; } else { d.style.display = 'block'; b.textContent = 'Hide Details'; } }
         function shareProduct() { const p = products.find(x => x.id === currentFullScreenProductId); if (!p) return; const link = `${window.location.href.split('?')[0].replace('index.html', '')}product.html?code=${p.code}`; navigator.clipboard.writeText(link).then(() => showToast('✅ Link copied!')); }
         function sendFullScreenWhatsApp() { const p = products.find(x => x.id === currentFullScreenProductId); if (!p) return; const target = p.sellerWhatsApp || WHATSAPP_NUMBER; const msg = `Hello, I need this furniture:\n\nProduct: ${p.name}\nPrice: ${formatPrice(p.price)}\nImage: ${p.image}`; window.open(`https://wa.me/${target}?text=${encodeURIComponent(msg)}`, '_blank'); }
-        function copyCode(code) { navigator.clipboard.writeText(code).then(() => showToast('✅ Code copied: ' + code)); }
+        function copyCode(code) { navigator.clipboard.writeText(code).then(() => showToast('✅ Code copied')); }
 
         function checkAdminAccess() { if (window.location.hash === '#admin') { document.getElementById('adminBtn').classList.add('active'); } }
         window.addEventListener('hashchange', checkAdminAccess);
-        function toggleAdmin() { const c = document.getElementById('adminPanelContainer'); if (isAdmin) { isAdmin = false; c.classList.add('hidden'); showToast('Exited'); } else { c.classList.remove('hidden'); c.innerHTML = `<div style="text-align:center;padding:40px;"><h2>Admin</h2><input type="password" id="adminPass" placeholder="Password" style="padding:12px;border:1px solid #ddd;border-radius:8px;margin-bottom:10px;" onkeypress="if(event.key==='Enter') checkAdminPass()"><br><button onclick="checkAdminPass()" style="background:var(--accent);color:#fff;border:none;padding:10px 20px;border-radius:8px;cursor:pointer;">Login</button></div>`; } }
-        function checkAdminPass() { const p = document.getElementById('adminPass').value; if (p === 'Okwudiri@007') { isAdmin = true; const c = document.getElementById('adminPanelContainer'); c.innerHTML = `<h3>Pending</h3><div id="pendingList"></div><h3 style="margin-top:20px;">All</h3><div id="allList"></div>`; renderAdminLists(); showToast('Welcome!'); } else { showToast('❌ Wrong'); } }
-        function renderAdminLists() { const pending = products.filter(p => p.status === 'pending'); document.getElementById('pendingList').innerHTML = pending.map(p => `<p style="padding:10px;border:1px solid #ddd;margin:5px 0;border-radius:6px;">${p.name} <button onclick="approveProduct(${p.id})" style="background:green;color:#fff;border:none;padding:5px 10px;border-radius:4px;cursor:pointer;">Approve</button> <button onclick="deleteProduct(${p.id})" style="background:red;color:#fff;border:none;padding:5px 10px;border-radius:4px;cursor:pointer;">Delete</button></p>`).join('') || '<p>None</p>'; document.getElementById('allList').innerHTML = products.map(p => `<p style="padding:10px;border:1px solid #ddd;margin:5px 0;border-radius:6px;">${p.name} - ${p.status} <button onclick="deleteProduct(${p.id})" style="background:red;color:#fff;border:none;padding:5px 10px;border-radius:4px;cursor:pointer;">Delete</button></p>`).join(''); }
-        async function approveProduct(id) { const p = products.find(x => x.id === id); if (p) { p.status = 'approved'; await fetch(`${SHEETDB_URL}/id/${id}`, { method: 'PATCH', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ status: 'approved' }) }); renderStore(); renderAdminLists(); startCarouselRotation(); showToast('Approved!'); } }
-        async function deleteProduct(id) { if (confirm('Delete?')) { await fetch(`${SHEETDB_URL}/id/${id}`, { method: 'DELETE' }); products = products.filter(p => p.id !== id); renderStore(); renderAdminLists(); startCarouselRotation(); showToast('Deleted'); } }
+        function toggleAdmin() { const c = document.getElementById('adminPanelContainer'); if (isAdmin) { isAdmin = false; c.classList.add('hidden'); } else { c.classList.remove('hidden'); c.innerHTML = `<div style="text-align:center;padding:40px;"><h2>Admin</h2><input type="password" id="adminPass" placeholder="Password" style="padding:12px;border:1px solid #ddd;border-radius:8px;margin-bottom:10px;" onkeypress="if(event.key==='Enter') checkAdminPass()"><br><button onclick="checkAdminPass()" style="background:var(--accent);color:#fff;border:none;padding:10px 20px;border-radius:8px;cursor:pointer;">Login</button></div>`; } }
+        function checkAdminPass() { const p = document.getElementById('adminPass').value; if (p === 'Okwudiri@007') { isAdmin = true; const c = document.getElementById('adminPanelContainer'); c.innerHTML = `<h3>Pending</h3><div id="pendingList"></div><h3>All</h3><div id="allList"></div>`; renderAdminLists(); } else { showToast('❌ Wrong'); } }
+        function renderAdminLists() { const pending = products.filter(p => p.status === 'pending'); document.getElementById('pendingList').innerHTML = pending.map(p => `<p style="padding:10px;border:1px solid #ddd;margin:5px 0;">${p.name} <button onclick="approveProduct(${p.id})" style="background:green;color:#fff;border:none;padding:5px 10px;">Approve</button> <button onclick="deleteProduct(${p.id})" style="background:red;color:#fff;border:none;padding:5px 10px;">Delete</button></p>`).join('') || '<p>None</p>'; document.getElementById('allList').innerHTML = products.map(p => `<p style="padding:10px;border:1px solid #ddd;margin:5px 0;">${p.name} - ${p.status} <button onclick="deleteProduct(${p.id})" style="background:red;color:#fff;border:none;padding:5px 10px;">Delete</button></p>`).join(''); }
+        async function approveProduct(id) { const p = products.find(x => x.id === id); if (p) { p.status = 'approved'; await fetch(`${SHEETDB_URL}/id/${id}`, { method: 'PATCH', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ status: 'approved' }) }); renderStore(); renderAdminLists(); startCarouselRotation(); } }
+        async function deleteProduct(id) { if (confirm('Delete?')) { await fetch(`${SHEETDB_URL}/id/${id}`, { method: 'DELETE' }); products = products.filter(p => p.id !== id); renderStore(); renderAdminLists(); startCarouselRotation(); } }
 
         function setupCategoryNav() { document.getElementById('categoryNav').querySelectorAll('.nav-btn').forEach(btn => btn.addEventListener('click', () => { document.getElementById('categoryNav').querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active')); btn.classList.add('active'); activeCategory = btn.dataset.category; renderStore(); startCarouselRotation(); })); }
         function setupSearch() { document.getElementById('searchInput').addEventListener('input', (e) => { const q = e.target.value.toLowerCase(); const f = products.filter(p => p.name.toLowerCase().includes(q) || p.code.toLowerCase().includes(q) || p.vendor.toLowerCase().includes(q)); document.getElementById('masonryGrid').innerHTML = f.filter(p => p.section === 'recommended' && p.status === 'approved').map(p => `<div class="masonry-item" onclick="openFullScreen(${p.id})"><img src="${p.image}"><div class="info"><div class="title">${p.name}</div><div class="price">${formatPrice(p.price)}</div></div></div>`).join(''); document.getElementById('carouselContainer').innerHTML = f.filter(p => p.section === 'sponsored' && p.status === 'approved').map(p => `<div class="carousel-card" onclick="openFullScreen(${p.id})"><img src="${p.image}"><div class="info"><div class="title">${p.name}</div><div class="price">${formatPrice(p.price)}</div></div></div>`).join(''); startCarouselRotation(); }); }
@@ -420,13 +365,7 @@
         function showLicenseModal() { document.getElementById('licenseModal').classList.add('active'); }
         function closeModal(id) { document.getElementById(id).classList.remove('active'); }
 
-        function init() { 
-            document.getElementById('year').textContent = new Date().getFullYear(); 
-            fetchProductsFromDB(); 
-            setupCategoryNav(); 
-            setupSearch(); 
-            checkAdminAccess(); 
-        }
+        function init() { document.getElementById('year').textContent = new Date().getFullYear(); fetchProductsFromDB(); setupCategoryNav(); setupSearch(); checkAdminAccess(); }
         init();
     </script>
 
