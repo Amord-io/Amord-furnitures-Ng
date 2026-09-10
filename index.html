@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>FurniHub 9ja | Premium Home Furnishings</title>
     <style>
         :root {
@@ -33,21 +33,21 @@
         body { background-color: var(--bg-primary); color: var(--text-primary); display: flex; flex-direction: column; min-height: 100vh; line-height: 1.6; overflow-x: hidden; }
 
         /* Header */
-        .header { background: #ffffff; border-bottom: 1px solid var(--border-color); padding: 14px 30px; display: flex; justify-content: space-between; align-items: center; box-shadow: var(--shadow-sm); }
-        .logo { flex: 1; display: flex; justify-content: center; max-width: 100%; }
-        .logo img { width: 100%; max-width: 700px; height: auto; display: block; object-fit: contain; }
-        .search-box { flex: 1; max-width: 650px; background: var(--bg-secondary); border-radius: 50px; padding: 10px 20px; display: flex; align-items: center; border: 1px solid var(--border-color); transition: var(--transition); margin-left: 20px; }
+        .header { background: #ffffff; border-bottom: 1px solid var(--border-color); padding: 14px 30px; display: flex; justify-content: space-between; align-items: center; box-shadow: var(--shadow-sm); gap: 20px; }
+        .logo { flex: 0 0 auto; display: flex; justify-content: center; }
+        .logo img { height: 60px; width: auto; display: block; object-fit: contain; }
+        .search-box { flex: 1; background: var(--bg-secondary); border-radius: 50px; padding: 10px 20px; display: flex; align-items: center; border: 1px solid var(--border-color); transition: var(--transition); }
         .search-box:focus-within { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); }
         .search-box input { flex: 1; background: transparent; border: none; color: var(--text-primary); outline: none; font-size: 14px; }
 
-        /* Top Sticky Ad Banner */
+        /* Top Ad Banner */
         .top-ad-banner { background: #fff; border-bottom: 1px solid var(--border-color); padding: 8px 0; text-align: center; position: relative; min-height: 60px; display: flex; align-items: center; justify-content: center; overflow: hidden; }
         .top-ad-banner .ad-sponsor-label { position: absolute; top: 5px; right: 8px; background: rgba(0,0,0,0.7); color: #fff; font-size: 9px; font-weight: 700; padding: 2px 6px; border-radius: 10px; z-index: 10; }
 
         /* Category Nav */
         .category-nav { background: #ffffff; border-bottom: 1px solid var(--border-color); padding: 0; display: flex; justify-content: center; gap: 0; overflow-x: auto; scrollbar-width: none; }
         .category-nav::-webkit-scrollbar { display: none; }
-        .nav-btn { background: transparent; color: var(--text-secondary); border: none; padding: 14px 20px; font-weight: 600; font-size: 13px; white-space: nowrap; cursor: pointer; position: relative; transition: var(--transition); border-bottom: 3px solid transparent; }
+        .nav-btn { background: transparent; color: var(--text-secondary); border: none; padding: 12px 18px; font-weight: 600; font-size: 13px; white-space: nowrap; cursor: pointer; position: relative; transition: var(--transition); border-bottom: 3px solid transparent; }
         .nav-btn:hover { color: var(--text-primary); background: var(--bg-secondary); }
         .nav-btn.active { color: var(--accent); border-bottom-color: var(--accent); background: var(--accent-soft); }
 
@@ -56,7 +56,7 @@
         .section-header { padding: 20px 0 10px; }
         .section-title { font-size: 16px; font-weight: 700; color: var(--text-primary); border-left: 4px solid var(--accent); padding-left: 12px; text-transform: uppercase; letter-spacing: 0.5px; }
 
-        /* Sponsored Products */
+        /* Sponsored Products Carousel */
         .carousel-wrapper { position: relative; overflow: hidden; }
         .carousel-container { display: flex; gap: 12px; padding: 10px 0 20px; overflow-x: auto; scrollbar-width: none; scroll-behavior: smooth; }
         .carousel-container::-webkit-scrollbar { display: none; }
@@ -106,18 +106,6 @@
         .modal-close { position: absolute; top: 15px; right: 15px; background: var(--bg-secondary); border: none; width: 32px; height: 32px; border-radius: 50%; font-size: 18px; cursor: pointer; color: var(--text-secondary); transition: var(--transition); display: flex; align-items: center; justify-content: center; }
         .modal-close:hover { background: var(--accent); color: #fff; }
 
-        /* Admin */
-        .admin-login input { width: 100%; max-width: 300px; padding: 12px; margin-bottom: 15px; border: 1px solid var(--border-color); background: var(--bg-secondary); border-radius: var(--radius-sm); color: var(--text-primary); text-align: center; display: block; margin-left: auto; margin-right: auto; font-size: 14px; }
-        .admin-dashboard .upload-form { background: var(--bg-secondary); padding: 20px; border-radius: var(--radius-md); margin-bottom: 30px; border: 1px solid var(--border-color); }
-        .admin-dashboard .form-group { margin-bottom: 16px; }
-        .admin-dashboard .form-group label { display: block; font-size: 13px; color: var(--text-secondary); margin-bottom: 6px; font-weight: 600; }
-        .admin-dashboard .form-group input, .admin-dashboard .form-group select, .admin-dashboard .form-group textarea { width: 100%; padding: 10px; background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-sm); color: var(--text-primary); font-size: 14px; }
-        .admin-table { width: 100%; border-collapse: collapse; font-size: 13px; background: var(--bg-secondary); border-radius: var(--radius-md); overflow: hidden; }
-        .admin-table th, .admin-table td { border: 1px solid var(--border-color); padding: 12px; text-align: left; }
-        .admin-table th { background: var(--bg-card); color: var(--accent); font-weight: 700; text-transform: uppercase; font-size: 11px; }
-        .admin-table img { width: 50px; height: 50px; object-fit: cover; border-radius: var(--radius-sm); }
-        .admin-table button { background: var(--danger); border: none; color: #fff; padding: 6px 12px; border-radius: var(--radius-sm); cursor: pointer; font-weight: 600; font-size: 12px; }
-
         /* Toast */
         .toast { position: fixed; bottom: 20px; right: 20px; background: var(--text-primary); color: var(--bg-primary); padding: 14px 24px; border-radius: var(--radius-md); border-left: 4px solid var(--accent); box-shadow: var(--shadow-lg); z-index: 99999; font-weight: 500; font-size: 14px; animation: slideIn 0.3s ease; }
         @keyframes slideIn { from { transform: translateX(100px); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
@@ -130,21 +118,49 @@
         .share-btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; background: var(--accent-soft); border: 1px solid var(--accent); color: var(--accent); border-radius: 8px; padding: 10px; width: 100%; font-weight: 700; font-size: 14px; cursor: pointer; margin-top: 10px; transition: var(--transition); }
         .share-btn:hover { background: var(--accent); color: #fff; }
 
-        @media (max-width: 1200px) { .masonry-grid { columns: 3; } }
-        @media (max-width: 900px) { .masonry-grid { columns: 2; } }
-        @media (max-width: 600px) { .masonry-grid { columns: 2; column-gap: 8px; } .masonry-item { margin-bottom: 8px; } }
-        @media (max-width: 768px) {
-            .header { padding: 12px 16px; gap: 12px; flex-wrap: wrap; }
-            .logo { order: 1; width: 100%; margin-bottom: 10px; }
-            .logo img { max-width: 100%; }
-            .search-box { order: 2; max-width: 100%; flex-basis: 100%; margin-left: 0; }
-            .category-nav { justify-content: flex-start; padding: 0 10px; }
+        /* ============ MOBILE: SCALED DESKTOP LOOK ============ */
+        @media (max-width: 900px) {
+            .header { padding: 10px 12px; gap: 10px; flex-wrap: nowrap; }
+            .logo img { height: 45px; }
+            .search-box { padding: 8px 14px; }
+            .search-box input { font-size: 12px; }
+            .category-nav { justify-content: flex-start; padding: 0 5px; }
+            .nav-btn { padding: 10px 14px; font-size: 12px; }
+            .section-container { padding: 0 12px; }
+            .section-title { font-size: 13px; padding-left: 8px; }
+            .carousel-container { gap: 8px; padding: 8px 0 15px; }
+            .carousel-card { flex: 0 0 130px; }
+            .carousel-card img { height: 110px; }
+            .carousel-card .info { padding: 6px; }
+            .carousel-card .title { font-size: 11px; }
+            .carousel-card .price { font-size: 12px; }
+            .carousel-card .vendor { font-size: 9px; }
+            .masonry-grid { columns: 4; column-gap: 6px; padding-bottom: 20px; }
+            .masonry-item { margin-bottom: 6px; border-radius: 8px; }
+            .masonry-item .info { padding: 5px; }
+            .masonry-item .title { font-size: 10px; margin-bottom: 2px; }
+            .masonry-item .price { font-size: 11px; margin-bottom: 2px; }
+            .masonry-item .vendor { font-size: 8px; }
+            .badge-instock { font-size: 7px; padding: 2px 4px; border-radius: 4px; top: 4px; right: 4px; }
+            .badge-sponsored { font-size: 7px; padding: 2px 4px; border-radius: 4px; top: 4px; left: 4px; }
+            .delivery-tag { font-size: 8px; padding: 2px 5px; }
+            .footer { padding: 15px 10px 8px; }
+            .footer-links { gap: 8px; }
+            .footer-links a { font-size: 9px; }
+            .footer-copyright { font-size: 8px; padding-top: 6px; }
+            .help-button { width: 40px; height: 40px; font-size: 20px; bottom: 15px; right: 15px; }
+        }
+        @media (max-width: 500px) {
+            .logo img { height: 38px; }
+            .carousel-card { flex: 0 0 110px; }
+            .carousel-card img { height: 95px; }
+            .masonry-grid { column-gap: 5px; }
         }
     </style>
 </head>
 <body>
 
-    <!-- ✅ ADSTERRA SOCIAL BAR (Best performing - floating side ad) -->
+    <!-- ADSTERRA SOCIAL BAR (safe placement) -->
     <script async="async" data-cfasync="false" src="https://pl31267888.profitableratecpmnetwork.com/84e0d2e547e6c4cb1970fa5bff894187/invoke.js"></script>
     <div id="container-84e0d2e547e6c4cb1970fa5bff894187"></div>
 
@@ -157,10 +173,11 @@
         </div>
     </header>
 
-    <!-- ✅ TOP STICKY AD BANNER (Replaces annoying Popunder) -->
+    <!-- TOP STICKY AD BANNER (using iframe to safely embed Adsterra) -->
     <div class="top-ad-banner">
         <div class="ad-sponsor-label">Sponsored</div>
-        <script src="https://pl31267886.profitableratecpmnetwork.com/d8/95/4c/d8954c9cac24a4e4fa080bd08eaf7b1e.js"></script>
+        <!-- Adsterra banner safely embedded -->
+        <iframe src="about:blank" style="width:728px;height:90px;border:none;overflow:hidden;" scrolling="no" id="adFrame"></iframe>
     </div>
 
     <!-- Help Button -->
@@ -211,18 +228,18 @@
         <div class="modal-box">
             <button class="modal-close" onclick="closeSellerModal()">×</button>
             <h2 style="margin-bottom: 15px;">Become a Seller & Upload Your Furniture</h2>
-            <div class="upload-form" style="background: var(--bg-secondary); padding: 15px; border-radius: var(--radius-md); border: 1px solid var(--border-color);">
-                <div class="form-group"><label>Your Name / Business Name</label><input type="text" id="sellerName" placeholder="e.g., Mma Amisco Furniture"></div>
-                <div class="form-group"><label>Your WhatsApp Number</label><input type="text" id="sellerWhatsApp" placeholder="e.g., 2348012345678"></div>
-                <div class="form-group"><label>Furniture Name</label><input type="text" id="sellerProdName" placeholder="e.g., Luxurious Sofa"></div>
-                <div class="form-group"><label>Price (₦)</label><input type="number" id="sellerProdPrice" placeholder="e.g., 150000"></div>
-                <div class="form-group"><label>Category</label><select id="sellerProdCategory"><option value="sofa">Sofa</option><option value="dining">Dining</option><option value="kitchen">Kitchen</option><option value="tv">TV Station</option><option value="bed">Bed Frame</option></select></div>
-                <div class="form-group"><label>Delivery Option</label><select id="sellerDelivery"><option value="free">Free Delivery</option><option value="paid">Delivery Fee Applies</option></select></div>
-                <div class="form-group"><label>Section (Where to place)</label><select id="sellerProdSection"><option value="sponsored">Sponsored</option><option value="recommended">Recommended</option></select></div>
-                <div class="form-group"><label>Full Description</label><textarea id="sellerProdDescription" rows="3" placeholder="Describe your furniture beautifully..."></textarea></div>
-                <div class="form-group"><label>Upload Image</label><input type="file" id="sellerProdImage" accept="image/*"></div>
-                <button class="btn btn-primary" style="width:100%; padding:14px; background: var(--accent); border: none; color: #fff;" onclick="submitSellerProduct()">Submit for Admin Approval</button>
-                <p style="color: var(--text-muted); font-size: 12px; margin-top: 10px; text-align: center;">Your product will be visible only after admin approval.</p>
+            <div style="background: var(--bg-secondary); padding: 15px; border-radius: 12px; border: 1px solid var(--border-color);">
+                <div style="margin-bottom:12px;"><label style="display:block;font-size:13px;margin-bottom:4px;">Your Name / Business Name</label><input type="text" id="sellerName" placeholder="e.g., Mma Amisco Furniture" style="width:100%;padding:10px;border:1px solid var(--border-color);border-radius:8px;"></div>
+                <div style="margin-bottom:12px;"><label style="display:block;font-size:13px;margin-bottom:4px;">Your WhatsApp Number</label><input type="text" id="sellerWhatsApp" placeholder="e.g., 2348012345678" style="width:100%;padding:10px;border:1px solid var(--border-color);border-radius:8px;"></div>
+                <div style="margin-bottom:12px;"><label style="display:block;font-size:13px;margin-bottom:4px;">Furniture Name</label><input type="text" id="sellerProdName" placeholder="e.g., Luxurious Sofa" style="width:100%;padding:10px;border:1px solid var(--border-color);border-radius:8px;"></div>
+                <div style="margin-bottom:12px;"><label style="display:block;font-size:13px;margin-bottom:4px;">Price (₦)</label><input type="number" id="sellerProdPrice" placeholder="e.g., 150000" style="width:100%;padding:10px;border:1px solid var(--border-color);border-radius:8px;"></div>
+                <div style="margin-bottom:12px;"><label style="display:block;font-size:13px;margin-bottom:4px;">Category</label><select id="sellerProdCategory" style="width:100%;padding:10px;border:1px solid var(--border-color);border-radius:8px;"><option value="sofa">Sofa</option><option value="dining">Dining</option><option value="kitchen">Kitchen</option><option value="tv">TV Station</option><option value="bed">Bed Frame</option></select></div>
+                <div style="margin-bottom:12px;"><label style="display:block;font-size:13px;margin-bottom:4px;">Delivery Option</label><select id="sellerDelivery" style="width:100%;padding:10px;border:1px solid var(--border-color);border-radius:8px;"><option value="free">Free Delivery</option><option value="paid">Delivery Fee Applies</option></select></div>
+                <div style="margin-bottom:12px;"><label style="display:block;font-size:13px;margin-bottom:4px;">Section</label><select id="sellerProdSection" style="width:100%;padding:10px;border:1px solid var(--border-color);border-radius:8px;"><option value="sponsored">Sponsored</option><option value="recommended">Recommended</option></select></div>
+                <div style="margin-bottom:12px;"><label style="display:block;font-size:13px;margin-bottom:4px;">Full Description</label><textarea id="sellerProdDescription" rows="3" placeholder="Describe your furniture beautifully..." style="width:100%;padding:10px;border:1px solid var(--border-color);border-radius:8px;"></textarea></div>
+                <div style="margin-bottom:12px;"><label style="display:block;font-size:13px;margin-bottom:4px;">Upload Image</label><input type="file" id="sellerProdImage" accept="image/*" style="width:100%;padding:10px;border:1px solid var(--border-color);border-radius:8px;"></div>
+                <button style="width:100%;padding:14px;background:var(--accent);color:#fff;border:none;border-radius:8px;font-weight:700;cursor:pointer;" onclick="submitSellerProduct()">Submit for Admin Approval</button>
+                <p style="color:var(--text-muted);font-size:12px;margin-top:10px;text-align:center;">Your product will be visible only after admin approval.</p>
             </div>
         </div>
     </div>
@@ -235,11 +252,11 @@
             <p id="fsDescription" style="color: #555; font-size: 14px; margin-bottom: 15px;"></p>
             <img id="fullScreenImg" src="" alt="" style="touch-action: pinch-zoom;">
             <div style="margin-top: 10px;">
-                <button class="unhide-btn" id="fsUnhideBtn" onclick="toggleFullScreenDetails()" style="background: var(--bg-secondary); border: 1px solid var(--accent); color: var(--accent); border-radius: 8px; padding: 10px; width: 100%; font-weight: 700; cursor: pointer; margin-bottom: 10px;">Unhide Details</button>
+                <button id="fsUnhideBtn" onclick="toggleFullScreenDetails()" style="background: var(--bg-secondary); border: 1px solid var(--accent); color: var(--accent); border-radius: 8px; padding: 10px; width: 100%; font-weight: 700; cursor: pointer; margin-bottom: 10px;">Unhide Details</button>
                 <div id="fsHiddenDetails" style="display: none; margin-bottom: 15px;">
                     <p id="fsCode" style="color: #555; font-size: 13px; margin-bottom: 8px;"></p>
                     <label style="font-size: 13px; color: #555; display: block; margin-bottom: 8px;">Select Color: <input type="color" id="modalColor" value="#ffffff" style="width: 25px; height: 25px; vertical-align: middle;"></label>
-                    <button class="copy-code-btn" onclick="copyCode('${document.getElementById('fsCode').textContent.split(': ')[1]}')" style="background: var(--bg-secondary); border: 1px solid var(--border-color); color: #555; border-radius: 4px; padding: 6px 10px; font-weight: 700; cursor: pointer; width: 100%;">📋 Copy Code</button>
+                    <button onclick="copyCode(document.getElementById('fsCode').textContent.split(': ')[1])" style="background: var(--bg-secondary); border: 1px solid var(--border-color); color: #555; border-radius: 4px; padding: 6px 10px; font-weight: 700; cursor: pointer; width: 100%;">📋 Copy Code</button>
                 </div>
             </div>
             <button class="share-btn" onclick="shareProduct()">🔗 Share Product Link</button>
@@ -251,34 +268,10 @@
     </div>
 
     <!-- Footer Modals -->
-    <div class="modal-overlay" id="aboutModal">
-        <div class="modal-box">
-            <button class="modal-close" onclick="closeModal('aboutModal')">×</button>
-            <h2 style="margin-bottom: 15px;">About FurniHub 9ja</h2>
-            <p style="color: var(--text-secondary); line-height: 1.8;">At FurniHub 9ja, we are dedicated to transforming your living spaces into havens of comfort, elegance, and functionality. As a premier furniture marketplace in Nigeria, we connect you with skilled furniture makers and vendors.</p>
-        </div>
-    </div>
-    <div class="modal-overlay" id="policyModal">
-        <div class="modal-box">
-            <button class="modal-close" onclick="closeModal('policyModal')">×</button>
-            <h2 style="margin-bottom: 15px;">Payment & Delivery Policy</h2>
-            <p style="color: var(--text-secondary); line-height: 1.8;">Free delivery on selected items. Pay Half, Pay Balance on Delivery OR Pay Fully Upfront.</p>
-        </div>
-    </div>
-    <div class="modal-overlay" id="privacyModal">
-        <div class="modal-box">
-            <button class="modal-close" onclick="closeModal('privacyModal')">×</button>
-            <h2 style="margin-bottom: 15px;">Privacy Policy</h2>
-            <p style="color: var(--text-secondary); line-height: 1.8;">Your privacy is paramount. We do not sell, rent, or share your personal data with third parties.</p>
-        </div>
-    </div>
-    <div class="modal-overlay" id="licenseModal">
-        <div class="modal-box" style="max-width: 700px;">
-            <button class="modal-close" onclick="closeModal('licenseModal')">×</button>
-            <h2 style="margin-bottom: 15px;">Apache License</h2>
-            <div style="color: var(--text-secondary); line-height: 1.6; font-size: 13px; max-height: 60vh; overflow-y: auto; padding-right: 10px;"><pre style="white-space: pre-wrap; font-family: inherit; color: var(--text-secondary);">Apache License 2.0... See full text in footer.</pre></div>
-        </div>
-    </div>
+    <div class="modal-overlay" id="aboutModal"><div class="modal-box"><button class="modal-close" onclick="closeModal('aboutModal')">×</button><h2>About FurniHub 9ja</h2><p style="color:#555;margin-top:15px;">Nigeria's premier furniture marketplace connecting buyers with skilled makers.</p></div></div>
+    <div class="modal-overlay" id="policyModal"><div class="modal-box"><button class="modal-close" onclick="closeModal('policyModal')">×</button><h2>Payment & Delivery</h2><p style="color:#555;margin-top:15px;">Free delivery on selected items. Pay Half, Pay Balance on Delivery OR Pay Fully Upfront.</p></div></div>
+    <div class="modal-overlay" id="privacyModal"><div class="modal-box"><button class="modal-close" onclick="closeModal('privacyModal')">×</button><h2>Privacy Policy</h2><p style="color:#555;margin-top:15px;">Your privacy is paramount. We do not sell or share your data.</p></div></div>
+    <div class="modal-overlay" id="licenseModal"><div class="modal-box"><button class="modal-close" onclick="closeModal('licenseModal')">×</button><h2>Apache License</h2><p style="color:#555;margin-top:15px;">Apache License 2.0</p></div></div>
 
     <div id="toastContainer"></div>
 
@@ -294,9 +287,30 @@
         function formatPrice(price) { return '₦' + Number(price).toLocaleString('en-NG'); }
         function generateProductCode() { return Math.floor(10000 + Math.random() * 90000).toString(); }
         function showToast(msg) { const t = document.createElement('div'); t.className = 'toast'; t.textContent = msg; document.getElementById('toastContainer').appendChild(t); setTimeout(() => t.remove(), 3000); }
-        function openHelp() { window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent('Hello FurniHub 9ja, I need help with something.')}`, '_blank'); }
+        function openHelp() { window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent('Hello FurniHub 9ja, I need help.')}`, '_blank'); }
 
-        // Upload to ImgBB
+        // Load Adsterra banner into the iframe safely
+        function loadAdInIframe() {
+            const iframe = document.getElementById('adFrame');
+            const doc = iframe.contentDocument || iframe.contentWindow.document;
+            doc.open();
+            doc.write(`
+                <html><body style="margin:0;padding:0;display:flex;justify-content:center;align-items:center;height:100%;">
+                <script type="text/javascript">
+                    atOptions = {
+                        'key' : '84e0d2e547e6c4cb1970fa5bff894187',
+                        'format' : 'iframe',
+                        'height' : 90,
+                        'width' : 728,
+                        'params' : {}
+                    };
+                <\/script>
+                <script type="text/javascript" src="//www.highperformanceformat.com/84e0d2e547e6c4cb1970fa5bff894187/invoke.js"><\/script>
+                </body></html>
+            `);
+            doc.close();
+        }
+
         function uploadToImgBB(file) {
             return new Promise((resolve, reject) => {
                 const formData = new FormData(); formData.append('image', file);
@@ -305,7 +319,6 @@
             });
         }
 
-        // Fetch Products
         async function fetchProductsFromDB() {
             try {
                 const response = await fetch(SHEETDB_URL); const data = await response.json();
@@ -313,10 +326,10 @@
                     products = data.map(item => ({ id: Number(item.id), code: item.code || generateProductCode(), name: item.name, price: Number(item.price), vendor: item.vendor || 'Unknown', category: item.category, section: item.section, rating: Number(item.rating) || 4.5, image: item.image, description: item.description || '', status: item.status || 'approved', sellerWhatsApp: item.sellerWhatsApp || '', delivery: item.delivery || '' }));
                 } else { products = []; }
                 renderStore();
-            } catch (error) { console.error("Error:", error); products = []; renderStore(); }
+                startCarouselRotation();
+            } catch (error) { console.error("Error:", error); products = []; renderStore(); startCarouselRotation(); }
         }
 
-        // Render Store
         function renderStore() {
             const carousel = document.getElementById('carouselContainer'); const masonry = document.getElementById('masonryGrid');
             let sponsored = products.filter(p => p.section === 'sponsored' && p.status === 'approved');
@@ -333,55 +346,70 @@
             }).join('');
         }
 
-        // Seller Modal
+        // FIXED: Carousel Rotation every 5 seconds
+        let carouselTimer = null;
+        function startCarouselRotation() {
+            if (carouselTimer) clearInterval(carouselTimer);
+            const c = document.getElementById('carouselContainer');
+            if (!c || c.children.length <= 1) return;
+            
+            carouselTimer = setInterval(() => {
+                const maxScroll = c.scrollWidth - c.clientWidth;
+                // If near end, reset to start
+                if (c.scrollLeft >= maxScroll - 10) {
+                    c.scrollTo({ left: 0, behavior: 'smooth' });
+                } else {
+                    c.scrollBy({ left: 200, behavior: 'smooth' });
+                }
+            }, 5000);
+        }
+
         function openSellerModal() { document.getElementById('sellerModal').classList.add('active'); }
         function closeSellerModal() { document.getElementById('sellerModal').classList.remove('active'); }
         async function submitSellerProduct() {
             const name = document.getElementById('sellerName').value, whatsapp = document.getElementById('sellerWhatsApp').value, prodName = document.getElementById('sellerProdName').value, price = document.getElementById('sellerProdPrice').value, category = document.getElementById('sellerProdCategory').value, delivery = document.getElementById('sellerDelivery').value, section = document.getElementById('sellerProdSection').value, description = document.getElementById('sellerProdDescription').value, imgInput = document.getElementById('sellerProdImage');
-            if (!name || !whatsapp || !prodName || !price || !imgInput.files[0]) { showToast('Please fill all fields and upload image'); return; }
+            if (!name || !whatsapp || !prodName || !price || !imgInput.files[0]) { showToast('Please fill all fields'); return; }
             showToast('Uploading image...');
             try {
                 const imageUrl = await uploadToImgBB(imgInput.files[0]); const code = generateProductCode();
                 const newProduct = { id: Date.now(), code, name: prodName, price: Number(price), vendor: name, category, section, rating: 4.5, image: imageUrl, description, status: 'pending', sellerWhatsApp: whatsapp.replace(/\D/g, ''), delivery };
-                const response = await fetch(SHEETDB_URL, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(newProduct) });
-                if (response.ok) { showToast('✅ Submitted! Waiting for approval.'); closeSellerModal(); document.getElementById('sellerName').value=''; document.getElementById('sellerWhatsApp').value=''; document.getElementById('sellerProdName').value=''; document.getElementById('sellerProdPrice').value=''; document.getElementById('sellerProdImage').value=''; document.getElementById('sellerProdDescription').value=''; }
-                else { showToast('❌ Failed.'); }
-            } catch (error) { showToast('❌ Error: ' + error.message); }
+                await fetch(SHEETDB_URL, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(newProduct) });
+                showToast('✅ Submitted for approval!'); closeSellerModal();
+            } catch (error) { showToast('❌ Error'); }
         }
 
-        // Full Screen / Share / WhatsApp
-        function openFullScreen(id) { const p = products.find(x => x.id === id); if (!p) return; currentFullScreenProductId = id; document.getElementById('fsTitle').textContent = p.name; document.getElementById('fsDescription').textContent = p.description; document.getElementById('fsCode').textContent = 'Code: ' + p.code; document.getElementById('fullScreenImg').src = p.image; document.getElementById('fsHiddenDetails').style.display = 'none'; document.getElementById('fsUnhideBtn').textContent = 'Unhide Details'; document.getElementById('fullScreenModal').classList.add('active'); }
+        function openFullScreen(id) { const p = products.find(x => x.id === id); if (!p) return; currentFullScreenProductId = id; document.getElementById('fsTitle').textContent = p.name; document.getElementById('fsDescription').textContent = p.description; document.getElementById('fsCode').textContent = 'Code: ' + p.code; document.getElementById('fullScreenImg').src = p.image; document.getElementById('fsHiddenDetails').style.display = 'none'; document.getElementById('fullScreenModal').classList.add('active'); }
         function closeFullScreen() { document.getElementById('fullScreenModal').classList.remove('active'); currentFullScreenProductId = null; }
         function toggleFullScreenDetails() { const d = document.getElementById('fsHiddenDetails'), b = document.getElementById('fsUnhideBtn'); if (d.style.display === 'block') { d.style.display = 'none'; b.textContent = 'Unhide Details'; } else { d.style.display = 'block'; b.textContent = 'Hide Details'; } }
-        function shareProduct() { const p = products.find(x => x.id === currentFullScreenProductId); if (!p) return; const link = `${window.location.href.split('?')[0].replace('index.html', '')}product.html?code=${p.code}`; navigator.clipboard.writeText(link).then(() => showToast('✅ Link copied!')).catch(() => showToast('❌ Copy failed')); }
+        function shareProduct() { const p = products.find(x => x.id === currentFullScreenProductId); if (!p) return; const link = `${window.location.href.split('?')[0].replace('index.html', '')}product.html?code=${p.code}`; navigator.clipboard.writeText(link).then(() => showToast('✅ Link copied!')); }
         function sendFullScreenWhatsApp() { const p = products.find(x => x.id === currentFullScreenProductId); if (!p) return; const target = p.sellerWhatsApp || WHATSAPP_NUMBER; const msg = `Hello, I need this furniture:\n\nProduct: ${p.name}\nPrice: ${formatPrice(p.price)}\nImage: ${p.image}`; window.open(`https://wa.me/${target}?text=${encodeURIComponent(msg)}`, '_blank'); }
-        function copyCode(code) { navigator.clipboard.writeText(code).then(() => showToast('✅ Code copied: ' + code)).catch(() => showToast('❌ Copy failed')); }
+        function copyCode(code) { navigator.clipboard.writeText(code).then(() => showToast('✅ Code copied: ' + code)); }
 
-        // Admin
         function checkAdminAccess() { if (window.location.hash === '#admin') { document.getElementById('adminBtn').classList.add('active'); } }
         window.addEventListener('hashchange', checkAdminAccess);
-        function toggleAdmin() { const c = document.getElementById('adminPanelContainer'); if (isAdmin) { isAdmin = false; c.classList.add('hidden'); showToast('Exited'); } else { c.classList.remove('hidden'); c.innerHTML = `<div id="adminLogin" style="text-align:center;padding:40px;"><h2>Admin</h2><input type="password" id="adminPass" placeholder="Password" onkeypress="if(event.key==='Enter') checkAdminPass()"><button onclick="checkAdminPass()" class="btn btn-primary" style="margin-top:10px;background:var(--accent);color:#fff;border:none;padding:10px 20px;border-radius:6px;cursor:pointer;">Login</button></div>`; } }
-        function checkAdminPass() { const p = document.getElementById('adminPass').value; if (p === 'Okwudiri@007') { isAdmin = true; const c = document.getElementById('adminPanelContainer'); c.innerHTML = `<h3>Pending Approvals</h3><div id="pendingList" style="margin-bottom:20px;"></div><h3>All Products</h3><div id="allList"></div>`; renderAdminLists(); showToast('Welcome!'); } else { showToast('❌ Wrong'); } }
-        function renderAdminLists() { const pending = products.filter(p => p.status === 'pending'); const all = products; document.getElementById('pendingList').innerHTML = pending.map(p => `<p style="padding:10px;border:1px solid #ddd;margin:5px 0;border-radius:6px;">${p.name} - ${p.vendor} <button onclick="approveProduct(${p.id})" style="background:green;color:#fff;border:none;padding:5px 10px;border-radius:4px;cursor:pointer;">Approve</button> <button onclick="deleteProduct(${p.id})" style="background:red;color:#fff;border:none;padding:5px 10px;border-radius:4px;cursor:pointer;">Delete</button></p>`).join('') || '<p>None</p>'; document.getElementById('allList').innerHTML = all.map(p => `<p style="padding:10px;border:1px solid #ddd;margin:5px 0;border-radius:6px;">${p.name} - ${p.status} <button onclick="deleteProduct(${p.id})" style="background:red;color:#fff;border:none;padding:5px 10px;border-radius:4px;cursor:pointer;">Delete</button></p>`).join(''); }
-        async function approveProduct(id) { const p = products.find(x => x.id === id); if (p) { p.status = 'approved'; await fetch(`${SHEETDB_URL}/id/${id}`, { method: 'PATCH', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ status: 'approved' }) }); renderStore(); renderAdminLists(); showToast('Approved!'); } }
-        async function deleteProduct(id) { if (confirm('Delete?')) { await fetch(`${SHEETDB_URL}/id/${id}`, { method: 'DELETE' }); products = products.filter(p => p.id !== id); renderStore(); renderAdminLists(); showToast('Deleted'); } }
+        function toggleAdmin() { const c = document.getElementById('adminPanelContainer'); if (isAdmin) { isAdmin = false; c.classList.add('hidden'); showToast('Exited'); } else { c.classList.remove('hidden'); c.innerHTML = `<div style="text-align:center;padding:40px;"><h2>Admin</h2><input type="password" id="adminPass" placeholder="Password" style="padding:12px;border:1px solid #ddd;border-radius:8px;margin-bottom:10px;" onkeypress="if(event.key==='Enter') checkAdminPass()"><br><button onclick="checkAdminPass()" style="background:var(--accent);color:#fff;border:none;padding:10px 20px;border-radius:8px;cursor:pointer;">Login</button></div>`; } }
+        function checkAdminPass() { const p = document.getElementById('adminPass').value; if (p === 'Okwudiri@007') { isAdmin = true; const c = document.getElementById('adminPanelContainer'); c.innerHTML = `<h3>Pending</h3><div id="pendingList"></div><h3 style="margin-top:20px;">All</h3><div id="allList"></div>`; renderAdminLists(); showToast('Welcome!'); } else { showToast('❌ Wrong'); } }
+        function renderAdminLists() { const pending = products.filter(p => p.status === 'pending'); document.getElementById('pendingList').innerHTML = pending.map(p => `<p style="padding:10px;border:1px solid #ddd;margin:5px 0;border-radius:6px;">${p.name} <button onclick="approveProduct(${p.id})" style="background:green;color:#fff;border:none;padding:5px 10px;border-radius:4px;cursor:pointer;">Approve</button> <button onclick="deleteProduct(${p.id})" style="background:red;color:#fff;border:none;padding:5px 10px;border-radius:4px;cursor:pointer;">Delete</button></p>`).join('') || '<p>None</p>'; document.getElementById('allList').innerHTML = products.map(p => `<p style="padding:10px;border:1px solid #ddd;margin:5px 0;border-radius:6px;">${p.name} - ${p.status} <button onclick="deleteProduct(${p.id})" style="background:red;color:#fff;border:none;padding:5px 10px;border-radius:4px;cursor:pointer;">Delete</button></p>`).join(''); }
+        async function approveProduct(id) { const p = products.find(x => x.id === id); if (p) { p.status = 'approved'; await fetch(`${SHEETDB_URL}/id/${id}`, { method: 'PATCH', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ status: 'approved' }) }); renderStore(); renderAdminLists(); startCarouselRotation(); showToast('Approved!'); } }
+        async function deleteProduct(id) { if (confirm('Delete?')) { await fetch(`${SHEETDB_URL}/id/${id}`, { method: 'DELETE' }); products = products.filter(p => p.id !== id); renderStore(); renderAdminLists(); startCarouselRotation(); showToast('Deleted'); } }
 
-        // Auto Rotate Sponsored
-        function startCarouselRotation() { const c = document.getElementById('carouselContainer'); if (c.children.length <= 1) return; setInterval(() => { if (c.scrollLeft + c.clientWidth >= c.scrollWidth - 5) { c.scrollTo({ left: 0, behavior: 'smooth' }); } else { c.scrollBy({ left: 200, behavior: 'smooth' }); } }, 5000); }
+        function setupCategoryNav() { document.getElementById('categoryNav').querySelectorAll('.nav-btn').forEach(btn => btn.addEventListener('click', () => { document.getElementById('categoryNav').querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active')); btn.classList.add('active'); activeCategory = btn.dataset.category; renderStore(); startCarouselRotation(); })); }
+        function setupSearch() { document.getElementById('searchInput').addEventListener('input', (e) => { const q = e.target.value.toLowerCase(); const f = products.filter(p => p.name.toLowerCase().includes(q) || p.code.toLowerCase().includes(q) || p.vendor.toLowerCase().includes(q)); document.getElementById('masonryGrid').innerHTML = f.filter(p => p.section === 'recommended' && p.status === 'approved').map(p => `<div class="masonry-item" onclick="openFullScreen(${p.id})"><img src="${p.image}"><div class="info"><div class="title">${p.name}</div><div class="price">${formatPrice(p.price)}</div></div></div>`).join(''); document.getElementById('carouselContainer').innerHTML = f.filter(p => p.section === 'sponsored' && p.status === 'approved').map(p => `<div class="carousel-card" onclick="openFullScreen(${p.id})"><img src="${p.image}"><div class="info"><div class="title">${p.name}</div><div class="price">${formatPrice(p.price)}</div></div></div>`).join(''); startCarouselRotation(); }); }
 
-        // Search & Category
-        function setupCategoryNav() { document.getElementById('categoryNav').querySelectorAll('.nav-btn').forEach(btn => btn.addEventListener('click', () => { document.getElementById('categoryNav').querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active')); btn.classList.add('active'); activeCategory = btn.dataset.category; renderStore(); })); }
-        function setupSearch() { document.getElementById('searchInput').addEventListener('input', (e) => { const q = e.target.value.toLowerCase(); const f = products.filter(p => p.name.toLowerCase().includes(q) || p.code.toLowerCase().includes(q) || p.vendor.toLowerCase().includes(q)); document.getElementById('masonryGrid').innerHTML = f.filter(p => p.section === 'recommended' && p.status === 'approved').map(p => `<div class="masonry-item" onclick="openFullScreen(${p.id})"><img src="${p.image}"><div class="info"><div class="title">${p.name}</div><div class="price">${formatPrice(p.price)}</div></div></div>`).join(''); document.getElementById('carouselContainer').innerHTML = f.filter(p => p.section === 'sponsored' && p.status === 'approved').map(p => `<div class="carousel-card" onclick="openFullScreen(${p.id})"><img src="${p.image}"><div class="info"><div class="title">${p.name}</div><div class="price">${formatPrice(p.price)}</div></div></div>`).join(''); }); }
-
-        // Footer Modals
         function showAboutModal() { document.getElementById('aboutModal').classList.add('active'); }
         function showPolicyModal() { document.getElementById('policyModal').classList.add('active'); }
         function showPrivacyModal() { document.getElementById('privacyModal').classList.add('active'); }
         function showLicenseModal() { document.getElementById('licenseModal').classList.add('active'); }
         function closeModal(id) { document.getElementById(id).classList.remove('active'); }
 
-        // Init
-        function init() { document.getElementById('year').textContent = new Date().getFullYear(); fetchProductsFromDB(); setupCategoryNav(); setupSearch(); startCarouselRotation(); checkAdminAccess(); }
+        function init() { 
+            document.getElementById('year').textContent = new Date().getFullYear(); 
+            loadAdInIframe();
+            fetchProductsFromDB(); 
+            setupCategoryNav(); 
+            setupSearch(); 
+            checkAdminAccess(); 
+        }
         init();
     </script>
 
